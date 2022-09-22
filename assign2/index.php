@@ -18,22 +18,7 @@
 </head>
 
 <body>
-
-	<nav>
-		<a class="active" href="index.html">Home</a>
-		<a href="product.html">Products</a>
-		<a href="enquire.html">Enquire</a>
-		<a href="about.html">About</a>
-		<a href="enhancements.html">Enhancements</a>
-		<a target='_blank' href="https://youtu.be/-CM2xLmyVlo">Video</a>
-
-		<div class="logoContainer">
-			<a href="index.html">
-				<img src="./images/preview/Logo.png" alt="Logo">
-			</a>
-		</div>
-	</nav>
-
+	<?php include_once 'includes/menu.php'; ?>
 
 	<section class="titleContainer">
 		<h1 class="title" id="floatingTitleText">A new way to experience Cinema</h1>
@@ -62,20 +47,17 @@
 		</div>
 
 		<section class='moreInfoCard'>
-				<p class="moreInfoText">
-					Designed in collaboration <u>Herman Miller</u>. Designed for people. Designed for you.
-					<br>
-					Sink into experience with our excellent theatre seating options.
-				</p>
+			<p class="moreInfoText">
+				Designed in collaboration <u>Herman Miller</u>. Designed for people. Designed for you.
+				<br>
+				Sink into experience with our excellent theatre seating options.
+			</p>
 
 			<img src="./images/preview/Seating.jpg" alt="Seating image">
 		</section>
 	</div>
-
-	<footer>
-		<p>&copy; Gang of Islands</p>
-	</footer>
-
+	
+    <?php include_once 'includes/footer.php'; ?>  
 </body>
 
 </html>

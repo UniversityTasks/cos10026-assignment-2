@@ -12,20 +12,8 @@
 </head>
 
 <body id='enhancementsBG'>
-    <nav>
-        <a  href="index.html">Home</a>
-        <a href="product.html">Products</a>
-        <a href="enquire.html">Enquire</a>
-        <a href="about.html">About</a>
-        <a href="enhancements.html" class="active">Enhancements</a>
-        <a target='_blank' href="https://youtu.be/-CM2xLmyVlo">Video</a>
+    <?php include_once 'includes/menu.php'; ?>
 
-        <div class="logoContainer">
-            <a href="index.html">
-                <img src="./images/preview/Logo.png" alt="Logo">
-            </a>
-        </div>
-    </nav>
 
     <section id="enhancementContainer">
         <h1>Enhancements</h1>
@@ -52,8 +40,7 @@
             We have made use of animation on the <a href="index.html">Home</a> page with the title section floating in
             from the top as well as the animated background images and in the <a href="enquire.html">Enquire</a> page to
             scale the form and animate the color of the submit button.
-            The code to implement this feature makes use of <a
-                href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations">CSS
+            The code to implement this feature makes use of <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations">CSS
                 animations</a> which include setting up keyframes and specifying animation properties like duration,
             delay and direction.
         </details>
@@ -117,9 +104,7 @@
         </details>
     </section>
 
-    <footer>
-        <p>&copy; Gang of Islands</p>
-    </footer>
+    <?php include_once 'includes/footer.php'; ?>  
 </body>
 
 </html>

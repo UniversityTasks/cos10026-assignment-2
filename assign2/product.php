@@ -11,20 +11,7 @@
 </head>
 
 <body id="enquiryBG">
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="product.html" class="active">Products</a>
-        <a href="enquire.html">Enquire</a>
-        <a href="about.html">About</a>
-        <a href="enhancements.html">Enhancements</a>
-        <a target='_blank' href="https://youtu.be/-CM2xLmyVlo">Video</a>
-
-        <div class="logoContainer">
-            <a href="index.html">
-                <img src="./images/preview/Logo.png" alt="Logo">
-            </a>
-        </div>
-    </nav>
+    <?php include_once 'includes/menu.php'; ?>
 
     <section id="productHead">
         <h1>Movies</h1>
@@ -96,8 +83,7 @@
             <section class="featuresSection">
                 <h4>Select Features</h4>
                 <form>
-                    <input type="checkbox" id="movie1Feature1" name="feature1" value="adultsTickets"
-                        checked="checked" />
+                    <input type="checkbox" id="movie1Feature1" name="feature1" value="adultsTickets" checked="checked" />
                     <label for="movie1Feature1">Adults Tickets</label>
                     <br>
                     <input type="checkbox" id="movie1Feature2" name="feature2" value="childrenTickets" />
@@ -157,8 +143,7 @@
             <section class="featuresSection">
                 <h4>Select Features</h4>
                 <form>
-                    <input type="checkbox" id="movie2Feature1" name="feature1" value="adultsTickets"
-                        checked="checked" />
+                    <input type="checkbox" id="movie2Feature1" name="feature1" value="adultsTickets" checked="checked" />
                     <label for="movie2Feature1">Adults Tickets</label>
                     <br>
                     <input type="checkbox" id="movie2Feature2" name="feature2" value="childrenTickets" />
@@ -220,8 +205,7 @@
             <section class="featuresSection">
                 <h4>Select Features</h4>
                 <form>
-                    <input type="checkbox" id="movie3Feature1" name="feature1" value="adultsTickets"
-                        checked="checked" />
+                    <input type="checkbox" id="movie3Feature1" name="feature1" value="adultsTickets" checked="checked" />
                     <label for="movie3Feature1">Adults Tickets</label>
                     <br>
                     <input type="checkbox" id="movie3Feature2" name="feature2" value="childrenTickets" />
@@ -275,8 +259,7 @@
             <section class="featuresSection">
                 <h4>Select Features</h4>
                 <form>
-                    <input type="checkbox" id="movie4Feature1" name="feature1" value="adultsTickets"
-                        checked="checked" />
+                    <input type="checkbox" id="movie4Feature1" name="feature1" value="adultsTickets" checked="checked" />
                     <label for="movie4Feature1">Adults Tickets</label>
                     <br>
                     <input type="checkbox" id="movie4Feature2" name="feature2" value="childrenTickets" />
@@ -297,8 +280,7 @@
         </section>
 
         <section class="movieCard">
-            <img class="movieImg" src="./images/movies/Paws-Of-Fury-The-Legend-Of-Hank.jpg"
-                alt="Paws Of Fury The Legend Of Hank">
+            <img class="movieImg" src="./images/movies/Paws-Of-Fury-The-Legend-Of-Hank.jpg" alt="Paws Of Fury The Legend Of Hank">
             <h2>PAWS OF FURY</h2>
             <p>
                 A hard-on-his-luck hound Hank (Michael Cera) finds himself in a town
@@ -333,8 +315,7 @@
             <section class="featuresSection">
                 <h4>Select Features</h4>
                 <form>
-                    <input type="checkbox" id="movie5Feature1" name="feature1" value="adultsTickets"
-                        checked="checked" />
+                    <input type="checkbox" id="movie5Feature1" name="feature1" value="adultsTickets" checked="checked" />
                     <label for="movie5Feature1">Adults Tickets</label>
                     <br>
                     <input type="checkbox" id="movie5Feature2" name="feature2" value="childrenTickets" />
@@ -389,8 +370,7 @@
             <section class="featuresSection">
                 <h4>Select Features</h4>
                 <form>
-                    <input type="checkbox" id="movie6Feature1" name="feature1" value="adultsTickets"
-                        checked="checked" />
+                    <input type="checkbox" id="movie6Feature1" name="feature1" value="adultsTickets" checked="checked" />
                     <label for="movie6Feature1">Adults Tickets</label>
                     <br>
                     <input type="checkbox" id="movie6Feature2" name="feature2" value="childrenTickets" />
@@ -411,9 +391,7 @@
         </section>
     </div>
 
-    <footer>
-        <p>&copy; Gang of Islands</p>
-    </footer>
+    <?php include_once 'includes/footer.php'; ?>  
 </body>
 
 </html>

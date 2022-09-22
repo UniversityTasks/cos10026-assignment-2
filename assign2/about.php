@@ -12,20 +12,7 @@
 </head>
 
 <body id='enquiryBG'>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="product.html">Products</a>
-        <a href="enquire.html">Enquire</a>
-        <a href="about.html" class="active">About</a>
-        <a href="enhancements.html">Enhancements</a>
-        <a target='_blank' href="https://youtu.be/-CM2xLmyVlo">Video</a>
-
-        <div class="logoContainer">
-            <a href="index.html">
-                <img src="./images/preview/Logo.png" alt="Logo">
-            </a>
-        </div>
-    </nav>
+    <?php include_once 'includes/menu.php'; ?>  
 
     <div id="aboutContainer">
         <div id="images">
@@ -220,9 +207,7 @@
         </section>
     </div>
 
-    <footer>
-        <p>&copy; Gang of Islands</p>
-    </footer>
+    <?php include_once 'includes/footer.php'; ?>  
 </body>
 
 </html>

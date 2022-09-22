@@ -11,20 +11,8 @@
 </head>
 
 <body id="enquiryBG">
-    <nav>
-        <a  href="index.html">Home</a>
-        <a href="product.html">Products</a>
-        <a href="enquire.html" class="active">Enquire</a>
-        <a href="about.html">About</a>
-        <a href="enhancements.html">Enhancements</a>
-        <a target='_blank' href="https://youtu.be/-CM2xLmyVlo">Video</a>
+    <?php include_once 'includes/menu.php'; ?>
 
-        <div class="logoContainer">
-            <a href="index.html">
-                <img src="./images/preview/Logo.png" alt="Logo">
-            </a>
-        </div>
-    </nav>
     <div id="enquiryContainer">
         <form id="enquiryForm" method='post' action="https://mercury.swin.edu.au/it000000/formtest.php">
             <fieldset class="formFieldset">
@@ -32,14 +20,12 @@
                 <div class="multi-line-form">
                     <div class="formGroup">
                         <label for="firstname">First Name: </label>
-                        <input type="text" name="firstname" id="firstname" pattern="[A-Za-z]{1,25}"
-                            placeholder="FirstName" required />
+                        <input type="text" name="firstname" id="firstname" pattern="[A-Za-z]{1,25}" placeholder="FirstName" required />
                     </div>
 
                     <div class="formGroup">
                         <label for="lastname">Last Name: </label>
-                        <input type="text" name="lastname" id="lastname" pattern="[A-Za-z]{1,25}" placeholder="LastName"
-                            required />
+                        <input type="text" name="lastname" id="lastname" pattern="[A-Za-z]{1,25}" placeholder="LastName" required />
                     </div>
                 </div>
 
@@ -56,8 +42,7 @@
                 <div class="multi-line-form">
                     <div class="formGroup">
                         <label for="street">Street: </label>
-                        <input type="text" name="street" id="street" maxlength="40" placeholder="Street Name"
-                            required />
+                        <input type="text" name="street" id="street" maxlength="40" placeholder="Street Name" required />
                     </div>
 
                     <div class="formGroup">
@@ -84,8 +69,7 @@
 
                     <div class="formGroup">
                         <label for="postcode">Post code: </label>
-                        <input type="text" name="postcode" id="postcode" pattern="[0-9]{4}" placeholder="0123"
-                            required />
+                        <input type="text" name="postcode" id="postcode" pattern="[0-9]{4}" placeholder="0123" required />
                     </div>
                 </div>
             </fieldset>
@@ -149,8 +133,7 @@
 
                 <div class="formGroup">
                     <label for="comments">Comments: </label>
-                    <textarea id="comments" name="comments" rows="6" placeholder="Write your enquiry here..."
-                        required></textarea>
+                    <textarea id="comments" name="comments" rows="6" placeholder="Write your enquiry here..." required></textarea>
                 </div>
 
                 <div class="enquirySubmitBtn">
@@ -163,9 +146,8 @@
             </div>
         </form>
     </div>
-    <footer>
-        <p>&copy; Gang of Islands</p>
-    </footer>
+    
+    <?php include_once 'includes/footer.php'; ?>  
 </body>
 
 </html>

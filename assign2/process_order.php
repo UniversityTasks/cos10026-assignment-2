@@ -18,18 +18,54 @@
     <?php
     // //Login 
     // // require_once("settings.php");
-    // $host = "localhost";
-    // $dbUsername = "root";
-    // $dbPassword = "";
-    // $dbName = "papapotato";
+     $host = "localhost";
+     $user = "root";
+     $pwd = "";
+     $dbName = "cos10026_as2";
 
-    // // Create connection
-    // $conn = @mysqli_connect($host, $user, $pwd, $sql_db);
+   //Create connection
+    $conn = @mysqli_connect($host, $user, $pwd, $dbName);
 
-    // // Check connection
-    // if ($conn->connect_error) {
-    //     die("Connection failed: " . $conn->connect_error);
-    // }
+    // Check connection
+    if ($conn->connect_error) 
+    {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+//Create table
+
+ $query = "CREATE TABLE cos10026_as2.orders (
+     order_id int(6) AUTO_INCREMENT,
+     order_cost int(25) NOT NULL,
+     order_time date DEFAULT GETDATE()
+     order_status varchar(255) DEFAULT 'PENDING'
+     firstname varchar(50) NOT NULL,
+     lastname varchar(50) NOT NULL,
+     email varchar(50) NOT NULL,
+     street varchar(50) NOT NULL,
+     states varchar(30) NOT NULL,
+     postcode int(4) NOT NULL,
+     phone int(10) NOT NULL,
+     contactMethod char(5) NOT NULL,
+     tickets int(10) NOT NULL,
+     products varchar(50) NOT NULL,
+     options varchar(50) NOT NULL,
+     ccType varchar(50) NOT NULL,
+     cName varchar(50) NOT NULL,
+     ccNum int(25) NOT NULL,
+     expmonth int(2) NOT NULL,
+     expyear int(2) NOT NULL,
+     cvv int(3) NOT NULL,
+     PRIMARY KEY  (order_id)
+     )";
+
+ if ($conn->query($query) === TRUE) {
+    echo "Table 'cart' created successfully";
+  }
+  else {
+    echo "Error creating table: " . $conn->error;
+  }
+  
 
     //Initialize variables
     if (isset($_POST["firstname"])) {
@@ -50,26 +86,14 @@
         header("location: register.html");
     }
 
-    if (isset($_POST["phone"])) {
-        $phone = $_POST["phone"];
-    } else {
-        header("location: register.html");
-    }
-
     if (isset($_POST["street"])) {
         $street = $_POST["street"];
     } else {
         header("location: register.html");
     }
 
-    if (isset($_POST["suburb"])) {
-        $suburb = $_POST["suburb"];
-    } else {
-        header("location: register.html");
-    }
-
-    if (isset($_POST["state"])) {
-        $state = $_POST["state"];
+    if (isset($_POST["states"])) {
+        $states = $_POST["states"];
     } else {
         header("location: register.html");
     }
@@ -80,8 +104,14 @@
         header("location: register.html");
     }
 
-    if (isset($_POST["products"])) {
-        $products = $_POST["products"];
+    if (isset($_POST["phone"])) {
+        $phone = $_POST["phone"];
+    } else {
+        header("location: register.html");
+    }
+
+    if (isset($_POST["contactMethod"])) {
+        $contactMethod = $_POST["contactMethod"];
     } else {
         header("location: register.html");
     }
@@ -92,14 +122,32 @@
         header("location: register.html");
     }
 
-    if (isset($_POST["cname"])) {
-        $cname = $_POST["cname"];
+    if (isset($_POST["products"])) {
+        $products = $_POST["products"];
     } else {
         header("location: register.html");
     }
 
-    if (isset($_POST["ccnum"])) {
-        $ccnum = $_POST["ccnum"];
+    if (isset($_POST["options"])) {
+        $options = $_POST["options"];
+    } else {
+        header("location: register.html");
+    }
+
+    if (isset($_POST["ccType"])) {
+        $ccType = $_POST["ccType"];
+    } else {
+        header("location: register.html");
+    }
+    
+    if (isset($_POST["cName"])) {
+        $cName = $_POST["cName"];
+    } else {
+        header("location: register.html");
+    }
+
+    if (isset($_POST["ccNum"])) {
+        $ccNum = $_POST["ccNum"];
     } else {
         header("location: register.html");
     }
@@ -135,14 +183,20 @@
     $firstname = sanitise_input($firstname);
     $lastname = sanitise_input($lastname);
     $email = sanitise_input($email);
-    $phone = sanitise_input($phone);
     $street = sanitise_input($street);
-    $suburb = sanitise_input($suburb);
-    $state = sanitise_input($state);
+    $states = sanitise_input($states);
     $postcode = sanitise_input($postcode);
+    $phone = sanitise_input($phone);
+    $contactMethod = sanitise_input($contactMethod);
     $tickets = sanitise_input($tickets);
-    $cname = sanitise_input($cname);
-    $ccnum = sanitise_input($ccnum);
+    $products = sanitise_input($products);
+    $options = sanitise_input($options);   
+    //$totalCost
+    $ccType = sanitise_input($ccType);
+    $cName = sanitise_input($cName);
+    $ccNum = sanitise_input($ccNum);
+    //$expmonth
+    //$expyear
     $cvv = sanitise_input($cvv);
 
     //Conditions
@@ -183,17 +237,6 @@
             $ValidateInsert += 1;
         }
 
-        //Validate Phone Number
-        if ($phone == "") {
-            $errMsg .= "<b>Phone number Error:</b>You must enter your phone number.<br>";
-        } else if (!preg_match("/^[0-9]*$/", $phone)) {
-            $errMsg .= "<b>Phone number Error:</b>$phone is not a valid phone number.<br>";
-        } else if (strlen($phone) != 10) {
-            $errMsg .= "<b>Phone number Error:</b>$phone is not within the legal range(10digits).<br>";
-        } else {
-            $ValidateInsert += 1;
-        }
-
         //Validate Street 
         if ($street == "") {
             $errMsg .= "<b>Street address Error:</b>You must enter your Street address.<br>";
@@ -205,20 +248,9 @@
             $ValidateInsert += 1;
         }
 
-        //Validate Suburb 
-        if ($suburb == "") {
-            $errMsg .= "<b>Suburb Error:</b>You must enter your Suburb.<br>";
-        } else if (!preg_match("/^[a-zA-Z]*$/", $suburb)) {
-            $errMsg .= "<b>Suburb Error:</b>Only alpha letters allowed in suburb(no spaces).<br>";
-        } else if (strlen($suburb) > 20) {
-            $errMsg .= "<b>Suburb Error:</b>Suburb is limited to 20Characters.<br>";
-        } else {
-            $ValidateInsert += 1;
-        }
-
-        //Validate State
-        if ($state == "") {
-            $errMsg .= "<b>State Error:</b>You must choose a State.<br>";
+        //Validate states
+        if ($states == "") {
+            $errMsg .= "<b>States Error:</b>You must choose a state.<br>";
         } else {
             $ValidateInsert += 1;
         }
@@ -234,9 +266,20 @@
             $ValidateInsert += 1;
         }
 
-        //Validate Products
-        if ($products == "") {
-            $errMsg .= "<b>Product Error:</b>You must choose a Product.<br>";
+        //Validate Phone Number
+        if ($phone == "") {
+            $errMsg .= "<b>Phone number Error:</b>You must enter your phone number.<br>";
+        } else if (!preg_match("/^[0-9]*$/", $phone)) {
+            $errMsg .= "<b>Phone number Error:</b>$phone is not a valid phone number.<br>";
+        } else if (strlen($phone) != 10) {
+            $errMsg .= "<b>Phone number Error:</b>$phone is not within the legal range(10digits).<br>";
+        } else {
+            $ValidateInsert += 1;
+        }
+
+        //Validate Preferred Contact
+        if ($contactMethod == "") {
+            $errMsg .= "<b>Contact Method Error:</b>You must choose a Contact Method.<br>";
         } else {
             $ValidateInsert += 1;
         }
@@ -252,25 +295,38 @@
             $ValidateInsert += 1;
         }
 
+        //Validate Products
+        if ($products == "") {
+            $errMsg .= "<b>Product Error:</b>You must choose a Product.<br>";
+        } else {
+            $ValidateInsert += 1;
+        }
+
+        //Validate Options
+
+
+        //Validate Credit Card Type
+
+
         //Validate Credit Card Name 
-        if ($cname == "") {
+        if ($cName == "") {
             $errMsg .= "<b>Credit Card Name Error:</b>You must enter your Credit Card name.<br>";
-        } elseif (!preg_match("/^[a-zA-Z]*$/", $cname)) {
+        } elseif (!preg_match("/^[a-zA-Z]*$/", $cName)) {
             $errMsg .= "<b>Credit Card Name Error:</b>Only alpha letters allowed in your Credit Card name.<br>";
-        } else if (strlen($cname) > 25) {
+        } else if (strlen($cName) > 25) {
             $errMsg .= "<b>Credit Card Name Error:</b>Credit Card name is limited to 25Characters.<br>";
         } else {
             $ValidateInsert += 1;
         }
 
         //Validate Credit Card Num 
-        $ccnum = preg_replace('/\s+/', '', $ccnum); //remove all spacing tabs and line ends  \s+ will match one or more whitespace characters.
-        if ($ccnum == "") {
+        $ccNum = preg_replace('/\s+/', '', $ccNum); //remove all spacing tabs and line ends  \s+ will match one or more whitespace characters.
+        if ($ccNum == "") {
             $errMsg .= "<b>Credit Card number Error:</b>You must enter your Credit Card number.<br>";
-        } else if (!preg_match("/^[0-9]*$/", $ccnum)) {
+        } else if (!preg_match("/^[0-9]*$/", $ccNum)) {
             $errMsg .= "<b>Credit Card number Error:</b>Credit Card number only accepts integers.<br>";
-        } else if (strlen($ccnum) != 16) {
-            $errMsg .= "<b>Credit Card number Error:</b>$ccnum is not a valid card number(must be 16 digits).<br>";
+        } else if (strlen($ccNum) != 15 || strlen($ccNum) != 16) {
+            $errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number(must be 15-16 digits).<br>";
         } else {
             $ValidateInsert += 1;
         }

@@ -52,8 +52,7 @@
      ccType varchar(50) NOT NULL,
      cName varchar(50) NOT NULL,
      ccNum int(25) NOT NULL,
-     expmonth int(2) NOT NULL,
-     expyear int(2) NOT NULL,
+     expDate char(5) NOT NULL,
      cvv int(3) NOT NULL,
      PRIMARY KEY  (order_id)
      )";
@@ -69,103 +68,103 @@
     if (isset($_POST["firstname"])) {
         $firstname = $_POST["firstname"];
     } else {
-        header("location: register.html");
+        header("location: fix_order.php");
     }
 
     if (isset($_POST["lastname"])) {
         $lastname = $_POST["lastname"];
     } else {
-        header("location: register.html");
+        header("location: fix_order.php");
     }
 
     if (isset($_POST["email"])) {
         $email = $_POST["email"];
     } else {
-        header("location: register.html");
+        header("location: fix_order.php");
     }
 
     if (isset($_POST["street"])) {
         $street = $_POST["street"];
     } else {
-        header("location: register.html");
+        header("location: fix_order.php");
     }
 
     if (isset($_POST["states"])) {
         $states = $_POST["states"];
     } else {
-        header("location: register.html");
+        header("location: fix_order.php");
     }
 
     if (isset($_POST["postcode"])) {
         $postcode = $_POST["postcode"];
     } else {
-        header("location: register.html");
+        header("location: fix_order.php");
     }
 
     if (isset($_POST["phone"])) {
         $phone = $_POST["phone"];
     } else {
-        header("location: register.html");
+        header("location: fix_order.php");
     }
 
     if (isset($_POST["contactMethod"])) {
         $contactMethod = $_POST["contactMethod"];
     } else {
-        header("location: register.html");
+        header("location: fix_order.php");
     }
 
-    if (isset($_POST["tickets"])) {
+    if (isset($_POST["tickets"])) { //quantity
         $tickets = $_POST["tickets"];
     } else {
-        header("location: register.html");
+        header("location: fix_order.php");
     }
 
     if (isset($_POST["products"])) {
         $products = $_POST["products"];
     } else {
-        header("location: register.html");
+        header("location: fix_order.php");
     }
 
     if (isset($_POST["options"])) {
         $options = $_POST["options"];
     } else {
-        header("location: register.html");
+        header("location: fix_order.php");
     }
 
     if (isset($_POST["ccType"])) {
         $ccType = $_POST["ccType"];
     } else {
-        header("location: register.html");
+        header("location: fix_order.php");
     }
 
     if (isset($_POST["cName"])) {
         $cName = $_POST["cName"];
     } else {
-        header("location: register.html");
+        header("location: fix_order.php");
     }
 
     if (isset($_POST["ccNum"])) {
         $ccNum = $_POST["ccNum"];
     } else {
-        header("location: register.html");
+        header("location: fix_order.php");
     }
 
     if (isset($_POST["expmonth"])) {
         $expmonth = $_POST["expmonth"];
     } else {
-        header("location: register.html");
+        header("location: fix_order.php");
     }
 
     if (isset($_POST["expyear"])) {
         $expyear = $_POST["expyear"];
     } else {
-        header("location: register.html");
+        header("location: fix_order.php");
     }
 
     if (isset($_POST["cvv"])) {
         $cvv = $_POST["cvv"];
     } else {
-        header("location: register.html");
+        header("location: fix_order.php");
     }
 
     //Functions
@@ -182,19 +181,19 @@
     $lastname = sanitise_input($lastname);
     $email = sanitise_input($email);
     $street = sanitise_input($street);
-    $states = sanitise_input($states);
+    //$states - sanitisation not need
     $postcode = sanitise_input($postcode);
     $phone = sanitise_input($phone);
-    $contactMethod = sanitise_input($contactMethod);
-    $tickets = sanitise_input($tickets);
-    $products = sanitise_input($products);
-    $options = sanitise_input($options);
-    //$totalCost
-    $ccType = sanitise_input($ccType);
+    //$contactMethod - sanitisation not need
+    $tickets = sanitise_input($tickets); //quantity
+    //$products - sanitisation not need
+    //$options - sanitisation not need
+    //$totalCost - sanitisation not need
+    //$ccType - sanitisation not need
     $cName = sanitise_input($cName);
     $ccNum = sanitise_input($ccNum);
-    //$expmonth
-    //$expyear
+    //$expmonth - sanitisation not need
+    //$expyear - sanitisation not need
     $cvv = sanitise_input($cvv);
 
     //Conditions
@@ -264,6 +263,29 @@
             $ValidateInsert += 1;
         }
 
+        //Validate Postcode  with State
+        $splitPostcode = explode("    ", $postcode);
+        if ($states == "NSW" && $postcode[0] != 1 || $states != "NSW" && $postcode[0] == 1) {
+            $errMsg .= "<b>Incorrect Postcode State combination:</b>New South Wales postcode's starts with 1.<br>";
+        } else if ($states == "ACT" && $postcode[0] != 2 || $states != "ACT" && $postcode[0] == 2) {
+            $errMsg .= "<b>Incorrect Postcode State combination:</b>Australian Capital Territory postcode's starts with 2.<br>";
+        } else if ($states == "VIC" && $postcode[0] != 3 || $states != "VIC" && $postcode[0] == 3) {
+            $errMsg .= "<b>Incorrect Postcode State combination:</b>Victoria postcode's starts with 3.<br>";
+        } else if ($states == "QLD" && $postcode[0] != 4 || $states != "QLD" && $postcode[0] == 4) {
+            $errMsg .= "<b>Incorrect Postcode State combination:</b>Queensland postcode's starts with 4.<br>";
+        } else if ($states == "SA" && $postcode[0] != 5 || $states != "SA" && $postcode[0] == 5) {
+            $errMsg .= "<b>Incorrect Postcode State combination:</b>South Australia postcode's starts with 5.<br>";
+        } else if ($states == "WA" && $postcode[0] != 6 || $states != "WA" && $postcode[0] == 6) {
+            $errMsg .= "<b>Incorrect Postcode State combination:</b>Western Australia postcode's starts with 6.<br>";
+        } else if ($states == "TAS" && $postcode[0] != 7 || $states != "TAS" && $postcode[0] == 7) {
+            $errMsg .= "<b>Incorrect Postcode State combination:</b>Tasmania postcode's starts with 7.<br>";
+        } else if ($states == "NT" && $postcode[0] != 0 || $states != "NT" && $postcode[0] == 0) {
+            $errMsg .= "<b>Incorrect Postcode State combination:</b>Northern Territory postcode's starts with 0.<br>";
+        } else {
+            $ValidateInsert += 1;
+        }
+
+
         //Validate Phone Number
         if ($phone == "") {
             $errMsg .= "<b>Phone number Error:</b>You must enter your phone number.<br>";
@@ -282,7 +304,7 @@
             $ValidateInsert += 1;
         }
 
-        //Validate Tickets
+        //Validate Tickets //quantity
         if ($tickets == "") {
             $errMsg .= "<b>Tickets Error:</b>You must enter ticket quantity.<br>";
         } else if (!preg_match("/^[0-9]*$/", $tickets)) {
@@ -345,6 +367,10 @@
         } else if ($expmonth <=  date("m") and $expyear <= date("y")) {
             $errMsg .= "<b>Credit Card Expiry Error:</b>Card Expired.<br>";
         } else {
+            //Show expiry as MM/YY
+            $expDate = "$expmonth";
+            $expDate .= "/";
+            $expDate .= "$expyear";
             $ValidateInsert += 1;
         }
 
@@ -364,7 +390,7 @@
     } //end if statement ($validate == 1)
 
 
-    //Set productsPrice
+    //Set productsPrice based on options
     if ($options == "Adults") {
         $productsPrice = 20;
     }
@@ -374,17 +400,18 @@
     if ($options == "Children") {
         $productsPrice = 10;
     }
-    $order_cost = $productsPrice * $tickets;
+    $order_cost = $productsPrice * $tickets; //price * quantity
 
-    if ($ValidateInsert == 16) { // when all the fields are correct then only the data will be inserted
+    if ($ValidateInsert == 17) { // when all the fields are correct then only the data will be inserted
 
         $sql = "INSERT INTO orders (firstname, lastname, email, street, states, postcode, phone, contactMethod, tickets, products, options, 
-        order_cost, ccType, cName, ccNum, expmonth, expyear, cvv)
+        order_cost, ccType, cName, ccNum, expDate, cvv)
       VALUES ('$firstname', '$lastname', '$email', '$street', '$states', '$postcode', '$phone', '$contactMethod', '$tickets', '$products', '$options', 
-      '$order_cost', '$ccType', '$cName', '$ccNum', '$expmonth', '$expyear', '$cvv')";
+      '$order_cost', '$ccType', '$cName', '$ccNum', '$expDate','$cvv')";
 
         if ($conn->query($sql) === TRUE) {
-            echo "Your order has been received by us. We will send you your tracking number via email wihtin 3 operation days. ";
+            echo "Successfully boooked ticket(s).";
+            echo "<br>";
             echo "Thank you for your support. Have a great day!";
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;

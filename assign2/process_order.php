@@ -18,27 +18,26 @@
     <?php
     // //Login 
     // // require_once("settings.php");
-     $host = "localhost";
-     $user = "root";
-     $pwd = "";
-     $dbName = "cos10026_as2";
+    $host = "localhost";
+    $user = "root";
+    $pwd = "";
+    $dbName = "cos10026_as2";
 
-   //Create connection
+    //Create connection
     $conn = @mysqli_connect($host, $user, $pwd, $dbName);
 
     // Check connection
-    if ($conn->connect_error) 
-    {
+    if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-//Create table
+    //Create table
 
- $query = "CREATE TABLE cos10026_as2.orders (
+    $query = "CREATE TABLE cos10026_as2.orders (
      order_id int(6) AUTO_INCREMENT,
      order_cost int(25) NOT NULL,
-     order_time date DEFAULT GETDATE()
-     order_status varchar(255) DEFAULT 'PENDING'
+     order_time datetime default now(),
+     order_status varchar(255) DEFAULT 'PENDING',
      firstname varchar(50) NOT NULL,
      lastname varchar(50) NOT NULL,
      email varchar(50) NOT NULL,
@@ -59,13 +58,12 @@
      PRIMARY KEY  (order_id)
      )";
 
- if ($conn->query($query) === TRUE) {
-    echo "Table 'cart' created successfully";
-  }
-  else {
-    echo "Error creating table: " . $conn->error;
-  }
-  
+    if ($conn->query($query) === TRUE) {
+        echo "Table 'cart' created successfully";
+    } else {
+        echo "Error creating table: " . $conn->error;
+    }
+
 
     //Initialize variables
     if (isset($_POST["firstname"])) {
@@ -139,7 +137,7 @@
     } else {
         header("location: register.html");
     }
-    
+
     if (isset($_POST["cName"])) {
         $cName = $_POST["cName"];
     } else {
@@ -190,7 +188,7 @@
     $contactMethod = sanitise_input($contactMethod);
     $tickets = sanitise_input($tickets);
     $products = sanitise_input($products);
-    $options = sanitise_input($options);   
+    $options = sanitise_input($options);
     //$totalCost
     $ccType = sanitise_input($ccType);
     $cName = sanitise_input($cName);
@@ -303,10 +301,18 @@
         }
 
         //Validate Options
-
+        if ($options == "") {
+            $errMsg .= "<b>Options Error:</b>You must choose an Option.<br>";
+        } else {
+            $ValidateInsert += 1;
+        }
 
         //Validate Credit Card Type
-
+        if ($ccType == "") {
+            $errMsg .= "<b>Credit Card Type Error:</b>You must choose a Credit Card Type.<br>";
+        } else {
+            $ValidateInsert += 1;
+        }
 
         //Validate Credit Card Name 
         if ($cName == "") {
@@ -325,7 +331,7 @@
             $errMsg .= "<b>Credit Card number Error:</b>You must enter your Credit Card number.<br>";
         } else if (!preg_match("/^[0-9]*$/", $ccNum)) {
             $errMsg .= "<b>Credit Card number Error:</b>Credit Card number only accepts integers.<br>";
-        } else if (strlen($ccNum) != 15 || strlen($ccNum) != 16) {
+        } else if (strlen($ccNum) < 15 || strlen($ccNum) > 16) {
             $errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number(must be 15-16 digits).<br>";
         } else {
             $ValidateInsert += 1;
@@ -357,10 +363,25 @@
         echo "<br>";
     } //end if statement ($validate == 1)
 
+
+    //Set productsPrice
+    if ($options == "Adults") {
+        $productsPrice = 20;
+    }
+    if ($options == "Seniors") {
+        $productsPrice = 15;
+    }
+    if ($options == "Children") {
+        $productsPrice = 10;
+    }
+    $order_cost = $productsPrice * $tickets;
+
     if ($ValidateInsert == 16) { // when all the fields are correct then only the data will be inserted
 
-        $sql = "INSERT INTO checkout (user_Fname, user_Lname, phone_num, email, unit_num, street1, street2, postcode, state, shipping, payment)
-      VALUES ('$user_Fname', '$user_Lname', '$phone_num', '$email', '$unit_num', '$street1', '$street2', '$postcode', '$state', '$shipping', '$payment')";
+        $sql = "INSERT INTO orders (firstname, lastname, email, street, states, postcode, phone, contactMethod, tickets, products, options, 
+        order_cost, ccType, cName, ccNum, expmonth, expyear, cvv)
+      VALUES ('$firstname', '$lastname', '$email', '$street', '$states', '$postcode', '$phone', '$contactMethod', '$tickets', '$products', '$options', 
+      '$order_cost', '$ccType', '$cName', '$ccNum', '$expmonth', '$expyear', '$cvv')";
 
         if ($conn->query($sql) === TRUE) {
             echo "Your order has been received by us. We will send you your tracking number via email wihtin 3 operation days. ";
@@ -370,7 +391,8 @@
         }
     }
 
-    // $conn->close();
+
+    $conn->close();
     ?>
 </body>
 

@@ -1,3 +1,8 @@
+<?php
+// Start the session
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,8 +21,9 @@
     <h1>Booking Confirmation</h1>
 
     <?php
+    error_reporting(E_ERROR | E_PARSE);
     // //Login 
-    // // require_once("settings.php");
+    // require_once("settings.php");
     $host = "localhost";
     $user = "root";
     $pwd = "";
@@ -60,7 +66,7 @@
     if ($conn->query($query) === TRUE) {
         echo "Table 'cart' created successfully";
     } else {
-        echo "Error creating table: " . $conn->error;
+        echo "Table 'cart' already exist";
     }
 
 
@@ -203,6 +209,7 @@
     if ($validate == 1) {
         $errMsg = "";
 
+
         //Validate Name 
         if ($firstname == "") {
             $errMsg .= "<b>First Name Error:</b>You must enter your first name.<br>";
@@ -245,7 +252,7 @@
             $ValidateInsert += 1;
         }
 
-        //Validate states
+        //Validate States
         if ($states == "") {
             $errMsg .= "<b>States Error:</b>You must choose a state.<br>";
         } else {
@@ -297,7 +304,7 @@
             $ValidateInsert += 1;
         }
 
-        //Validate Preferred Contact
+        //Validate Preferred Contact //Not needed since default value is set
         if ($contactMethod == "") {
             $errMsg .= "<b>Contact Method Error:</b>You must choose a Contact Method.<br>";
         } else {
@@ -315,21 +322,21 @@
             $ValidateInsert += 1;
         }
 
-        //Validate Products
+        //Validate Products //Not needed since default value is set
         if ($products == "") {
             $errMsg .= "<b>Product Error:</b>You must choose a Product.<br>";
         } else {
             $ValidateInsert += 1;
         }
 
-        //Validate Options
+        //Validate Options //Not needed since default value is set
         if ($options == "") {
             $errMsg .= "<b>Options Error:</b>You must choose an Option.<br>";
         } else {
             $ValidateInsert += 1;
         }
 
-        //Validate Credit Card Type
+        //Validate Credit Card Type //Not needed since default value is set
         if ($ccType == "") {
             $errMsg .= "<b>Credit Card Type Error:</b>You must choose a Credit Card Type.<br>";
         } else {
@@ -368,9 +375,7 @@
             $errMsg .= "<b>Credit Card Expiry Error:</b>Card Expired.<br>";
         } else {
             //Show expiry as MM/YY
-            $expDate = "$expmonth";
-            $expDate .= "/";
-            $expDate .= "$expyear";
+            $expDate = "$expmonth" . "/" . "$expyear";
             $ValidateInsert += 1;
         }
 
@@ -384,11 +389,33 @@
         } else {
             $ValidateInsert += 1;
         }
+        //$_SESSION["fixErrMsg"] = $errMsg; //send errMsg to fix order
         echo "<p>$errMsg</p>";
         echo "Correct inputs: $ValidateInsert"; // count $ValidateInsert to check if the code is running as it should
         echo "<br>";
-    } //end if statement ($validate == 1)
+    }
 
+    if ($ValidateInsert < 17) {
+        $_SESSION["fixErrMsg"] = $errMsg;
+        $_SESSION["fixFname"] = $firstname;
+        $_SESSION["fixLname"] = $lastname;
+        $_SESSION["fixEmail"] = $email;
+        $_SESSION["fixStreet"] = $street;
+        $_SESSION["fixStates"] = $states;
+        $_SESSION["fixPostcode"] = $postcode;
+        $_SESSION["fixPhone"] = $phone;
+        $_SESSION["fixTickets"] = $tickets;
+        $_SESSION["fixProducts"] = $products; //doesnt need fixing
+        $_SESSION["fixOption"] = $options; //doesnt need fixing
+        $_SESSION["fixCcType"] = "";
+        $_SESSION["fixCName"] = "";
+        $_SESSION["fixCcNum"] = "";
+        $_SESSION["fixExpmonth"] = "";
+        $_SESSION["fixExpyear"] = "";
+        $_SESSION["fixCvv"] = "";
+
+        header("location: fix_order.php");
+    }
 
     //Set productsPrice based on options
     if ($options == "Adults") {

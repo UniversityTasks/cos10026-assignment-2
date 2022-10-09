@@ -232,7 +232,7 @@ body{
                 line-height: 1.42857;
             }
             .receipt-footer h1 {
-                font-size: 15px;
+                font-size: 25px;
                 font-weight: 400 !important;
                 margin: 0 !important;
             }
@@ -252,12 +252,12 @@ body{
                 color:#fff;
             }
             .receipt-right h5 {
-                font-size: 16px;
+                font-size: 25px;
                 font-weight: bold;
                 margin: 0 0 7px 0;
             }
             .receipt-right p {
-                font-size: 12px;
+                font-size: 25px;
                 margin: 0px;
             }
             .receipt-right p i {
@@ -271,7 +271,7 @@ body{
                 padding: 13px 20px !important;
             }
             .receipt-main td {
-                font-size: 13px;
+                font-size: 25px;
                 font-weight: initial !important;
             }
             .receipt-main td p:last-child {
@@ -279,7 +279,7 @@ body{
                 padding: 0;
             }	
             .receipt-main td h2 {
-                font-size: 20px;
+                font-size: 25px;
                 font-weight: 900;
                 margin: 0;
                 text-transform: uppercase;
@@ -291,7 +291,7 @@ body{
                 text-transform: uppercase;
             }
             .receipt-header-mid {
-                margin: 24px 0;
+                margin: 25px 0;
                 overflow: hidden;
             }
             

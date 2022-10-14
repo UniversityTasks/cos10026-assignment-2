@@ -18,15 +18,25 @@
         <form id="paymentForm" method='post' action="process_order.php" novalidate>
         <h3>Select Tickets</h3>
 
-        <label for="products">Movies </label>
-            <select name="products" id="products">
-                <option value="P1" selected>Bullet Train</option>
-                <option value="P2">Thor: Love and Thunder</option>
-                <option value="P3">Topgun: Maverick</option>
-                <option value="P4">Avatar the Way of Water</option>
-                <option value="P5">Paws of Fury</option>
-                <option value="P6">Black Panther</option>
-            </select>
+        <?php       
+            $movie = $_GET['movie'];
+            $isBulletTrain = $movie == 'bullet_train' ? 'true' : 'false';
+            $isThor = $movie == 'thor' ? 'true' : 'false';
+            $isTopgun = $movie == 'topgun' ? 'true' : 'false';
+            $isAvatar = $movie == 'avatar' ? 'true' : 'false';
+            $isPaws = $movie == 'paws_of_fury' ? 'true' : 'false';
+            $isBlackPanther = $movie == 'black_panther' ? 'true' : 'false';
+
+            echo "<label for='products'>Movies </label>";
+            echo "<select name='products' id='products'>";
+            echo "<option value='P1' selected=$isBulletTrain>Bullet Train</option>";
+            echo "<option value='P2' selected=$isThor>Thor: Love and Thunder</option>";
+            echo "<option value='P3' selected=$isTopgun)>Topgun: Maverick</option>";
+            echo "<option value='P4' selected=$isAvatar>Avatar the Way of Water</option>";
+            echo "<option value='P5' selected=$isPaws>Paws of Fury</option>";
+            echo "<option value='P6' selected=$isBlackPanther>Black Panther</option>";
+            echo "</select>";
+        ?>
 
             <label for="options">Ticket type </label>
             <select name="options" id="options">

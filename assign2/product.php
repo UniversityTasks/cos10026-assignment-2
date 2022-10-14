@@ -100,7 +100,7 @@
                 </form>
             </section>
             <div class="movieBookTicket" >
-                <a href='payment.php'>Book a ticket!</a>
+                <a href='payment.php?movie=bullet_train'>Book a ticket!</a>
             </div>
 
         </section>
@@ -163,7 +163,7 @@
             </section>
 
             <div class="movieBookTicket" >
-                <a href='payment.php'>Book a ticket!</a>
+                <a href='payment.php?movie=thor'>Book a ticket!</a>
             </div>
         </section>
 
@@ -227,7 +227,7 @@
             </section>
 
             <div class="movieBookTicket" >
-                <a href='payment.php'>Book a ticket!</a>
+                <a href='payment.php?movie=topgun'>Book a ticket!</a>
             </div>
         </section>
 
@@ -283,7 +283,7 @@
             </section>
 
             <div class="movieBookTicket" >
-                <a href='payment.php'>Book a ticket!</a>
+                <a href='payment.php?movie=avatar'>Book a ticket!</a>
             </div>
         </section>
 
@@ -340,7 +340,7 @@
                 </form>
             </section>
             <div class="movieBookTicket" >
-                <a href='payment.php'>Book a ticket!</a>
+                <a href='payment.php?movie=paws_of_fury'>Book a ticket!</a>
             </div>
         </section>
 
@@ -398,7 +398,7 @@
             </section>
 
             <div class="movieBookTicket" >
-                <a href='payment.php'>Book a ticket!</a>
+                <a href='payment.php?movie=black_panther'>Book a ticket!</a>
             </div>
         </section>
     </div>

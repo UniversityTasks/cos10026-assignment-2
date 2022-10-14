@@ -7,6 +7,7 @@
     <meta name="keywords" content="HTML,CSS,Javascript" />
     <meta name="author" content="Gang of Islands" />
     <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>GOI Cinemas - Payment</title>
 </head>
 
@@ -15,7 +16,29 @@
 
     <div id="paymentContainer">
         <form id="paymentForm" method='post' action="process_order.php" novalidate>
-            <h3>Billing Address</h3>
+        <h3>Select Tickets</h3>
+
+        <label for="products">Movies </label>
+            <select name="products" id="products">
+                <option value="P1" selected>Bullet Train</option>
+                <option value="P2">Thor: Love and Thunder</option>
+                <option value="P3">Topgun: Maverick</option>
+                <option value="P4">Avatar the Way of Water</option>
+                <option value="P5">Paws of Fury</option>
+                <option value="P6">Black Panther</option>
+            </select>
+
+            <label for="options">Ticket type </label>
+            <select name="options" id="options">
+                <option value="Adults" selected>Adults $20</option>
+                <option value="Seniors">Seniors $15</option>
+                <option value="Children">Children $10</option>
+            </select>
+
+            <label for="tickets">Quantity </label>
+            <input type="text" name="tickets" id="tickets" pattern="[0-9]" placeholder="1" />
+        
+        <h3>Billing Address</h3>
             <label for="firstname">First Name: </label>
             <input type="text" name="firstname" id="firstname" placeholder="FirstName" />
 
@@ -56,27 +79,6 @@
             </select>
 
             <h3>Payment</h3>
-            <label for="tickets">Ticket(s) For: </label>
-            <input type="text" name="tickets" id="tickets" pattern="[0-9]" placeholder="1" />
-
-
-            <label for="products">Products: </label>
-            <select name="products" id="products">
-                <option value="P1" selected>Bullet Train</option>
-                <option value="P2">Thor: Love and Thunder</option>
-                <option value="P3">Topgun: Maverick</option>
-                <option value="P4">Avatar the Way of Water</option>
-                <option value="P5">Paws of Fury</option>
-                <option value="P6">Black Panther</option>
-            </select>
-
-
-            <label for="options">Option: </label>
-            <select name="options" id="options">
-                <option value="Adults" selected>Adults</option>
-                <option value="Seniors">Seniors</option>
-                <option value="Children">Children</option>
-            </select>
 
             <label for="card">Accepted Cards</label>
             <div class="icon-container">

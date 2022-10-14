@@ -786,6 +786,12 @@ textarea:focus {
     border-radius: 5px;
 } 
 
+.icon-container {
+    margin-bottom: 20px;
+    padding: 7px 0;
+    font-size: 24px;
+}
+
 .paymentSubmitBtn input[type=submit] {
     padding: 24px;
     border: none;

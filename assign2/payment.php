@@ -20,21 +20,21 @@
 
         <?php       
             $movie = $_GET['movie'];
-            $isBulletTrain = $movie == 'bullet_train' ? 'true' : 'false';
-            $isThor = $movie == 'thor' ? 'true' : 'false';
-            $isTopgun = $movie == 'topgun' ? 'true' : 'false';
-            $isAvatar = $movie == 'avatar' ? 'true' : 'false';
-            $isPaws = $movie == 'paws_of_fury' ? 'true' : 'false';
-            $isBlackPanther = $movie == 'black_panther' ? 'true' : 'false';
+            $isBulletTrain = $movie == 'bullet_train' ? "selected" : "";
+            $isThor = $movie == 'thor' ? "selected" : "";
+            $isTopgun = $movie == 'topgun' ? "selected" : "";
+            $isAvatar = $movie == 'avatar' ? "selected" : "";
+            $isPaws = $movie == 'paws_of_fury' ? "selected" : "";
+            $isBlackPanther = $movie == 'black_panther' ? "selected" : "";
 
             echo "<label for='products'>Movies </label>";
             echo "<select name='products' id='products'>";
-            echo "<option value='P1' selected=$isBulletTrain>Bullet Train</option>";
-            echo "<option value='P2' selected=$isThor>Thor: Love and Thunder</option>";
-            echo "<option value='P3' selected=$isTopgun)>Topgun: Maverick</option>";
-            echo "<option value='P4' selected=$isAvatar>Avatar the Way of Water</option>";
-            echo "<option value='P5' selected=$isPaws>Paws of Fury</option>";
-            echo "<option value='P6' selected=$isBlackPanther>Black Panther</option>";
+            echo "<option value='P1' $isBulletTrain>Bullet Train</option>";
+            echo "<option value='P2' $isThor>Thor: Love and Thunder</option>";
+            echo "<option value='P3' $isTopgun>Topgun: Maverick</option>";
+            echo "<option value='P4' $isAvatar>Avatar the Way of Water</option>";
+            echo "<option value='P5' $isPaws>Paws of Fury</option>";
+            echo "<option value='P6' $isBlackPanther>Black Panther</option>";
             echo "</select>";
         ?>
 

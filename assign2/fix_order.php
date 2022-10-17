@@ -363,7 +363,7 @@ session_start()
                 <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
             </label>
             <div class="paymentSubmitBtn">
-                    <input type="submit" value="Book Now">
+                    <input type="submit" value="Resubmit Booking!">
                 </div>
         </form>
     </div>

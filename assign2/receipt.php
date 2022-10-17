@@ -1,3 +1,6 @@
+<?php 
+session_start()
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,10 +68,13 @@ else{
 				<div class="receipt-header receipt-header-mid">
 					<div class="col-xs-8 col-sm-8 col-md-8 text-left">
 						<div class="receipt-right">
-							<h5>Customer Name : <?php echo  $record["cust_Fname"] ," ", $record["cust_Lname"], "</br>"; ?></h5>
-							<p><b>Mobile :</b> +1 12345-4569</p>
+							<h5>Customer Name : <?php echo  $_SESSION["fixFname"] ," ", $_SESSION["fixLname"], "</br>"; ?></h5>
+							<p><b>Mobile :</b> <?= $_SESSION["fixPhone"] ?></p>
 							<p><b>Email :</b> <?= $record["cust_email"] ?></p>
-							<p><b>Address :</b><?= $record["cust_Street"]?></p>
+							<p><b>Address :</b><?php echo  $_SESSION["fixStreet"]," ", $_SESSION["fixStates"], "</br>"; ?></p>
+                            <p><b>Post Code :</b><?= $_SESSION["fixPostcode"]; ?></p>
+                            <p><b>CC Num :</b><?= $record["cust_Street"]?></p>
+
 						</div>
 					</div>
 					<div class="col-xs-4 col-sm-4 col-md-4">
@@ -89,8 +95,8 @@ else{
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="col-md-9"><?=$record["ticket_type"]?></td>
-                            <td class="col-md-3"><i class="fa fa-inr"></i><?= $record["Quantity"] ?></td>
+                            <td class="col-md-9"><?= $_SESSION["fixProducts"]?></td>
+                            <td class="col-md-3"><i class="fa fa-inr"></i><?= $_SESSION["fixTickets"] ?></td>
                         </tr>
                      
                         <tr>

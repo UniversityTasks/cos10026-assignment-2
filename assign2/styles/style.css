@@ -601,15 +601,20 @@ aside {
 
 .movieBookTicket {
     margin-top: 16px;
-    padding: 16px;
+    padding-top: 16px;
+    padding-bottom: 16px;
     border: none;
     width: 100%;
     border-radius: 5px;
     background: #8b0d32;
+    text-align: center;
+    cursor: pointer;
+}
+.movieBookTicket a {
     font-size: 16px;
     font-weight: bold;
+    text-decoration: none;
     color: white;
-    cursor: pointer;
 }
 
 .featuresSection>form {
@@ -762,6 +767,43 @@ textarea:focus {
         visibility: hidden;
         display: none;
     }
+}
+
+/****************************************/
+/*             PAYMENT.PHP             */
+/****************************************/
+
+#paymentContainer {
+    display: flex;
+    justify-content: center;
+}
+
+ #paymentForm {
+    width: 70%;
+    box-shadow: #000000 1px 1px 10px;
+    padding: 50px 32px;
+    margin-top: 24px;
+    border-radius: 5px;
+} 
+
+.icon-container {
+    margin-bottom: 20px;
+    padding: 7px 0;
+    font-size: 24px;
+}
+
+.paymentSubmitBtn input[type=submit] {
+    padding: 24px;
+    border: none;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    background: linear-gradient(-45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
+    background-size: 300%;
+    animation: buttonAnim 10s linear infinite;
 }
 
 /****************************************/

@@ -99,8 +99,10 @@
                     <label for="movie1Feature5">Online Booking</label>
                 </form>
             </section>
+            <div class="movieBookTicket" >
+                <a href='payment.php?movie=bullet_train'>Book a ticket!</a>
+            </div>
 
-            <input class="movieBookTicket" type="submit" value="Book a ticket!">
         </section>
 
         <section class="movieCard">
@@ -160,7 +162,9 @@
                 </form>
             </section>
 
-            <input class="movieBookTicket" type="submit" value="Book a ticket!">
+            <div class="movieBookTicket" >
+                <a href='payment.php?movie=thor'>Book a ticket!</a>
+            </div>
         </section>
 
         <section class="movieCard">
@@ -222,7 +226,9 @@
                 </form>
             </section>
 
-            <input class="movieBookTicket" type="submit" value="Book a ticket!">
+            <div class="movieBookTicket" >
+                <a href='payment.php?movie=topgun'>Book a ticket!</a>
+            </div>
         </section>
 
         <section class="movieCard">
@@ -276,7 +282,9 @@
                 </form>
             </section>
 
-            <input class="movieBookTicket" type="submit" value="Book a ticket!">
+            <div class="movieBookTicket" >
+                <a href='payment.php?movie=avatar'>Book a ticket!</a>
+            </div>
         </section>
 
         <section class="movieCard">
@@ -331,7 +339,9 @@
                     <label for="movie5Feature5">Online Booking</label>
                 </form>
             </section>
-            <input class="movieBookTicket" type="submit" value="Book a ticket!">
+            <div class="movieBookTicket" >
+                <a href='payment.php?movie=paws_of_fury'>Book a ticket!</a>
+            </div>
         </section>
 
         <section class="movieCard">
@@ -387,7 +397,9 @@
                 </form>
             </section>
 
-            <input class="movieBookTicket" type="submit" value="Book a ticket!">
+            <div class="movieBookTicket" >
+                <a href='payment.php?movie=black_panther'>Book a ticket!</a>
+            </div>
         </section>
     </div>
 

@@ -170,6 +170,7 @@ session_start()
             }
             ?>
             <input type="text" name="street" value = "<?=$street?>" id="street" placeholder="Street Name" />
+            <?="hello world",'<br>' ?>
 
             <label for="states">State: </label>
             <select name="states" id="states">

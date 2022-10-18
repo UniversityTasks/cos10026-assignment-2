@@ -29,12 +29,12 @@
 
             echo "<label for='products'>Movies </label>";
             echo "<select name='products' id='products'>";
-            echo "<option value='P1' $isBulletTrain>Bullet Train</option>";
-            echo "<option value='P2' $isThor>Thor: Love and Thunder</option>";
-            echo "<option value='P3' $isTopgun>Topgun: Maverick</option>";
-            echo "<option value='P4' $isAvatar>Avatar the Way of Water</option>";
-            echo "<option value='P5' $isPaws>Paws of Fury</option>";
-            echo "<option value='P6' $isBlackPanther>Black Panther</option>";
+            echo "<option value='Bullet Train' $isBulletTrain>Bullet Train</option>";
+            echo "<option value='Thor: Love and Thunder' $isThor>Thor: Love and Thunder</option>";
+            echo "<option value='Topgun: Maverick' $isTopgun>Topgun: Maverick</option>";
+            echo "<option value='Avatar the Way of Water' $isAvatar>Avatar the Way of Water</option>";
+            echo "<option value='Paws of Fury' $isPaws>Paws of Fury</option>";
+            echo "<option value='Black Panther' $isBlackPanther>Black Panther</option>";
             echo "</select>";
         ?>
 
@@ -93,9 +93,8 @@
             <label for="card">Accepted Cards</label>
             <div class="icon-container">
                 <i class="fa fa-cc-visa" style="color:navy;"></i>
-                <i class="fa fa-cc-amex" style="color:blue;"></i>
                 <i class="fa fa-cc-mastercard" style="color:red;"></i>
-                <i class="fa fa-cc-discover" style="color:orange;"></i>
+                <i class="fa fa-cc-amex" style="color:blue;"></i>               
             </div>
 
             <label for="ccType">Card Type: </label>

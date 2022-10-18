@@ -3,31 +3,10 @@
 session_start();
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8" />
-    <meta name="description" content="ProcessBooking" />
-    <meta name="keywords" content="PHP" />
-    <meta name="author" content="Yap Zhe Wei" />
-
-    <title>Booking Confirmation</title>
-
-</head>
-<!-- This is a comment. Indenting child elements makes the markup much more readable -->
-
-<body>
-    <h1>Booking Confirmation</h1>
-
-    <?php
+<?php
     error_reporting(E_ERROR | E_PARSE);
-    // //Login 
-    // require_once("settings.php");
-    $host = "localhost";
-    $user = "root";
-    $pwd = "";
-    $dbName = "cos10026_as2";
+    //Login 
+    require_once("settings.php");
 
     //Create connection
     $conn = @mysqli_connect($host, $user, $pwd, $dbName);
@@ -38,8 +17,7 @@ session_start();
     }
 
     //Create table
-
-    $query = "CREATE TABLE cos10026_as2.orders (
+    $query = "CREATE TABLE s103574757_db.orders (
      order_id int(6) AUTO_INCREMENT,
      order_cost int(25) NOT NULL,
      order_time datetime default now(),
@@ -360,9 +338,28 @@ session_start();
             $errMsg .= "<b>Credit Card number Error:</b>You must enter your Credit Card number.<br>";
         } else if (!preg_match("/^[0-9]*$/", $ccNum)) {
             $errMsg .= "<b>Credit Card number Error:</b>Credit Card number only accepts integers.<br>";
-        } else if (strlen($ccNum) < 15 || strlen($ccNum) > 16) {
-            $errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number(must be 15-16 digits).<br>";
-        } else {
+        } 
+        else if ($ccType == "visa" && (strlen($ccNum) != 16 || $ccNum[0] != 4)) {
+            $errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number for $ccType (must be 16 digits) .<br>";
+        } 
+        else if ($ccType == "mastercard") {
+            if($ccNum[0] != 5) //Check if 1st number is 3
+            {$errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number for $ccType (must be 16 digits) .<br>";}
+            else if(($ccNum[1] < 1 || $ccNum[1] > 5)) //Check 1st and 2nd 
+            {$errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number for $ccType (must be 16 digits) .<br>";}
+            else if(strlen($ccNum) != 16) //Check length
+            {$errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number for $ccType (must be 16 digits) .<br>";}
+        }  
+
+        else if ($ccType == "americanExpress") {
+            if($ccNum[0] != 3 ) //Check if 1st number is 3
+            {$errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number for $ccType (must be 15 digits) .<br>";}
+            else if(($ccNum[1] != 4 || $ccNum[1] != 7)) //Check 1st and 2nd 
+            {$errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number for $ccType (must be 15 digits) .<br>";}
+            else if(strlen($ccNum) != 15) //Check length
+            {$errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number for $ccType (must be 15 digits) .<br>";}
+        }  
+        else {
             $ValidateInsert += 1;
         }
 
@@ -433,8 +430,27 @@ session_start();
 
         $sql = "INSERT INTO orders (firstname, lastname, email, street, states, postcode, phone, contactMethod, tickets, products, options, 
         order_cost, ccType, cName, ccNum, expDate, cvv)
-      VALUES ('$firstname', '$lastname', '$email', '$street', '$states', '$postcode', '$phone', '$contactMethod', '$tickets', '$products', '$options', 
-      '$order_cost', '$ccType', '$cName', '$ccNum', '$expDate','$cvv')";
+        VALUES ('$firstname', '$lastname', '$email', '$street', '$states', '$postcode', '$phone', '$contactMethod', '$tickets', '$products', '$options', 
+        '$order_cost', '$ccType', '$cName', '$ccNum', '$expDate','$cvv')";
+
+        //For Receipt
+        $_SESSION["errMsg"] = $errMsg;
+        $_SESSION["firstname"] = $firstname;
+        $_SESSION["lastname"] = $lastname;
+        $_SESSION["email"] = $email;
+        $_SESSION["street"] = $street;
+        $_SESSION["states"] = $states;
+        $_SESSION["postcode"] = $postcode;
+        $_SESSION["phone"] = $phone;
+        $_SESSION["tickets"] = $tickets;
+        $_SESSION["products"] = $products;
+        $_SESSION["options"] = $options; 
+        $_SESSION["order_cost"] = $order_cost;
+        $_SESSION["ccType"] = $ccType;
+        $_SESSION["cName"] = $cName;
+        $_SESSION["ccNum"] = $ccNum;
+        $_SESSION["expDate"] = $expDate;
+        $_SESSION["cvv"] = $cvv;
 
         if ($conn->query($sql) === TRUE) {
             echo "Successfully boooked ticket(s).";
@@ -447,7 +463,4 @@ session_start();
 
 
     $conn->close();
-    ?>
-</body>
-
-</html>
+?>

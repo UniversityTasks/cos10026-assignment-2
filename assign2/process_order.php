@@ -6,7 +6,13 @@ session_start();
 <?php
 error_reporting(E_ERROR | E_PARSE);
 //Login 
-require_once("settings.php");
+require_once("settings.php"); //for aweb's database
+
+//Login for testing
+// $host = "localhost";
+// $user = "root";
+// $pwd = "";
+// $dbName = "cos10026_as2";
 
 //Create connection
 $conn = @mysqli_connect($host, $user, $pwd, $dbName);
@@ -17,7 +23,7 @@ if ($conn->connect_error) {
 }
 
 //Create table
-//Change database name s103574757_db.order
+//Change database name cos10026_as2.order for testing
 $query = "CREATE TABLE s103574757_db.orders (
      order_id int(6) AUTO_INCREMENT,
      order_cost int(25) NOT NULL,
@@ -47,7 +53,6 @@ if ($conn->query($query) === TRUE) {
 } else {
     echo "Table 'cart' already exist";
 }
-
 
 //Initialize variables
 if (isset($_POST["firstname"])) {
@@ -188,7 +193,6 @@ $validate = 1;
 if ($validate == 1) {
     $errMsg = "";
 
-
     //Validate Name 
     if ($firstname == "") {
         $errMsg .= "<b>First Name Error:</b>You must enter your first name.<br>";
@@ -297,6 +301,8 @@ if ($validate == 1) {
         $errMsg .= "<b>Tickets Error:</b>$tickets is not a valid quantity.<br>";
     } else if ($tickets > 10) {
         $errMsg .= "<b>Tickets Error:</b>You can't book more than 10 tickets.<br>";
+    } else if ($tickets < 1) {
+        $errMsg .= "<b>Tickets Error:</b>You must enter ticket quantity.<br>";
     } else {
         $ValidateInsert += 1;
     }
@@ -335,36 +341,59 @@ if ($validate == 1) {
 
     //Validate Credit Card Num 
     $ccNum = preg_replace('/\s+/', '', $ccNum); //remove all spacing tabs and line ends  \s+ will match one or more whitespace characters.
+    $firstNum = $ccNum[0];
+    $secNum = $ccNum[1];
     if ($ccNum == "") {
         $errMsg .= "<b>Credit Card number Error:</b>You must enter your Credit Card number.<br>";
     } else if (!preg_match("/^[0-9]*$/", $ccNum)) {
         $errMsg .= "<b>Credit Card number Error:</b>Credit Card number only accepts integers.<br>";
-    } else if ($ccType == "visa" && (strlen($ccNum) != 16 || $ccNum[0] != 4)) {
-        $errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number for $ccType (must be 16 digits) .<br>";
-    } else if ($ccType == "mastercard") {
-        if ($ccNum[0] != 5) //Check if 1st number is 3
-        {
-            $errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number for $ccType (must be 16 digits) .<br>";
-        } else if (($ccNum[1] < 1 || $ccNum[1] > 5)) //Check 1st and 2nd 
+    } else if ($ccType == "visa") {
+        if ($firstNum != "4") //Check if 1st number is 3
         {
             $errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number for $ccType (must be 16 digits) .<br>";
         } else if (strlen($ccNum) != 16) //Check length
         {
             $errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number for $ccType (must be 16 digits) .<br>";
+        } else {
+            $ValidateInsert += 1;
+        }
+    } else if ($ccType == "mastercard") {
+        if ($firstNum != "5") //Check if 1st number is 3
+        {
+            $errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number for $ccType (must be 16 digits) .<br>";
+        } else if (($secNum < "1" || $secNum > "5")) //Check 1st and 2nd 
+        {
+            $errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number for $ccType (must be 16 digits) .<br>";
+        } else if (strlen($ccNum) != 16) //Check length
+        {
+            $errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number for $ccType (must be 16 digits) .<br>";
+        } else {
+            $ValidateInsert += 1;
         }
     } else if ($ccType == "americanExpress") {
-        if ($ccNum[0] != 3) //Check if 1st number is 3
+        if ($firstNum != "3") //Check if 1st number is 3
         {
-            $errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number for $ccType (must be 15 digits) .<br>";
-        } else if (($ccNum[1] != 4 || $ccNum[1] != 7)) //Check 1st and 2nd 
-        {
-            $errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number for $ccType (must be 15 digits) .<br>";
-        } else if (strlen($ccNum) != 15) //Check length
-        {
-            $errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number for $ccType (must be 15 digits) .<br>";
+            $errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number for $ccType (must be start with 3) .<br>";
         }
-    } else {
-        $ValidateInsert += 1;
+
+        if ($firstNum == "3" && $secNum == "4") {
+            if (strlen($ccNum) != 15) //Check length
+            {
+                $errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number for $ccType (must be 15 digits) .<br>";
+            } else {
+                $ValidateInsert += 1;
+            }
+        }
+
+        if ($firstNum == "3" && $secNum == "7") {
+            if (strlen($ccNum) != 15) //Check length
+            {
+                $errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number for $ccType (must be 15 digits) .<br>";
+            } else {
+                $ValidateInsert += 1;
+            }
+        }
+        $errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number for $ccType (must be 15 digits and should start with 34/37) .<br>";
     }
 
     //Validate Expiry Date 
@@ -390,13 +419,14 @@ if ($validate == 1) {
     } else {
         $ValidateInsert += 1;
     }
-    //$_SESSION["fixErrMsg"] = $errMsg; //send errMsg to fix order
+
     echo "<p>$errMsg</p>";
     echo "Correct inputs: $ValidateInsert"; // count $ValidateInsert to check if the code is running as it should
     echo "<br>";
 }
 
 if ($ValidateInsert < 17) {
+    $_SESSION["total"] = $ValidateInsert;
     $_SESSION["fixErrMsg"] = $errMsg;
     $_SESSION["fixFname"] = $firstname;
     $_SESSION["fixLname"] = $lastname;
@@ -458,13 +488,7 @@ if ($ValidateInsert == 17) { // when all the fields are correct then only the da
     $_SESSION["expDate"] = $expDate;
     $_SESSION["cvv"] = $cvv;
 
-    if ($conn->query($sql) === TRUE) {
-        echo "Successfully boooked ticket(s).";
-        echo "<br>";
-        echo "Thank you for your support. Have a great day!";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
+    header("location: receipt.php");
 }
 
 

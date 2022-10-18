@@ -420,9 +420,6 @@ if ($validate == 1) {
         $ValidateInsert += 1;
     }
 
-    echo "<p>$errMsg</p>";
-    echo "Correct inputs: $ValidateInsert"; // count $ValidateInsert to check if the code is running as it should
-    echo "<br>";
 }
 
 if ($ValidateInsert < 17) {

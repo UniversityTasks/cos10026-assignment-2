@@ -419,7 +419,6 @@ if ($validate == 1) {
     } else {
         $ValidateInsert += 1;
     }
-
 }
 
 if ($ValidateInsert < 17) {

@@ -100,8 +100,9 @@
 
             <label for="ccType">Card Type: </label>
             <select name="ccType" id="ccType">
-                <option value="creditCard" selected>Credit Card</option>
-                <option value="debitCard">Debit Card</option>
+                <option value="visa" selected>Visa</option>
+                <option value="mastercard">Mastercard</option>
+                <option value="americanExpress">American Express</option>
             </select>
 
 

@@ -16,31 +16,31 @@ session_start()
 <body>
 
 <?php 
-require_once ("settings.php");
-$conn = @mysqli_connect($host,$user,$pwd,$sql_db);
-if (!$conn){
-    echo "<p>Database connection failure.</p>";		//failed to connect to DB
-}
-else{
-    $sql_table = "orders";
-    $query = "select * from orders";		//query SQL db
-    $result = mysqli_query($conn, $query);				//execute the query and store the result into result pointer
-    if (!$result){			//Checks execution success state
-        echo "<p>Something is wrong with ", $query, "</p>";
-    }
-    else{			//display records.
+// require_once ("settings.php");
+// $conn = @mysqli_connect($host,$user,$pwd,$sql_db);
+// if (!$conn){
+//     echo "<p>Database connection failure.</p>";		//failed to connect to DB
+// }
+// else{
+//     $sql_table = "orders";
+//     $query = "select * from orders";		//query SQL db
+//     $result = mysqli_query($conn, $query);				//execute the query and store the result into result pointer
+//     if (!$result){			//Checks execution success state
+//         echo "<p>Something is wrong with ", $query, "</p>";
+//     }
+//     else{			//display records.
        
-        $record = mysqli_fetch_assoc($result);
-            echo '<div class = "MyContainer">
-            <center class = "InvoiceTop"><h2>Order Successful!!</h2></center>';
+//         $record = mysqli_fetch_assoc($result);
+//             echo '<div class = "MyContainer">
+//             <center class = "InvoiceTop"><h2>Order Successful!!</h2></center>';
            
-            echo '</div>';
+//             echo '</div>';
             
       
-        mysqli_free_result($result);		//frees up the memory after result pointer.
-    }
-    mysqli_close($conn);//close database connection
-}
+//         mysqli_free_result($result);		//frees up the memory after result pointer.
+//     }
+//     mysqli_close($conn);//close database connection
+// }
 ?>
 <div class="col-md-12">   
  <div class="row">
@@ -68,13 +68,15 @@ else{
 				<div class="receipt-header receipt-header-mid">
 					<div class="col-xs-8 col-sm-8 col-md-8 text-left">
 						<div class="receipt-right">
-							<h5>Customer Name : <?php echo  $_SESSION["fixFname"] ," ", $_SESSION["fixLname"], "</br>"; ?></h5>
-							<p><b>Mobile :</b> <?= $_SESSION["fixPhone"] ?></p>
-							<p><b>Email :</b> <?= $record["cust_email"] ?></p>
-							<p><b>Address :</b><?php echo  $_SESSION["fixStreet"]," ", $_SESSION["fixStates"], "</br>"; ?></p>
-                            <p><b>Post Code :</b><?= $_SESSION["fixPostcode"]; ?></p>
-                            <p><b>CC Num :</b><?= $record["cust_Street"]?></p>
-
+							<h5>Customer Name : <?php echo  $_SESSION["firstname"] ," ", $_SESSION["lastname"], "</br>"; ?></h5>
+							<p><b>Mobile :</b> <?= $_SESSION["postcode"] ?></p>
+							<p><b>Email :</b> <?= $_SESSION["email"] ?></p>
+							<p><b>Address :</b><?php echo  $_SESSION["street"],",", $_SESSION["states"], "</br>"; ?></p>
+                            <p><b>Post Code :</b><?= $_SESSION["postcode"]; ?></p>
+							<p><b>CC Type :</b><?= $_SESSION["ccType"]?></p>
+                            <p><b>CC Num :</b><?= $_SESSION["ccNum"]?></p>
+							<p><b>CC Expiry:</b><?= $_SESSION["expDate"]?></p>
+							<p><b>CC Expiry:</b><?php echo "***"?></p>
 						</div>
 					</div>
 					<div class="col-xs-4 col-sm-4 col-md-4">
@@ -95,8 +97,8 @@ else{
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="col-md-9"><?= $_SESSION["fixProducts"]?></td>
-                            <td class="col-md-3"><i class="fa fa-inr"></i><?= $_SESSION["fixTickets"] ?></td>
+                            <td class="col-md-9"><?= $_SESSION["products"]?></td>
+                            <td class="col-md-3"><i class="fa fa-inr"></i><?= $_SESSION["tickets"] ?></td>
                         </tr>
                      
                         <tr>
@@ -110,7 +112,7 @@ else{
                         <tr>
                            
                             <td class="text-right"><h2><strong>Total: </strong></h2></td>
-                            <td class="text-left text-danger"><h2><strong><i class="fa fa-inr"></i> <?= $record["order_cost"]?></strong></h2></td>
+                            <td class="text-left text-danger"><h2><strong><i class="fa fa-inr"></i> <?=   $_SESSION["order_cost"]?></strong></h2></td>
                         </tr>
                     </tbody>
                 </table>
@@ -120,7 +122,6 @@ else{
 				<div class="receipt-header receipt-header-mid receipt-footer">
 					<div class="col-xs-8 col-sm-8 col-md-8 text-left">
 						<div class="receipt-right">
-							<p><b>Date :</b><?=$record["order_date"] ?></p>
 							<h5 style="color: rgb(140, 140, 140);">Thank you for your purchase!. We hope to see you again!</h5>
 						</div>
 					</div>

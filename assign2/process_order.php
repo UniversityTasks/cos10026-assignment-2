@@ -15,6 +15,7 @@ require_once("settings.php"); //for aweb's database
 // $dbName = "cos10026_as2";
 
 //Create connection
+// TODO (Aweb): put this in db.php
 $conn = @mysqli_connect($host, $user, $pwd, $dbName);
 
 // Check connection

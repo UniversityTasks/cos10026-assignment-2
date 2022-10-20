@@ -484,7 +484,11 @@ if ($ValidateInsert == 17) { // when all the fields are correct then only the da
     $_SESSION["expDate"] = $expDate;
     $_SESSION["cvv"] = $cvv;
 
-    header("location: receipt.php");
+    if ($conn->query($sql) === TRUE) {
+        header("location: receipt.php");
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
 }
 
 

@@ -5,14 +5,8 @@ session_start();
 
 <?php
 error_reporting(E_ERROR | E_PARSE);
-//Login 
-require_once("settings.php"); //for aweb's database
 
-//Login for testing
-// $host = "localhost";
-// $user = "root";
-// $pwd = "";
-// $dbName = "cos10026_as2";
+require_once("settings.php"); //for aweb's database
 
 //Create connection
 $conn = @mysqli_connect($host, $user, $pwd, $dbName);
@@ -24,10 +18,11 @@ if ($conn->connect_error) {
 
 //Create table
 //Change database name cos10026_as2.order for testing
-$query = "CREATE TABLE s103574757_db.orders (
+if ($conn->query('select * from s103574757_db.orders') == false) {
+    $query = "CREATE TABLE s103574757_db.orders (
      order_id int(6) AUTO_INCREMENT,
      order_cost int(25) NOT NULL,
-     order_time datetime default now(),
+     order_time timestamp default current_timestamp,
      order_status varchar(255) DEFAULT 'PENDING',
      firstname varchar(50) NOT NULL,
      lastname varchar(50) NOT NULL,
@@ -47,12 +42,16 @@ $query = "CREATE TABLE s103574757_db.orders (
      cvv int(3) NOT NULL,
      PRIMARY KEY  (order_id)
      )";
+}
 
+/*
+This might not be needed
 if ($conn->query($query) === TRUE) {
     echo "Table 'cart' created successfully";
 } else {
     echo "Table 'cart' already exist";
 }
+*/
 
 //Initialize variables
 if (isset($_POST["firstname"])) {

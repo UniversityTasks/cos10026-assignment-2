@@ -6,52 +6,34 @@ session_start();
 <?php
 error_reporting(E_ERROR | E_PARSE);
 
-require_once("settings.php"); //for aweb's database
+require_once("db.php");
 
-//Create connection
-$conn = @mysqli_connect($host, $user, $pwd, $dbName);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-//Create table
-//Change database name cos10026_as2.order for testing
+// If table doesn't already exists, create it.
 if ($conn->query('select * from s103574757_db.orders') == false) {
     $query = "CREATE TABLE s103574757_db.orders (
-     order_id int(6) AUTO_INCREMENT,
-     order_cost int(25) NOT NULL,
-     order_time timestamp default current_timestamp,
-     order_status varchar(255) DEFAULT 'PENDING',
-     firstname varchar(50) NOT NULL,
-     lastname varchar(50) NOT NULL,
-     email varchar(50) NOT NULL,
-     street varchar(50) NOT NULL,
-     states varchar(30) NOT NULL,
-     postcode int(4) NOT NULL,
-     phone int(10) NOT NULL,
-     contactMethod char(5) NOT NULL,
-     tickets int(10) NOT NULL,
-     products varchar(50) NOT NULL,
-     options varchar(50) NOT NULL,
-     ccType varchar(50) NOT NULL,
-     cName varchar(50) NOT NULL,
-     ccNum int(25) NOT NULL,
-     expDate char(5) NOT NULL,
-     cvv int(3) NOT NULL,
-     PRIMARY KEY  (order_id)
+        order_id int(6) AUTO_INCREMENT,
+        order_cost int(25) NOT NULL,
+        order_time timestamp default current_timestamp,
+        order_status varchar(255) DEFAULT 'PENDING',
+        firstname varchar(50) NOT NULL,
+        lastname varchar(50) NOT NULL,
+        email varchar(50) NOT NULL,
+        street varchar(50) NOT NULL,
+        states varchar(30) NOT NULL,
+        postcode int(4) NOT NULL,
+        phone int(10) NOT NULL,
+        contactMethod char(5) NOT NULL,
+        tickets int(10) NOT NULL,
+        products varchar(50) NOT NULL,
+        options varchar(50) NOT NULL,
+        ccType varchar(50) NOT NULL,
+        cName varchar(50) NOT NULL,
+        ccNum int(25) NOT NULL,
+        expDate char(5) NOT NULL,
+        cvv int(3) NOT NULL,
+        PRIMARY KEY  (order_id)
      )";
 }
-
-/*
-This might not be needed
-if ($conn->query($query) === TRUE) {
-    echo "Table 'cart' created successfully";
-} else {
-    echo "Table 'cart' already exist";
-}
-*/
 
 //Initialize variables
 if (isset($_POST["firstname"])) {

@@ -4,6 +4,8 @@ session_start()
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- TODO: Copy payment.php here and see https://youtu.be/2eebptXfEvw?t=11625 -->
+
 <head>
     <meta charset="utf-8" />
     <meta name="description" content="GOI Cinemas - Payment" />

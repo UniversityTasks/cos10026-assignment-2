@@ -1,19 +1,8 @@
 <?php
 
-require_once("settings.php");
+require_once("db.php");
 
-// TODO (Aweb): put this in db.php
-$conn = @mysqli_connect($host, $user, $pwd, $dbName);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-$query = "
-    select * from s103574757_db.orders;
-";
-
-$res = $conn->query($query);
+$res = $conn->query("select * from s103574757_db.orders");
 
 ?>
 

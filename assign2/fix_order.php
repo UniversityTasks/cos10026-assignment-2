@@ -1,10 +1,15 @@
 <?php 
-session_start()
+// Used to pass data between PHP pages
+session_start();
+
+// Test that it works, it does ;)
+var_dump($_SESSION['errors']);
+var_dump($_SESSION['values']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- TODO: Copy payment.php here and see https://youtu.be/2eebptXfEvw?t=11625 -->
+<!-- TODO (Ivan): Copy payment.php here and add value population and errors -->
 
 <head>
     <meta charset="utf-8" />

@@ -1,5 +1,5 @@
 <?php
-// Start the session
+// Used to pass data between PHP pages
 session_start();
 ?>
 
@@ -7,58 +7,28 @@ session_start();
 require_once("db.php");
 
 // If table doesn't already exists, create it.
-if ($conn->query('select * from s103574757_db.orders') == false) {
-    //Incase we needed to create the other tables here
-    /* 
-    $contactMethodTable = "CREATE TABLE s103574757_db.contact_method (
-        contact_method_id  int(11) AUTO_INCREMENT,
-        contact_method_name NOT NULL,
-        PRIMARY KEY  (contact_method_id)
-        )";
-        
-    $InsertcontactMethod = "INSERT INTO s103574757_db.contact_method(contact_method_id, contact_method_name)VALUES
-        (1, 'Phone'),
-        (2, 'Email'),
-        (3, 'Post')";
-        
-    $moviesTable = "CREATE TABLE s103574757_db.movies (
-        movie_id  int(11) AUTO_INCREMENT,
-        movie_name 	varchar(255) NOT NULL,
-        PRIMARY KEY  (movie_id)
-        )";
-
-    $Insertmovies = "INSERT INTO s103574757_db.movies(movie_id, movie_name)VALUES
-        (1, 'bullet_train'),
-        (2, 'thor'),
-        (3, 'topgun'),
-        (4, 'avatar'),
-        (5, 'paws_of_fury'),
-        (6, 'black_panther')";
-        
-    $optionsTable = "CREATE TABLE s103574757_db.options (
-        option_id  int(11) AUTO_INCREMENT,
-        option_name varchar(255) NOT NULL,
-        option_price int(11)NOT NULL,
-        PRIMARY KEY  (movie_id)
-        )";
-
-    $InsertOptions = "INSERT INTO s103574757_db.options (option_id, option_name, option_price)VALUES
-        (1, 'Adult', 15),
-        (2, 'Senior', 10),
-        (3, 'Child', 8)";
-    */
-
-
+// We can check if a table exists be selecting from it
+// However, on some setups this causes an exception so we handle it to be safe
+try {
+    if ($conn->query('select * from s103574757_db.orders') == false) {
+        // Go to the catch block which contains the creation query
+        throw new Exception();
+    }
+} catch (Exception $e) {
+    // Other create table queries can be found in the commit history
     $query = "CREATE TABLE s103574757_db.orders (
+        -- Order details
         order_id int(6) AUTO_INCREMENT,
         order_cost int(25) NOT NULL,
         order_time timestamp default current_timestamp,
         order_status varchar(255) DEFAULT 'PENDING',
         
+        -- Personal details
         first_name varchar(50) NOT NULL,
         last_name varchar(50) NOT NULL,
         email varchar(50) NOT NULL,
         
+        -- Address details
         street varchar(50) NOT NULL,
         state varchar(30) NOT NULL,
         post_code int(4) NOT NULL,
@@ -66,23 +36,27 @@ if ($conn->query('select * from s103574757_db.orders') == false) {
         phone int(10) NOT NULL,
 
         -- quantity of tickets ordered
-        tickets_quantity int(10) NOT NULL,
+        tickets_quantity int NOT NULL,
         
-        -- TODO (Andrew): FK to respective tables
-        contact_method_id int(11) NOT NULL,
-        movie_id int(11) NOT NULL,
-        option_id int(11) NOT NULL,
+        -- FK to respective tables
+        contact_method_id int NOT NULL,
+        movie_id int NOT NULL,
+        option_id int NOT NULL,
         
+        -- Card details
         cc_type varchar(50) NOT NULL,
         cc_name varchar(50) NOT NULL,
-        cc_num int(25) NOT NULL,
+        cc_num int NOT NULL,
         exp_date char(5) NOT NULL,
         cvv int(3) NOT NULL,
-        FOREIGN KEY (contact_method_id) REFERENCES contact_method(contact_method_id)
-        FOREIGN KEY (movie_id) REFERENCES movies(movie_id)
-        FOREIGN KEY (option_id) REFERENCES options(option_id)
+
+        FOREIGN KEY (contact_method_id) REFERENCES contact_method(contact_method_id),
+        FOREIGN KEY (movie_id) REFERENCES movies(movie_id),
+        FOREIGN KEY (option_id) REFERENCES options(option_id),
         PRIMARY KEY  (order_id)
      )";
+
+    $conn->query($query);
 }
 
 // Associative array that stores errors for each form field
@@ -137,12 +111,6 @@ if (isset($_POST["option_id"])) {
     $errors["option_id"] = "Please select an option";
 }
 
-if (isset($_POST["movie_id"])) {
-    $movie_id = $_POST["movie_id"];
-} else {
-    $errors["movie_id"] = "Please select movie";
-}
-
 if (isset($_POST["contact_method_id"])) {
     $contact_method_id = $_POST["contact_method_id"];
 } else {
@@ -155,7 +123,12 @@ if (isset($_POST["tickets_quantity"])) {
     $errors["tickets_quantity"] = "Please select a ticket quantity";
 }
 
-// TODO: Get the movie id from query
+// This is passed in via a query parameter from products.php
+if (isset($_GET["movie_id"])) {
+    $movie_id = $_GET["movie_id"];
+} else {
+    $errors["movie_id"] = "Please select a movie";
+}
 
 if (isset($_POST["cc_type"])) {
     $cc_type = $_POST["cc_type"];
@@ -197,7 +170,7 @@ require_once("./functions/functions.php");
 
 // Sanitise variables
 // Need to sanitase even if select input
-// since use can make API request with any value
+// since someone can make an API request with a malicious value
 $first_name = sanitise_input($firstname);
 $last_name = sanitise_input($lastname);
 $email = sanitise_input($email);
@@ -346,6 +319,7 @@ $res = $conn->query('SELECT option_price FROM s103574757_db.options WHERE option
 $option_detail = mysqli_fetch_assoc($res);
 $price = intval($option_detail['option_price']);
 
+// Calculate final cost
 $order_cost = $price * intval($tickets_quantity);
 
 // Used to populate fix_order.php fields and receipt

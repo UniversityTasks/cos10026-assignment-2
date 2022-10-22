@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- TODO(Ivan): Use query to autopopulate movie selected -->
-<!-- TODO(Ivan): This should be copied to fix order once finalised -->
-
 <head>
     <meta charset="utf-8" />
     <meta name="description" content="GOI Cinemas - Enquire" />
@@ -15,6 +12,8 @@
     <title>GOI Cinemas - Payment</title>
 </head>
 
+<!-- Follow PHP convention of snake_case for input name and HTML convention of camelCase for labelling -->
+
 <body id="enquiryBG">
     <?php include_once 'includes/menu.php'; ?>
 
@@ -23,14 +22,14 @@
             <fieldset class="formFieldset">
                 <legend>Your Details</legend>
                 <div class="formGroup">
-                    <label for="firstname">First Name: </label>
-                    <input type="text" name="first_name" id="firstname" pattern="[A-Za-z]{1,25}" placeholder="FirstName"
+                    <label for="firstName">First Name: </label>
+                    <input type="text" name="first_name" id="firstName" pattern="[A-Za-z]{1,25}" placeholder="First Name"
                         required />
                 </div>
 
                 <div class="formGroup">
-                    <label for="lastname">Last Name: </label>
-                    <input type="text" name="last_name" id="lastname" pattern="[A-Za-z]{1,25}" placeholder="LastName"
+                    <label for="lastName">Last Name: </label>
+                    <input type="text" name="last_name" id="lastName" pattern="[A-Za-z]{1,25}" placeholder="Last Name"
                         required />
                 </div>
 
@@ -65,8 +64,8 @@
                 </div>
 
                 <div class="formGroup">
-                    <label for="postcode">Post code: </label>
-                    <input type="text" name="post_code" id="postcode" pattern="[0-9]{4}" placeholder="0123" required />
+                    <label for="postCode">Post code: </label>
+                    <input type="text" name="post_code" id="postCode" pattern="[0-9]{4}" placeholder="0123" required />
                 </div>
 
                 <div class="formGroup">
@@ -78,6 +77,7 @@
                     </select>
                 </div>
 
+                <!-- Submits an id corresponding to the contact_method database table -->
                 <div class="formGroup">
                     <label for="options">Product Options: </label>
                     <select name="option_id" id="options">
@@ -93,9 +93,9 @@
                         required />
                 </div>
 
+                <!-- Submits an id corresponding to the options database table -->
                 <div class="formGroup">
                     <label for="option_id">Product Options: </label>
-                    <!-- TODO(Andrew): add depending on data in table (options, contact method) -->
                     <select name="option_id" id="option_id">
                         <option value="">Please Select</option>
                         <option value="1" selected="selected">Adult tickets $15</option>
@@ -137,8 +137,8 @@
                 </div>
 
                 <div class="formGroup">
-                    <label for="expmonth">Expiry Month</label>
-                    <select name="exp_month" id="expmonth">
+                    <label for="expMonth">Expiry Month</label>
+                    <select name="exp_month" id="expMonth">
                         <option value="01" selected>01</option>
                         <option value="02">02</option>
                         <option value="03">03</option>
@@ -155,8 +155,8 @@
                 </div>
 
                 <div class="formGroup">
-                    <label for="expyear">Expiry Year</label>
-                    <select name="exp_year" id="expyear">
+                    <label for="expYear">Expiry Year</label>
+                    <select name="exp_year" id="expYear">
                         <option value="22" selected>22</option>
                         <option value="23">23</option>
                         <option value="24">24</option>

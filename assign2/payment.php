@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- TODO: Should this be a menu item or redirect from products page? -->
-<!-- TODO: This should be copied to fix order once finalised -->
+<!-- TODO(Ivan): Use query to autopopulate movie selected -->
+<!-- TODO(Ivan): This should be copied to fix order once finalised -->
 
 <head>
     <meta charset="utf-8" />
@@ -76,11 +76,12 @@
 
                 <div class="formGroup">
                     <label for="options">Product Features: </label>
+                    <!-- TODO(Andrew): add depending on data in table (options, contact method) -->
                     <select name="options" id="options">
                         <option value="">Please Select</option>
-                        <option value="adult" selected="selected">Adult tickets $15</option>
-                        <option value="senior">Senior tickets $10</option>
-                        <option value="child">Child tickets $8</option>
+                        <option value="0" selected="selected">Adult tickets $15</option>
+                        <option value="1">Senior tickets $10</option>
+                        <option value="2">Child tickets $8</option>
                     </select>
                 </div>
             </fieldset>

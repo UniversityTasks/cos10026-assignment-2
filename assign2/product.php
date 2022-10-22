@@ -100,6 +100,7 @@
                 </form>
             </section>
             <div class="movieBookTicket" >
+                <!-- TODO(Andrew): change to id of movie in table -->
                 <a href='payment.php?movie=bullet_train'>Book a ticket!</a>
             </div>
 

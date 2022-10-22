@@ -24,11 +24,14 @@ if ($conn->query('select * from s103574757_db.orders') == false) {
         
         phone int(10) NOT NULL,
 
-        -- TODO: FK to respective tables
-        -- contact_method int(1) NOT NULL,
-        -- tickets int(10) NOT NULL,
-        -- products varchar(50) NOT NULL,
-        -- options varchar(50) NOT NULL,
+        -- quantity of tickets ordered
+        tickets_quantity int(10) NOT NULL,
+        
+
+        -- TODO (Andrew): FK to respective tables
+        -- contact_method int(1) NOT NULL fk to contact_method,
+        -- products varchar(50) NOT NULL fk to movies,
+        -- options varchar(50) NOT NULL fk to options,
 
         cc_type varchar(50) NOT NULL,
         cc_name varchar(50) NOT NULL,
@@ -244,14 +247,14 @@ $first_num = $cc_num[0];
 $sec_num = $cc_num[1];
 
 /*
-TODO: Credit num validation function
+TODO (Aweb): Credit num validation function
 
 if ($cc_num == "") {
     $errors['cc_num'] = "You must enter your Credit Card number.";
 } else if (!preg_match("/^[0-9]*$/", $ccNum)) {
     $errors['cc_num'] = "Credit Card number only accepts integers.";
 } else if ($ccType == "visa") {
-    if ($first_num != "4") //Check if 1st number is 3
+    if ($first_num != "4") //Check if 1st number is 4
     {
         $errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number for $ccType (must be 16 digits) .<br>";
     } else if (strlen($ccNum) != 16) //Check length
@@ -317,10 +320,13 @@ if (!preg_match("/^[0-9]*$/", $cvv)) {
     $errors['cvv'] = "Invalid Card CVV (must be 3 digits).";
 }
 
+// TODO(Aweb): populate values session to send to fix order and receipt
+
 // If any errors, redirect to fix order
 if(empty($errors)== false){
     $_SESSION["errors"] = $errors;
     header("location: fix_order.php");
+
     return;
 }
 /*
@@ -372,6 +378,4 @@ if ($ValidateInsert == 17) { // when all the fields are correct then only the da
     }
 }
 */
-
-$conn->close();
 ?>

@@ -27,11 +27,7 @@ if ($conn->query('select * from s103574757_db.orders') == false) {
         -- quantity of tickets ordered
         tickets_quantity int(10) NOT NULL,
         
-
         -- TODO (Andrew): FK to respective tables
-        -- contact_method int(1) NOT NULL fk to contact_method,
-        -- products varchar(50) NOT NULL fk to movies,
-        -- options varchar(50) NOT NULL fk to options,
         contact_method_name varchar(255) NOT NULL,
         movie_name varchar(255) NOT NULL,
         option_name varchar(255) NOT NULL,

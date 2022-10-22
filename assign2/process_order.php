@@ -32,13 +32,18 @@ if ($conn->query('select * from s103574757_db.orders') == false) {
         -- contact_method int(1) NOT NULL fk to contact_method,
         -- products varchar(50) NOT NULL fk to movies,
         -- options varchar(50) NOT NULL fk to options,
-
+        contact_method_name varchar(255) NOT NULL,
+        movie_name varchar(255) NOT NULL,
+        option_name varchar(255) NOT NULL,
+        
         cc_type varchar(50) NOT NULL,
         cc_name varchar(50) NOT NULL,
         cc_num int(25) NOT NULL,
         exp_date char(5) NOT NULL,
         cvv int(3) NOT NULL,
-
+        FOREIGN KEY (contact_method_name) REFERENCES contact_method(contact_method_name)
+        FOREIGN KEY (movie_name) REFERENCES movies(movie_name)
+        FOREIGN KEY (option_name) REFERENCES options(option_name)
         PRIMARY KEY  (order_id)
      )";
 }

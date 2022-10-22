@@ -83,7 +83,8 @@
             <section class="featuresSection">
                 <h4>Select Features</h4>
                 <form>
-                    <input type="checkbox" id="movie1Feature1" name="feature1" value="adultsTickets" checked="checked" />
+                    <input type="checkbox" id="movie1Feature1" name="feature1" value="adultsTickets"
+                        checked="checked" />
                     <label for="movie1Feature1">Adults Tickets</label>
                     <br>
                     <input type="checkbox" id="movie1Feature2" name="feature2" value="childrenTickets" />
@@ -99,9 +100,9 @@
                     <label for="movie1Feature5">Online Booking</label>
                 </form>
             </section>
-            <div class="movieBookTicket" >
+            <div class="movieBookTicket">
                 <!-- TODO(Andrew): change to id of movie in table -->
-                <a href='payment.php?movie=bullet_train'>Book a ticket!</a>
+                <a href='payment.php?movie_id=1'>Book a ticket!</a>
             </div>
 
         </section>
@@ -146,7 +147,8 @@
             <section class="featuresSection">
                 <h4>Select Features</h4>
                 <form>
-                    <input type="checkbox" id="movie2Feature1" name="feature1" value="adultsTickets" checked="checked" />
+                    <input type="checkbox" id="movie2Feature1" name="feature1" value="adultsTickets"
+                        checked="checked" />
                     <label for="movie2Feature1">Adults Tickets</label>
                     <br>
                     <input type="checkbox" id="movie2Feature2" name="feature2" value="childrenTickets" />
@@ -163,8 +165,8 @@
                 </form>
             </section>
 
-            <div class="movieBookTicket" >
-                <a href='payment.php?movie=thor'>Book a ticket!</a>
+            <div class="movieBookTicket">
+                <a href='payment.php?movie_id=2'>Book a ticket!</a>
             </div>
         </section>
 
@@ -210,7 +212,8 @@
             <section class="featuresSection">
                 <h4>Select Features</h4>
                 <form>
-                    <input type="checkbox" id="movie3Feature1" name="feature1" value="adultsTickets" checked="checked" />
+                    <input type="checkbox" id="movie3Feature1" name="feature1" value="adultsTickets"
+                        checked="checked" />
                     <label for="movie3Feature1">Adults Tickets</label>
                     <br>
                     <input type="checkbox" id="movie3Feature2" name="feature2" value="childrenTickets" />
@@ -227,8 +230,8 @@
                 </form>
             </section>
 
-            <div class="movieBookTicket" >
-                <a href='payment.php?movie=topgun'>Book a ticket!</a>
+            <div class="movieBookTicket">
+                <a href='payment.php?movie_id=3'>Book a ticket!</a>
             </div>
         </section>
 
@@ -266,7 +269,8 @@
             <section class="featuresSection">
                 <h4>Select Features</h4>
                 <form>
-                    <input type="checkbox" id="movie4Feature1" name="feature1" value="adultsTickets" checked="checked" />
+                    <input type="checkbox" id="movie4Feature1" name="feature1" value="adultsTickets"
+                        checked="checked" />
                     <label for="movie4Feature1">Adults Tickets</label>
                     <br>
                     <input type="checkbox" id="movie4Feature2" name="feature2" value="childrenTickets" />
@@ -283,13 +287,14 @@
                 </form>
             </section>
 
-            <div class="movieBookTicket" >
-                <a href='payment.php?movie=avatar'>Book a ticket!</a>
+            <div class="movieBookTicket">
+                <a href='payment.php?movie_id=4'>Book a ticket!</a>
             </div>
         </section>
 
         <section class="movieCard">
-            <img class="movieImg" src="./images/movies/Paws-Of-Fury-The-Legend-Of-Hank.jpg" alt="Paws Of Fury The Legend Of Hank">
+            <img class="movieImg" src="./images/movies/Paws-Of-Fury-The-Legend-Of-Hank.jpg"
+                alt="Paws Of Fury The Legend Of Hank">
             <h2>PAWS OF FURY</h2>
             <p>
                 A hard-on-his-luck hound Hank (Michael Cera) finds himself in a town
@@ -324,7 +329,8 @@
             <section class="featuresSection">
                 <h4>Select Features</h4>
                 <form>
-                    <input type="checkbox" id="movie5Feature1" name="feature1" value="adultsTickets" checked="checked" />
+                    <input type="checkbox" id="movie5Feature1" name="feature1" value="adultsTickets"
+                        checked="checked" />
                     <label for="movie5Feature1">Adults Tickets</label>
                     <br>
                     <input type="checkbox" id="movie5Feature2" name="feature2" value="childrenTickets" />
@@ -340,8 +346,8 @@
                     <label for="movie5Feature5">Online Booking</label>
                 </form>
             </section>
-            <div class="movieBookTicket" >
-                <a href='payment.php?movie=paws_of_fury'>Book a ticket!</a>
+            <div class="movieBookTicket">
+                <a href='payment.php?movie_id=5'>Book a ticket!</a>
             </div>
         </section>
 
@@ -381,7 +387,8 @@
             <section class="featuresSection">
                 <h4>Select Features</h4>
                 <form>
-                    <input type="checkbox" id="movie6Feature1" name="feature1" value="adultsTickets" checked="checked" />
+                    <input type="checkbox" id="movie6Feature1" name="feature1" value="adultsTickets"
+                        checked="checked" />
                     <label for="movie6Feature1">Adults Tickets</label>
                     <br>
                     <input type="checkbox" id="movie6Feature2" name="feature2" value="childrenTickets" />
@@ -398,13 +405,13 @@
                 </form>
             </section>
 
-            <div class="movieBookTicket" >
-                <a href='payment.php?movie=black_panther'>Book a ticket!</a>
+            <div class="movieBookTicket">
+                <a href='payment.php?movie_id=6'>Book a ticket!</a>
             </div>
         </section>
     </div>
 
-    <?php include_once 'includes/footer.php'; ?>  
+    <?php include_once 'includes/footer.php'; ?>
 </body>
 
 </html>

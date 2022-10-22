@@ -24,12 +24,14 @@
                 <legend>Your Details</legend>
                 <div class="formGroup">
                     <label for="firstname">First Name: </label>
-                    <input type="text" name="first_name" id="firstname" pattern="[A-Za-z]{1,25}" placeholder="FirstName" required />
+                    <input type="text" name="first_name" id="firstname" pattern="[A-Za-z]{1,25}" placeholder="FirstName"
+                        required />
                 </div>
 
                 <div class="formGroup">
                     <label for="lastname">Last Name: </label>
-                    <input type="text" name="last_name" id="lastname" pattern="[A-Za-z]{1,25}" placeholder="LastName" required />
+                    <input type="text" name="last_name" id="lastname" pattern="[A-Za-z]{1,25}" placeholder="LastName"
+                        required />
                 </div>
 
                 <div class="formGroup">
@@ -68,18 +70,37 @@
                 </div>
 
                 <div class="formGroup">
-                    <label for="ticketQuantity">Ticket quantity: </label>
-                    <input type="text" name="ticket_quantity" id="ticketQuantity" pattern="[0-9]{4}" placeholder="1" required />
+                    <label for="contactMethod">Contact Method: </label>
+                    <select name="contact_method_id" id="contactMethod">
+                        <option value="1" selected="selected">Phone</option>
+                        <option value="2">Email</option>
+                        <option value="3">Post</option>
+                    </select>
                 </div>
 
                 <div class="formGroup">
                     <label for="options">Product Options: </label>
+                    <select name="option_id" id="options">
+                        <option value="1" selected="selected">Adult tickets $15</option>
+                        <option value="2">Senior tickets $10</option>
+                        <option value="3">Child tickets $8</option>
+                    </select>
+                </div>
+
+                <div class="formGroup">
+                    <label for="ticketQuantity">Ticket quantity: </label>
+                    <input type="text" name="ticket_quantity" id="ticketQuantity" pattern="[0-9]{4}" placeholder="1"
+                        required />
+                </div>
+
+                <div class="formGroup">
+                    <label for="option_id">Product Options: </label>
                     <!-- TODO(Andrew): add depending on data in table (options, contact method) -->
-                    <select name="options" id="options">
+                    <select name="option_id" id="option_id">
                         <option value="">Please Select</option>
-                        <option value="0" selected="selected">Adult tickets $15</option>
-                        <option value="1">Senior tickets $10</option>
-                        <option value="2">Child tickets $8</option>
+                        <option value="1" selected="selected">Adult tickets $15</option>
+                        <option value="2">Senior tickets $10</option>
+                        <option value="3">Child tickets $8</option>
                     </select>
                 </div>
             </fieldset>

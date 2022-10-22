@@ -8,6 +8,47 @@ require_once("db.php");
 
 // If table doesn't already exists, create it.
 if ($conn->query('select * from s103574757_db.orders') == false) {
+    //Incase we needed to create the other tables here
+    /* 
+    $contactMethodTable = "CREATE TABLE s103574757_db.contact_method (
+        contact_method_id  int(11) AUTO_INCREMENT,
+        contact_method_name NOT NULL,
+        PRIMARY KEY  (contact_method_id)
+        )";
+        
+    $InsertcontactMethod = "INSERT INTO s103574757_db.contact_method(contact_method_id, contact_method_name)VALUES
+        (1, 'Phone'),
+        (2, 'Email'),
+        (3, 'Post')";
+        
+    $moviesTable = "CREATE TABLE s103574757_db.movies (
+        movie_id  int(11) AUTO_INCREMENT,
+        movie_name 	varchar(255) NOT NULL,
+        PRIMARY KEY  (movie_id)
+        )";
+
+    $Insertmovies = "INSERT INTO s103574757_db.movies(movie_id, movie_name)VALUES
+        (1, 'bullet_train'),
+        (2, 'thor'),
+        (3, 'topgun'),
+        (4, 'avatar'),
+        (5, 'paws_of_fury'),
+        (6, 'black_panther')";
+        
+    $optionsTable = "CREATE TABLE s103574757_db.options (
+        option_id  int(11) AUTO_INCREMENT,
+        option_name varchar(255) NOT NULL,
+        option_price int(11)NOT NULL,
+        PRIMARY KEY  (movie_id)
+        )";
+
+    $InsertOptions = "INSERT INTO s103574757_db.options (option_id, option_name, option_price)VALUES
+        (1, 'Adult', 15),
+        (2, 'Senior', 10),
+        (3, 'Child', 8)";
+    */
+
+
     $query = "CREATE TABLE s103574757_db.orders (
         order_id int(6) AUTO_INCREMENT,
         order_cost int(25) NOT NULL,
@@ -28,18 +69,18 @@ if ($conn->query('select * from s103574757_db.orders') == false) {
         tickets_quantity int(10) NOT NULL,
         
         -- TODO (Andrew): FK to respective tables
-        contact_method_name varchar(255) NOT NULL,
-        movie_name varchar(255) NOT NULL,
-        option_name varchar(255) NOT NULL,
+        contact_method_id int(11) NOT NULL,
+        movie_id int(11) NOT NULL,
+        option_id int(11) NOT NULL,
         
         cc_type varchar(50) NOT NULL,
         cc_name varchar(50) NOT NULL,
         cc_num int(25) NOT NULL,
         exp_date char(5) NOT NULL,
         cvv int(3) NOT NULL,
-        FOREIGN KEY (contact_method_name) REFERENCES contact_method(contact_method_name)
-        FOREIGN KEY (movie_name) REFERENCES movies(movie_name)
-        FOREIGN KEY (option_name) REFERENCES options(option_name)
+        FOREIGN KEY (contact_method_id) REFERENCES contact_method(contact_method_id)
+        FOREIGN KEY (movie_id) REFERENCES movies(movie_id)
+        FOREIGN KEY (option_id) REFERENCES options(option_id)
         PRIMARY KEY  (order_id)
      )";
 }
@@ -90,16 +131,22 @@ if (isset($_POST["phone"])) {
     $errors["phone"] = "Please enter your phone";
 }
 
-if (isset($_POST["options"])) {
-    $options = $_POST["options"];
+if (isset($_POST["option_id"])) {
+    $option_id = $_POST["option_id"];
 } else {
-    $errors["options"] = "Please select an option";
+    $errors["option_id"] = "Please select an option";
 }
 
-if (isset($_POST["contact_method"])) {
-    $contact_method = $_POST["contact_method"];
+if (isset($_POST["movie_id"])) {
+    $movie_id = $_POST["movie_id"];
 } else {
-    $errors["contact_method"] = "Please select a contact method";
+    $errors["movie_id"] = "Please select movie";
+}
+
+if (isset($_POST["contact_method_id"])) {
+    $contact_method_id = $_POST["contact_method_id"];
+} else {
+    $errors["contact_method_id"] = "Please select a contact method";
 }
 
 if (isset($_POST["tickets_quantity"])) {
@@ -294,7 +341,7 @@ if (empty($errors) == false) {
 }
 
 // Get the price of the option from database
-$res = $conn->query('SELECT option_price FROM s103574757_db.options WHERE option_id = ' . $options  . ';');
+$res = $conn->query('SELECT option_price FROM s103574757_db.options WHERE option_id = ' . $option_id  . ';');
 
 $option_detail = mysqli_fetch_assoc($res);
 $price = intval($option_detail['option_price']);
@@ -310,8 +357,12 @@ $values = array(
     'street' => $street,
     'state' => $state,
     'post_code' => $post_code,
-    'options' => $options,
     'tickets_quantity' => $tickets_quantity,
+
+    'movie_id' => $movie_id,
+    'option_id' => $option_id,
+    'contact_method_id' => $contact_method_id,
+
     'order_cost' => $order_cost
 );
 

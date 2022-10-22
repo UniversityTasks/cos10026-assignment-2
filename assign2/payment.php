@@ -22,16 +22,14 @@
         <form id="enquiryForm" method='post' action="process_order.php" novalidate>
             <fieldset class="formFieldset">
                 <legend>Your Details</legend>
-                <div class="multi-line-form">
-                    <div class="formGroup">
-                        <label for="firstname">First Name: </label>
-                        <input type="text" name="firstname" id="firstname" pattern="[A-Za-z]{1,25}" placeholder="FirstName" required />
-                    </div>
+                <div class="formGroup">
+                    <label for="firstname">First Name: </label>
+                    <input type="text" name="first_name" id="firstname" pattern="[A-Za-z]{1,25}" placeholder="FirstName" required />
+                </div>
 
-                    <div class="formGroup">
-                        <label for="lastname">Last Name: </label>
-                        <input type="text" name="lastname" id="lastname" pattern="[A-Za-z]{1,25}" placeholder="LastName" required />
-                    </div>
+                <div class="formGroup">
+                    <label for="lastname">Last Name: </label>
+                    <input type="text" name="last_name" id="lastname" pattern="[A-Za-z]{1,25}" placeholder="LastName" required />
                 </div>
 
                 <div class="formGroup">
@@ -73,12 +71,12 @@
 
                 <div class="formGroup">
                     <label for="postcode">Post code: </label>
-                    <input type="text" name="postcode" id="postcode" pattern="[0-9]{4}" placeholder="0123" required />
+                    <input type="text" name="post_code" id="postcode" pattern="[0-9]{4}" placeholder="0123" required />
                 </div>
 
                 <div class="formGroup">
-                    <label for="genre">Product Features: </label>
-                    <select name="genre" id="genre">
+                    <label for="options">Product Features: </label>
+                    <select name="options" id="options">
                         <option value="">Please Select</option>
                         <option value="adult" selected="selected">Adult tickets $15</option>
                         <option value="senior">Senior tickets $10</option>
@@ -101,7 +99,7 @@
 
                 <div class="formGroup">
                     <label for="ccType">Card Type: </label>
-                    <select name="ccType" id="ccType">
+                    <select name="cc_type" id="ccType">
                         <option value="visa" selected>Visa</option>
                         <option value="mastercard">Mastercard</option>
                         <option value="americanExpress">American Express</option>
@@ -110,17 +108,17 @@
 
                 <div class="formGroup">
                     <label for="cName">Name on Card </label>
-                    <input type="text" name="cName" id="cName" placeholder="Name" />
+                    <input type="text" name="cc_name" id="cName" placeholder="Name" />
                 </div>
 
                 <div class="formGroup">
                     <label for="ccNum">Credit card number</label>
-                    <input type="text" id="ccNum" name="ccNum" placeholder="1111-2222-3333-4444">
+                    <input type="text" id="cc_num" name="ccNum" placeholder="1111-2222-3333-4444">
                 </div>
 
                 <div class="formGroup">
                     <label for="expmonth">Expiry Month</label>
-                    <select name="expmonth" id="expmonth">
+                    <select name="exp_month" id="expmonth">
                         <option value="01" selected>01</option>
                         <option value="02">02</option>
                         <option value="03">03</option>
@@ -138,7 +136,7 @@
 
                 <div class="formGroup">
                     <label for="expyear">Expiry Year</label>
-                    <select name="expyear" id="expyear">
+                    <select name="exp_year" id="expyear">
                         <option value="22" selected>22</option>
                         <option value="23">23</option>
                         <option value="24">24</option>

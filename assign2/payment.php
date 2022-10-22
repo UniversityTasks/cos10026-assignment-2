@@ -42,16 +42,9 @@
                     <input type="text" name="phone" id="phone" pattern="[0-9]{10}" placeholder="0123456789" required />
                 </div>
 
-                <div class="multi-line-form">
-                    <div class="formGroup">
-                        <label for="street">Street: </label>
-                        <input type="text" name="street" id="street" maxlength="40" placeholder="Street Name" required />
-                    </div>
-
-                    <div class="formGroup">
-                        <label for="suburb">Suburb: </label>
-                        <input type="text" name="suburb" id="suburb" maxlength="20" placeholder="Suburb" required />
-                    </div>
+                <div class="formGroup">
+                    <label for="street">Street: </label>
+                    <input type="text" name="street" id="street" maxlength="40" placeholder="Street Name" required />
                 </div>
 
                 <div class="formGroup">
@@ -75,7 +68,12 @@
                 </div>
 
                 <div class="formGroup">
-                    <label for="options">Product Features: </label>
+                    <label for="ticketQuantity">Ticket quantity: </label>
+                    <input type="text" name="ticket_quantity" id="ticketQuantity" pattern="[0-9]{4}" placeholder="1" required />
+                </div>
+
+                <div class="formGroup">
+                    <label for="options">Product Options: </label>
                     <!-- TODO(Andrew): add depending on data in table (options, contact method) -->
                     <select name="options" id="options">
                         <option value="">Please Select</option>

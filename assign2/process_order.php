@@ -19,7 +19,7 @@ if ($conn->query('select * from s103574757_db.orders') == false) {
         email varchar(50) NOT NULL,
         
         street varchar(50) NOT NULL,
-        states varchar(30) NOT NULL,
+        state varchar(30) NOT NULL,
         post_code int(4) NOT NULL,
         
         phone int(10) NOT NULL,
@@ -89,33 +89,25 @@ if (isset($_POST["phone"])) {
     $errors["phone"] = "Please enter your phone";
 }
 
-/*
-
-if (isset($_POST["contact_method"])) {
-    $contactMethod = $_POST["contact_method"];
-} else {
-    header("location: fix_order.php");
-}
-
-if (isset($_POST["tickets"])) { //quantity
-    $tickets = $_POST["tickets"];
-} else {
-    header("location: fix_order.php");
-}
-
-if (isset($_POST["products"])) {
-    $products = $_POST["products"];
-} else {
-    header("location: fix_order.php");
-}
-
 if (isset($_POST["options"])) {
     $options = $_POST["options"];
 } else {
-    header("location: fix_order.php");
+    $errors["options"] = "Please select an option";
 }
 
-*/
+if (isset($_POST["contact_method"])) {
+    $contact_method = $_POST["contact_method"];
+} else {
+    $errors["contact_method"] = "Please select a contact method";
+}
+
+if (isset($_POST["tickets_quantity"])) {
+    $tickets_quantity = $_POST["tickets_quantity"];
+} else {
+    $errors["tickets_quantity"] = "Please select a ticket quantity";
+}
+
+// TODO: Get the movie id from query
 
 if (isset($_POST["cc_type"])) {
     $cc_type = $_POST["cc_type"];
@@ -246,63 +238,34 @@ $cc_num = preg_replace('/\s+/', '', $cc_num);
 $first_num = $cc_num[0];
 $sec_num = $cc_num[1];
 
-/*
-TODO (Aweb): Credit num validation function
-
 if ($cc_num == "") {
     $errors['cc_num'] = "You must enter your Credit Card number.";
-} else if (!preg_match("/^[0-9]*$/", $ccNum)) {
+} else if (!preg_match("/^[0-9]*$/", $cc_num)) {
     $errors['cc_num'] = "Credit Card number only accepts integers.";
-} else if ($ccType == "visa") {
-    if ($first_num != "4") //Check if 1st number is 4
-    {
-        $errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number for $ccType (must be 16 digits) .<br>";
-    } else if (strlen($ccNum) != 16) //Check length
-    {
-        $errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number for $ccType (must be 16 digits) .<br>";
-    } else {
-        $ValidateInsert += 1;
+} else if ($cc_type == "visa") {
+    // Visa should start with 4 and be 16 digits long
+    if ($first_num != "4") {
+        $errors['cc_num'] = "Invalid card number (must start with 4).";
+    } else if (strlen($cc_num) != 16) {
+        $errors['cc_num'] = "Invalid card number (must be 16 digits).";
     }
-} else if ($ccType == "mastercard") {
-    if ($first_num != "5") //Check if 1st number is 3
-    {
-        $errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number for $ccType (must be 16 digits) .<br>";
-    } else if (($sec_num < "1" || $sec_num > "5")) //Check 1st and 2nd 
-    {
-        $errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number for $ccType (must be 16 digits) .<br>";
-    } else if (strlen($ccNum) != 16) //Check length
-    {
-        $errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number for $ccType (must be 16 digits) .<br>";
-    } else {
-        $ValidateInsert += 1;
+} else if ($cc_type == "mastercard") {
+    // Mastercard should start with 51-55 and be 16 digits long
+    if ($first_num != "5") {
+        $errors['cc_num'] = "Invalid card number (must start with 51-55).";
+    } else if (($sec_num < "1" || $sec_num > "5")) {
+        $errors['cc_num'] = "Invalid card number (must start with 51-55).";
+    } else if (strlen($cc_num) != 16) {
+        $errors['cc_num'] = "Invalid card number (must be 16 digits).";
     }
-} else if ($ccType == "americanExpress") {
-    if ($first_num != "3") //Check if 1st number is 3
-    {
-        $errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number for $ccType (must be start with 3) .<br>";
+} else if ($cc_type == "americanExpress") {
+    // American express should start with 34/37 and be 15 digits long
+    if (strlen($cc_num) != 15) {
+        $errors['cc_num'] = "Invalid card number (must be 15 digits).";
+    } else if ($first_num != "3" || ($sec_num != "4" || $sec_num != 4)) {
+        $errors['cc_num'] = "Invalid card number (must start with 34/37).";
     }
-
-    if ($first_num == "3" && $sec_num == "4") {
-        if (strlen($ccNum) != 15) //Check length
-        {
-            $errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number for $ccType (must be 15 digits) .<br>";
-        } else {
-            $ValidateInsert += 1;
-        }
-    }
-
-    if ($first_num == "3" && $sec_num == "7") {
-        if (strlen($ccNum) != 15) //Check length
-        {
-            $errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number for $ccType (must be 15 digits) .<br>";
-        } else {
-            $ValidateInsert += 1;
-        }
-    }
-    $errMsg .= "<b>Credit Card number Error:</b>$ccNum is not a valid card number for $ccType (must be 15 digits and should start with 34/37) .<br>";
 }
-
-*/
 
 //Validate Expiry Date 
 if ($expmonth <=  date("m") and $expyear <= date("y")) {
@@ -320,62 +283,37 @@ if (!preg_match("/^[0-9]*$/", $cvv)) {
     $errors['cvv'] = "Invalid Card CVV (must be 3 digits).";
 }
 
-// TODO(Aweb): populate values session to send to fix order and receipt
-
 // If any errors, redirect to fix order
-if(empty($errors)== false){
+if (empty($errors) == false) {
     $_SESSION["errors"] = $errors;
     header("location: fix_order.php");
 
+    // Do we need to return?
     return;
 }
-/*
-TODO: Once decide on format to store tickets, options, etc.
 
-//Set productsPrice based on options
-if ($options == "Adults") {
-    $productsPrice = 20;
-}
-if ($options == "Seniors") {
-    $productsPrice = 15;
-}
-if ($options == "Children") {
-    $productsPrice = 10;
-}
-$order_cost = $productsPrice * $tickets; //price * quantity
+// Get the price of the option from database
+$res = $conn->query('SELECT option_price FROM s103574757_db.options WHERE option_id = ' . $options  . ';');
 
-if ($ValidateInsert == 17) { // when all the fields are correct then only the data will be inserted
+$option_detail = mysqli_fetch_assoc($res);
+$price = intval($option_detail['option_price']);
 
-    $sql = "INSERT INTO orders (firstname, lastname, email, street, states, postcode, phone, contactMethod, tickets, products, options, 
-        order_cost, ccType, cName, ccNum, expDate, cvv)
-        VALUES ('$firstname', '$lastname', '$email', '$street', '$states', '$postcode', '$phone', '$contactMethod', '$tickets', '$products', '$options', 
-        '$order_cost', '$ccType', '$cName', '$ccNum', '$expDate','$cvv')";
+$order_cost = $price * intval($tickets_quantity);
 
-    //For Receipt
-    $_SESSION["errMsg"] = $errMsg;
-    $_SESSION["firstname"] = $firstname;
-    $_SESSION["lastname"] = $lastname;
-    $_SESSION["email"] = $email;
-    $_SESSION["street"] = $street;
-    $_SESSION["states"] = $states;
-    $_SESSION["postcode"] = $postcode;
-    $_SESSION["phone"] = $phone;
-    $_SESSION["contactMethod"] = $contactMethod;
-    $_SESSION["tickets"] = $tickets;
-    $_SESSION["products"] = $products;
-    $_SESSION["options"] = $options;
-    $_SESSION["order_cost"] = $order_cost;
-    $_SESSION["ccType"] = $ccType;
-    $_SESSION["cName"] = $cName;
-    $_SESSION["ccNum"] = $ccNum;
-    $_SESSION["expDate"] = $expDate;
-    $_SESSION["cvv"] = $cvv;
+// Used to populate fix_order.php fields and receipt
+$values = array(
+    'first_name' => $first_name,
+    'last_name' => $last_name,
+    'email' => $email,
+    'phone' => $phone,
+    'street' => $street,
+    'state' => $state,
+    'post_code' => $post_code,
+    'options' => $options,
+    'tickets_quantity' => $tickets_quantity,
+    'order_cost' => $order_cost
+);
 
-    if ($conn->query($sql) === TRUE) {
-        header("location: receipt.php");
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-}
-*/
+$_SESSION['values'] = $values;
+
 ?>

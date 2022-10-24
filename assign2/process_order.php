@@ -27,13 +27,12 @@ try {
         first_name varchar(50) NOT NULL,
         last_name varchar(50) NOT NULL,
         email varchar(50) NOT NULL,
+        phone int(10) NOT NULL,
         
         -- Address details
         street varchar(50) NOT NULL,
         state varchar(30) NOT NULL,
         post_code int(4) NOT NULL,
-        
-        phone int(10) NOT NULL,
 
         -- quantity of tickets ordered
         tickets_quantity int NOT NULL,

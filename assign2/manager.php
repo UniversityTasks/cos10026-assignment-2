@@ -8,12 +8,14 @@ $res = $conn->query("select * from s103574757_db.orders o inner join s103574757_
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GOI - Manager</title>
 </head>
+
 <body>
     <table>
         <tr>
@@ -25,9 +27,9 @@ $res = $conn->query("select * from s103574757_db.orders o inner join s103574757_
             <th>Product</th>
             <th>Action</th>
         </tr>
-        
+
         <?php while ($row = mysqli_fetch_assoc($res)) { ?>
-        <tr>
+            <tr>
                 <td><?php echo $row['order_id']; ?></td>
                 <td><?php echo $row['order_cost']; ?></td>
                 <td><?php echo $row['first_name']; ?></td>
@@ -36,7 +38,7 @@ $res = $conn->query("select * from s103574757_db.orders o inner join s103574757_
                 <td><?php echo $row['movie_name']; ?></td>
                 <td>
                     <!-- Send the user to the edit page (which fetches order data via order_id) -->
-                    <a href="edit.php?id=<?php echo $row['order_id']?>">Edit</a>
+                    <a href="edit_order.php?id=<?php echo $row['order_id'] ?>">Edit</a>
 
                     <!-- Delete order by posting to delete_order.php. We need to use a form because JS is not allowed :( -->
                     <form action="delete_order.php" method="post">
@@ -45,9 +47,9 @@ $res = $conn->query("select * from s103574757_db.orders o inner join s103574757_
                     </form>
                 </td>
             <?php } ?>
-        </tr>
+            </tr>
     </table>
-    
-</body>
-</html>
 
+</body>
+
+</html>

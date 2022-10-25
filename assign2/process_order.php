@@ -315,7 +315,7 @@ if (empty($errors) == false) {
 
 
 // Get the price of the option from database
-$res = $conn->query('SELECT option_price FROM s103574757_db.options WHERE option_id = ' . $option_id  . ';');
+$res = $conn->query('SELECT option_price, option_name FROM s103574757_db.options WHERE option_id = ' . $option_id  . ';');
 
 $option_detail = mysqli_fetch_assoc($res);
 $price = intval($option_detail['option_price']);
@@ -327,6 +327,7 @@ $order_cost = $price * intval($tickets_quantity);
 $sql = "INSERT INTO orders (order_cost, first_name, last_name, email, phone, street, state, post_code, tickets_quantity, contact_method_id, movie_id, option_id, cc_type, cc_name, cc_num, exp_date, cvv)
         VALUES ('$order_cost', '$first_name', '$last_name', '$email', '$phone', '$street', '$state', '$post_code', '$tickets_quantity', '$contact_method_id', '$movie_id', '$option_id',  '$cc_type', '$cc_name', '$cc_num', '$exp_date', '$cvv')";
 
+
 // Used to populate fix_order.php fields and receipt
 $values = array(
     'first_name' => $first_name,
@@ -337,6 +338,7 @@ $values = array(
     'state' => $state,
     'post_code' => $post_code,
     'tickets_quantity' => $tickets_quantity,
+    'receipt_desc' => $option_detail['option_name'],
 
     'movie_id' => $movie_id,
     'option_id' => $option_id,

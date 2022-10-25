@@ -293,7 +293,7 @@ if ($expmonth <=  date("m") and $expyear <= date("y")) {
     $errors['exp'] = "Card is expired. Try another one.";
 } else {
     //Show expiry as MM/YY
-    $expDate = "$expmonth" . "/" . "$expyear";
+    $exp_date = "$exp_month" . "/" . "$exp_year";   
 }
 
 //Validate Card CVV
@@ -312,6 +312,8 @@ if (empty($errors) == false) {
     return;
 }
 
+
+
 // Get the price of the option from database
 $res = $conn->query('SELECT option_price FROM s103574757_db.options WHERE option_id = ' . $option_id  . ';');
 
@@ -320,6 +322,10 @@ $price = intval($option_detail['option_price']);
 
 // Calculate final cost
 $order_cost = $price * intval($tickets_quantity);
+
+//INSERT
+$sql = "INSERT INTO orders (order_cost, first_name, last_name, email, phone, street, state, post_code, tickets_quantity, contact_method_id, movie_id, option_id, cc_type, cc_name, cc_num, exp_date, cvv)
+        VALUES ('$order_cost', '$first_name', '$last_name', '$email', '$phone', '$street', '$state', '$post_code', '$tickets_quantity', '$contact_method_id', '$movie_id', '$option_id',  '$cc_type', '$cc_name', '$cc_num', '$exp_date', '$cvv')";
 
 // Used to populate fix_order.php fields and receipt
 $values = array(

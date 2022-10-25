@@ -15,33 +15,7 @@ session_start()
 </head>
 <body>
 
-<?php 
-// require_once ("settings.php");
-// $conn = @mysqli_connect($host,$user,$pwd,$sql_db);
-// if (!$conn){
-//     echo "<p>Database connection failure.</p>";		//failed to connect to DB
-// }
-// else{
-//     $sql_table = "orders";
-//     $query = "select * from orders";		//query SQL db
-//     $result = mysqli_query($conn, $query);				//execute the query and store the result into result pointer
-//     if (!$result){			//Checks execution success state
-//         echo "<p>Something is wrong with ", $query, "</p>";
-//     }
-//     else{			//display records.
-       
-//         $record = mysqli_fetch_assoc($result);
-//             echo '<div class = "MyContainer">
-//             <center class = "InvoiceTop"><h2>Order Successful!!</h2></center>';
-           
-//             echo '</div>';
-            
-      
-//         mysqli_free_result($result);		//frees up the memory after result pointer.
-//     }
-//     mysqli_close($conn);//close database connection
-// }
-?>
+
 <div class="col-md-12">   
  <div class="row">
 		
@@ -68,14 +42,13 @@ session_start()
 				<div class="receipt-header receipt-header-mid">
 					<div class="col-xs-8 col-sm-8 col-md-8 text-left">
 						<div class="receipt-right">
-							<h5>Customer Name : <?php echo  $_SESSION["firstname"] ," ", $_SESSION["lastname"], "</br>"; ?></h5>
-							<p><b>Mobile :</b> <?= $_SESSION["postcode"] ?></p>
-							<p><b>Email :</b> <?= $_SESSION["email"] ?></p>
-							<p><b>Address :</b><?php echo  $_SESSION["street"],",", $_SESSION["states"], "</br>"; ?></p>
-                            <p><b>Post Code :</b><?= $_SESSION["postcode"]; ?></p>
-							<p><b>CC Type :</b><?= $_SESSION["ccType"]?></p>
-                            <p><b>CC Num :</b><?= $_SESSION["ccNum"]?></p>
-							<p><b>CC Expiry:</b><?= $_SESSION["expDate"]?></p>
+							<h5>Customer Name : <?php echo $_SESSION['values']['first_name'] ," ",$_SESSION['values']['last_name'], "</br>"; ?></h5>
+							<p><b>Mobile :</b> <?= $_SESSION['values']['phone']; ?></p>
+							<p><b>Email :</b> <?=  $_SESSION['values']['email'];  ?></p>
+							<p><b>Address :</b><?php echo $_SESSION['values']['street'],",", $_SESSION['values']['state'], "</br>"; ?></p>
+                            <p><b>Post Code :</b><?= $_SESSION['values']['post_code']; ?></p>
+                            <p><b>CC Num :</b><?php echo "***************"?></p>
+							<p><b>CC Expiry:</b><?php echo "**/**"?></p>
 							<p><b>CC Expiry:</b><?php echo "***"?></p>
 						</div>
 					</div>
@@ -97,8 +70,8 @@ session_start()
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="col-md-9"><?= $_SESSION["products"]?></td>
-                            <td class="col-md-3"><i class="fa fa-inr"></i><?= $_SESSION["tickets"] ?></td>
+                            <td class="col-md-9"><?= $_SESSION['values']['movie_id']?></td>
+                            <td class="col-md-3"><i class="fa fa-inr"></i><?= $_SESSION['values']['tickets_quantity'] ?></td>
                         </tr>
                      
                         <tr>
@@ -112,7 +85,7 @@ session_start()
                         <tr>
                            
                             <td class="text-right"><h2><strong>Total: </strong></h2></td>
-                            <td class="text-left text-danger"><h2><strong><i class="fa fa-inr"></i> <?=   $_SESSION["order_cost"]?></strong></h2></td>
+                            <td class="text-left text-danger"><h2><strong><i class="fa fa-inr"></i> <?=  $_SESSION['values']['order_cost'] ?></strong></h2></td>
                         </tr>
                     </tbody>
                 </table>

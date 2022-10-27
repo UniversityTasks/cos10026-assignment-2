@@ -65,15 +65,15 @@ a
                 <div class="formGroup">
                     <label for="state">State: </label>
                     <select name="state" id="state">
-                        <option value="">Please Select</option>
-                        <option value="NSW">New South Wales</option>
-                        <option value="VIC" selected>Victoria</option>
-                        <option value="WA">Western Australia</option>
-                        <option value="TAS">Tasmania</option>
-                        <option value="NT">Northern Territory</option>
-                        <option value="ACT">Australian Capital Territory</option>
-                        <option value="QLD">Queensland</option>
-                        <option value="SA">South Australia</option>
+                        <option value=""<?php echo $_SESSION['values']['state'] === ''?'selected':''; ?>>Please Select</option>
+                        <option value="NSW"<?php echo $_SESSION['values']['state'] === 'NSW'?'selected':''; ?> >New South Wales</option>
+                        <option value="VIC"<?php echo $_SESSION['values']['state'] === 'VIC'?'selected':''; ?> >Victoria</option>
+                        <option value="WA" <?php echo $_SESSION['values']['state'] === 'WA'?'selected':''; ?>>Western Australia</option>
+                        <option value="TAS"<?php echo $_SESSION['values']['state'] === 'TAS'?'selected':''; ?>>Tasmania</option>
+                        <option value="NT" <?php echo $_SESSION['values']['state'] === 'NT'?'selected':''; ?>>Northern Territory</option>
+                        <option value="ACT"<?php echo $_SESSION['values']['state'] === 'ACT'?'selected':''; ?>>Australian Capital Territory</option>
+                        <option value="QLD"<?php echo $_SESSION['values']['state'] === 'QLD'?'selected':''; ?>>Queensland</option>
+                        <option value="SA" <?php echo $_SESSION['values']['state'] === 'SA'?'selected':''; ?>>South Australia</option>
                     </select>
                     <p class = "errMsg"><?= $_SESSION['errors']['state'] ?></p>
 
@@ -89,9 +89,9 @@ a
                 <div class="formGroup">
                     <label for="contactMethod">Contact Method: </label>
                     <select name="contact_method_id" id="contactMethod">
-                        <option value="1" selected="selected">Phone</option>
-                        <option value="2">Email</option>
-                        <option value="3">Post</option>
+                        <option value="1" <?php echo $_SESSION['values']['contact_method_id'] === '1'?'selected':''; ?> >Phone</option>
+                        <option value="2" <?php echo $_SESSION['values']['contact_method_id'] === '2'?'selected':''; ?> >Email</option>
+                        <option value="3" <?php echo $_SESSION['values']['contact_method_id'] === '3'?'selected':''; ?> >Post</option>
                     </select>
                 </div>
 
@@ -99,9 +99,9 @@ a
                 <div class="formGroup">
                     <label for="options">Product Options: </label>
                     <select name="option_id" id="options">
-                        <option value="1" selected="selected">Adult tickets $15</option>
-                        <option value="2">Senior tickets $10</option>
-                        <option value="3">Child tickets $8</option>
+                        <option value="1" <?php echo $_SESSION['values']['option_id'] === '1'?'selected':''; ?>>Adult tickets $15</option>
+                        <option value="2"<?php echo $_SESSION['values']['option_id'] === '2'?'selected':''; ?>>Senior tickets $10</option>
+                        <option value="3"<?php echo $_SESSION['values']['option_id'] === '3'?'selected':''; ?>>Child tickets $8</option>
                     </select>
                 </div>
 

@@ -70,7 +70,7 @@ session_start()
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="col-md-9"><?= $_SESSION['values']['movie_id']?></td>
+                            <td class="col-md-9"><?= $_SESSION['values']['receipt_desc']?></td>
                             <td class="col-md-3"><i class="fa fa-inr"></i><?= $_SESSION['values']['tickets_quantity'] ?></td>
                         </tr>
                      

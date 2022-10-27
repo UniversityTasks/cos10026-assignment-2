@@ -92,17 +92,6 @@
                     <input type="text" name="ticket_quantity" id="ticketQuantity" pattern="[0-9]{4}" placeholder="1"
                         required />
                 </div>
-
-                <!-- Submits an id corresponding to the options database table -->
-                <div class="formGroup">
-                    <label for="option_id">Product Options: </label>
-                    <select name="option_id" id="option_id">
-                        <option value="">Please Select</option>
-                        <option value="1" selected="selected">Adult tickets $15</option>
-                        <option value="2">Senior tickets $10</option>
-                        <option value="3">Child tickets $8</option>
-                    </select>
-                </div>
             </fieldset>
 
             <fieldset class="formFieldset">

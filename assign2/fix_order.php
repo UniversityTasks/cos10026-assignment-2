@@ -110,17 +110,6 @@ a
                     <input type="text" name="ticket_quantity" id="ticketQuantity" pattern="[0-9]{4}" placeholder="1"  value ="<?php $_SESSION['values']['tickets_quantity'] ?>"
                         required />
                 </div>
-
-                <!-- Submits an id corresponding to the options database table -->
-                <div class="formGroup">
-                    <label for="option_id">Product Options: </label>
-                    <select name="option_id" id="option_id">
-                        <option value="">Please Select</option>
-                        <option value="1" selected="selected">Adult tickets $15</option>
-                        <option value="2">Senior tickets $10</option>
-                        <option value="3">Child tickets $8</option>
-                    </select>
-                </div>
             </fieldset>
 
             <fieldset class="formFieldset">
@@ -196,7 +185,6 @@ a
                     <label for="cvv">CVV</label>
                     <input type="text" id="cvv" name="cvv" placeholder="123">
                     <p class = "errMsg"><?= $_SESSION['errors']['cvv'] ?></p>
-
                 </div>
 
                 <div class="enquirySubmitBtn">

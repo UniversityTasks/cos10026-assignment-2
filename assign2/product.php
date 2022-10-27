@@ -12,31 +12,9 @@
 
 <body id="enquiryBG">
 
-<?php 
-    include_once 'includes/menu.php'; 
-    $res = $conn->query('SELECT * FROM s103574757_db.movies;');
-?>
-
-<?php while ($row = mysqli_fetch_assoc($res)) { ?>
-            <tr>
-                <td><?php echo $row['order_id']; ?></td>
-                <td><?php echo $row['order_cost']; ?></td>
-                <td><?php echo $row['first_name']; ?></td>
-                <td><?php echo $row['last_name']; ?></td>
-                <td><?php echo $row['order_status']; ?></td>
-                <td><?php echo $row['movie_name']; ?></td>
-                <td>
-                    <!-- Send the user to the edit page (which fetches order data via order_id) -->
-                    <a href="edit_order.php?id=<?php echo $row['order_id'] ?>">Edit</a>
-
-                    <!-- Delete order by posting to delete_order.php. We need to use a form because JS is not allowed :( -->
-                    <form action="delete_order.php" method="post">
-                        <input type="hidden" name="id" value="<?php echo $row['order_id'] ?>">
-                        <input type="submit" value="Delete">
-                    </form>
-                </td>
-<?php } ?>
-
+    <?php
+    include_once 'includes/menu.php';
+    ?>
     <section id="productHead">
         <h1>Movies</h1>
         <p><strong>At GOI</strong></p>
@@ -107,8 +85,7 @@
             <section class="featuresSection">
                 <h4>Select Features</h4>
                 <form>
-                    <input type="checkbox" id="movie1Feature1" name="feature1" value="adultsTickets"
-                        checked="checked" />
+                    <input type="checkbox" id="movie1Feature1" name="feature1" value="adultsTickets" checked="checked" />
                     <label for="movie1Feature1">Adults Tickets</label>
                     <br>
                     <input type="checkbox" id="movie1Feature2" name="feature2" value="childrenTickets" />
@@ -170,8 +147,7 @@
             <section class="featuresSection">
                 <h4>Select Features</h4>
                 <form>
-                    <input type="checkbox" id="movie2Feature1" name="feature1" value="adultsTickets"
-                        checked="checked" />
+                    <input type="checkbox" id="movie2Feature1" name="feature1" value="adultsTickets" checked="checked" />
                     <label for="movie2Feature1">Adults Tickets</label>
                     <br>
                     <input type="checkbox" id="movie2Feature2" name="feature2" value="childrenTickets" />
@@ -235,8 +211,7 @@
             <section class="featuresSection">
                 <h4>Select Features</h4>
                 <form>
-                    <input type="checkbox" id="movie3Feature1" name="feature1" value="adultsTickets"
-                        checked="checked" />
+                    <input type="checkbox" id="movie3Feature1" name="feature1" value="adultsTickets" checked="checked" />
                     <label for="movie3Feature1">Adults Tickets</label>
                     <br>
                     <input type="checkbox" id="movie3Feature2" name="feature2" value="childrenTickets" />
@@ -292,8 +267,7 @@
             <section class="featuresSection">
                 <h4>Select Features</h4>
                 <form>
-                    <input type="checkbox" id="movie4Feature1" name="feature1" value="adultsTickets"
-                        checked="checked" />
+                    <input type="checkbox" id="movie4Feature1" name="feature1" value="adultsTickets" checked="checked" />
                     <label for="movie4Feature1">Adults Tickets</label>
                     <br>
                     <input type="checkbox" id="movie4Feature2" name="feature2" value="childrenTickets" />
@@ -316,8 +290,7 @@
         </section>
 
         <section class="movieCard">
-            <img class="movieImg" src="./images/movies/Paws-Of-Fury-The-Legend-Of-Hank.jpg"
-                alt="Paws Of Fury The Legend Of Hank">
+            <img class="movieImg" src="./images/movies/Paws-Of-Fury-The-Legend-Of-Hank.jpg" alt="Paws Of Fury The Legend Of Hank">
             <h2>PAWS OF FURY</h2>
             <p>
                 A hard-on-his-luck hound Hank (Michael Cera) finds himself in a town
@@ -352,8 +325,7 @@
             <section class="featuresSection">
                 <h4>Select Features</h4>
                 <form>
-                    <input type="checkbox" id="movie5Feature1" name="feature1" value="adultsTickets"
-                        checked="checked" />
+                    <input type="checkbox" id="movie5Feature1" name="feature1" value="adultsTickets" checked="checked" />
                     <label for="movie5Feature1">Adults Tickets</label>
                     <br>
                     <input type="checkbox" id="movie5Feature2" name="feature2" value="childrenTickets" />
@@ -410,8 +382,7 @@
             <section class="featuresSection">
                 <h4>Select Features</h4>
                 <form>
-                    <input type="checkbox" id="movie6Feature1" name="feature1" value="adultsTickets"
-                        checked="checked" />
+                    <input type="checkbox" id="movie6Feature1" name="feature1" value="adultsTickets" checked="checked" />
                     <label for="movie6Feature1">Adults Tickets</label>
                     <br>
                     <input type="checkbox" id="movie6Feature2" name="feature2" value="childrenTickets" />

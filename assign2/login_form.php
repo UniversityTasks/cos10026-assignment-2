@@ -14,9 +14,9 @@
 
 
         <div id="loginContainer">
-            <form id="loginForm" method='post' action="authentication.php">                
+            <form id="loginForm" method='post' action="authentication.php">
                 <?php 
-                    if (isset($_GET["error_msg"])) {
+                    if (isset($_GET["error_msg"]) && $_GET["error_msg"] == "AccessDenied") {
                         echo "<h3 id=loginError>Invalid username or password. Please try again</h3>";
                     }
                 ?>

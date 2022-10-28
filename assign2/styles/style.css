@@ -824,6 +824,8 @@ aside {
 
 input[type=text],
 input[type=email],
+input[type=password],
+
 select,
 textarea {
     /*To prevent padding from increasing width*/
@@ -920,6 +922,36 @@ textarea:focus {
 }
 
 .paymentSubmitBtn input[type=submit] {
+    padding: 24px;
+    border: none;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    background: linear-gradient(-45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
+    background-size: 300%;
+    animation: buttonAnim 10s linear infinite;
+
+}
+
+/****************************************/
+/*             LOGIN.PHP             */
+/****************************************/
+#loginContainer {
+    display: flex;
+    justify-content: center;
+}
+
+#loginForm {
+    width: 70%;
+    box-shadow: #000000 1px 1px 10px;
+    padding: 50px 32px;
+    margin-top: 24px;
+    border-radius: 5px;
+}
+.loginSubmitBtn input[type=submit] {
     padding: 24px;
     border: none;
     width: 100%;

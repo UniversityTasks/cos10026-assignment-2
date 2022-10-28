@@ -14,7 +14,7 @@
 
 
         <div id="loginContainer">
-            <form id="loginForm" method='get' action="authentication.php">
+            <form id="loginForm" method='post' action="authentication.php">                
                 <?php 
                     if (isset($_GET["error_msg"])) {
                         echo "<h3 id=loginError>Invalid username or password. Please try again</h3>";

@@ -1,4 +1,10 @@
 <?php
+// Only allows access to page if the user has been through the authentication
+// page and has the authenticated boolean set in the session.
+session_start();
+if (!isset($_SESSION['authenticated']) || !$_SESSION['authenticated']) {
+    header ("Location: ./login_form.php?error_msg=Unauthenticated");
+}
 
 require_once("db.php");
 
@@ -17,6 +23,7 @@ $res = $conn->query("select * from s103574757_db.orders o inner join s103574757_
 </head>
 
 <body>
+    <a href="./logout.php">Logout</a>
     <table>
         <tr>
             <th>ID</th>

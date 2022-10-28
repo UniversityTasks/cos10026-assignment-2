@@ -964,6 +964,14 @@ textarea:focus {
     background-size: 300%;
     animation: buttonAnim 10s linear infinite;
 }
+#loginError {
+    font: 1rem Arial, Helvetica, sans-serif;
+    color: red;
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 20px;
+
+}
 
 /****************************************/
 /*           ENHANCEMENTS.HTML          */

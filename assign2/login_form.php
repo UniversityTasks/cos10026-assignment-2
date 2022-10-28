@@ -12,10 +12,16 @@
     <body>
         <?php include_once 'includes/menu.php'; ?>
 
+
         <div id="loginContainer">
             <form id="loginForm" method='get' action="authentication.php">
+                <?php 
+                    if (isset($_GET["error_msg"])) {
+                        echo "<h3 id=loginError>Invalid username or password. Please try again</h3>";
+                    }
+                ?>
                 <fieldset class="formFieldset">
-                    <legend>Manager Login</legend>
+                    <legend> Manager Login </legend>
 
                     <div class="formGroup">
                         <label for="username">Username: </label>

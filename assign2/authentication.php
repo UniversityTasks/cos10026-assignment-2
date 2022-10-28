@@ -35,10 +35,9 @@
 
                 $user_query_sql= "SELECT * FROM s103574757_db.users WHERE username = '$username' AND password = '$password';";
                 $result = $conn->query($user_query_sql);
-
-                $user_detail = mysqli_fetch_assoc($result);
-                if (sizeof($user_detail) == 0) {
-                    header("Location: ./login_form.php");
+               
+                if ($result->num_rows == 0) {
+                    header("Location: ./login_form.php?error_msg=AccessDenied");
                 } else {
                     header("Location: ./manager.php");
                 }

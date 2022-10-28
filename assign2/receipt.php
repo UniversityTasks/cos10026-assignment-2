@@ -14,23 +14,23 @@ session_start()
 
 </head>
 <body>
-<table class="body-wrap">
+<table class="receipt-wrap">
     <tbody><tr>
         <td></td>
-        <td class="container" width="600">
-            <div class="content">
-                <table class="main" width="100%" cellpadding="0" cellspacing="0">
+        <td class="receiptcontainer" >
+            <div class="receiptcontent">
+                <table class="receiptmain"  >
                     <tbody><tr>
-                        <td class="content-wrap aligncenter">
-                            <table width="100%" cellpadding="0" cellspacing="0">
+                        <td class="receipt-wrap">
+                            <table  >
                                 <tbody><tr>
-                                    <td class="content-block">
+                                    <td class="receipt-block">
                                         <h2>Thanks you! Have a good day!</h2>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="content-block">
-                                        <table class="invoice">
+                                    <td class="receipt-block">
+                                        <table class="receipt">
                                             <tbody><tr>
                                                 <td><?php echo $_SESSION['values']['first_name'] ," ",$_SESSION['values']['last_name']; ?><br>
 												Address:<?php echo $_SESSION['values']['street'] ," ",$_SESSION['values']['state']," ",$_SESSION['values']['post_code'] ?>
@@ -40,14 +40,14 @@ session_start()
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <table class="invoice-items" cellpadding="0" cellspacing="0">
+                                                    <table class="receipt-items" >
                                                         <tbody><tr>
                                                             <td><?= $_SESSION['values']['receipt_desc'] ?></td>
                                                             <td class="alignright"><?= $_SESSION['values']['tickets_quantity']?></td>
                                                         </tr>
                                                         
                                                         <tr class="total">
-                                                            <td class="alignright" width="80%">Total</td>
+                                                            <td class="alignright" >Total</td>
                                                             <td class="alignright"><?= $_SESSION['values']['order_cost']?>.00</td>
                                                         </tr>
                                                     </tbody></table>
@@ -57,12 +57,12 @@ session_start()
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="content-block">
+                                    <td class="receipt-block">
                                         <a href="index.php">Back to Homepage</a>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="content-block">
+                                    <td class="receipt-block">
                                         GOI Inc. Hawthorn, 3122 VICTORIA 
                                     </td>
                                 </tr>
@@ -70,10 +70,10 @@ session_start()
                         </td>
                     </tr>
                 </tbody></table>
-                <div class="footer">
-                    <table width="100%">
+                <div class="receiptfooter">
+                    <table>
                         <tbody><tr>
-                            <td class="aligncenter content-block">Questions? Email <a href="mailto:">GOISupport@hotmail.com</a></td>
+                            <td class=" receipt-block">Questions? Email <a href="mailto:">GOISupport@hotmail.com</a></td>
                         </tr>
                     </tbody></table>
                 </div></div>

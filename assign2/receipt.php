@@ -42,7 +42,7 @@ session_start()
                                                 <td>
                                                     <table class="invoice-items" cellpadding="0" cellspacing="0">
                                                         <tbody><tr>
-                                                            <td>:<?= $_SESSION['values']['receipt_desc'] ?></td>
+                                                            <td><?= $_SESSION['values']['receipt_desc'] ?></td>
                                                             <td class="alignright"><?= $_SESSION['values']['tickets_quantity']?></td>
                                                         </tr>
                                                         

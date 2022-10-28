@@ -28,7 +28,7 @@ a
                 <legend>Your Details</legend>
                 <div class="formGroup">
                     <label for="firstName">First Name: </label>
-                    <input type="text" name="first_name" id="firstName" pattern="[A-Za-z]{1,25}" placeholder="First Name" value ="<?php $_SESSION['values']['first_name'] ?>"
+                    <input type="text" name="first_name" id="firstName" pattern="[A-Za-z]{1,25}" placeholder="First Name" value ='"<?php $_SESSION['values']['first_name'] ?>"'
                         required />
                         <p class = "errMsg"><?= $_SESSION['errors']['first_name'] ?></p>
                 </div>
@@ -81,8 +81,8 @@ a
 
                 <div class="formGroup">
                     <label for="postCode">Post code: </label>
-                    <input type="text" name="post_code" id="postCode" pattern="[0-9]{4}" placeholder="0123"  value ="<?php $_SESSION['values']['post_code'] ?>" required />
-                    <p class = "errMsg"><?= $_SESSION['errors']['post_code'] ?></p>
+                    <input type="text" name="post_code" id="postCode" pattern="[0-9]{4}" placeholder="0123"  value ="<?php $_SESSION['values']['post_code']; ?>" required />
+                    <p class = "errMsg"><?= $_SESSION['errors']['post_code']; ?></p>
 
                 </div>
 
@@ -147,14 +147,14 @@ a
                 <div class="formGroup">
                     <label for="cName">Name on Card </label>
                     <input type="text" name="cc_name" id="cName" placeholder="Name" />
-                    <p class = "errMsg"><?= $_SESSION['errors']['cc_name'] ?></p>
+                    <p class = "errMsg"><?= $_SESSION['errors']['cc_name'] ;?></p>
 
                 </div>
 
                 <div class="formGroup">
                     <label for="ccNum">Credit card number</label>
                     <input type="text" id="cc_num" name="ccNum" placeholder="1111-2222-3333-4444">
-                    <p class = "errMsg"><?= $_SESSION['errors']['cc_num'] ?></p>
+                    <p class = "errMsg"><?= $_SESSION['errors']['cc_num']; ?></p>
 
                 </div>
 
@@ -189,13 +189,13 @@ a
                         <option value="29">29</option>
                         <option value="30">30</option>
                     </select>
-                    <p class = "errMsg"><?= $_SESSION['errors']['exp'] ?></p>
+                    <p class = "errMsg"><?= $_SESSION['errors']['exp']; ?></p>
                 </div>
 
                 <div class="formGroup">
                     <label for="cvv">CVV</label>
                     <input type="text" id="cvv" name="cvv" placeholder="123">
-                    <p class = "errMsg"><?= $_SESSION['errors']['cvv'] ?></p>
+                    <p class = "errMsg"><?= $_SESSION['errors']['cvv']; ?></p>
 
                 </div>
 

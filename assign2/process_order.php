@@ -300,17 +300,7 @@ $_SESSION['values'] = $values;
 if (empty($errors) == false) {
     $_SESSION["errors"] = $errors;
 
-    foreach ($errors as $key => $value) {
-        echo "<p>" . $key . " " . $value . "</p>";
-    }
-
-    echo "<br>";
-
-    foreach ($_SESSION['errors'] as $key => $value) {
-        echo "<p>" . $key . " " . $value . "</p>";
-    }
-
-    // header("location: fix_order.php");
+    header("location: fix_order.php");
 
     // Do we need to return?
     return;

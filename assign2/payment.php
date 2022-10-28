@@ -21,16 +21,17 @@
         <form id="enquiryForm" method='post' action="process_order.php" novalidate>
             <fieldset class="formFieldset">
                 <legend>Your Details</legend>
+                <!-- Forward the movie id through post -->
+                <input type="text" name="movie_id" value="<?= $_GET['movie_id'] ?>" hidden>
+
                 <div class="formGroup">
                     <label for="firstName">First Name: </label>
-                    <input type="text" name="first_name" id="firstName" pattern="[A-Za-z]{1,25}" placeholder="First Name"
-                        required />
+                    <input type="text" name="first_name" id="firstName" pattern="[A-Za-z]{1,25}" placeholder="First Name" required />
                 </div>
 
                 <div class="formGroup">
                     <label for="lastName">Last Name: </label>
-                    <input type="text" name="last_name" id="lastName" pattern="[A-Za-z]{1,25}" placeholder="Last Name"
-                        required />
+                    <input type="text" name="last_name" id="lastName" pattern="[A-Za-z]{1,25}" placeholder="Last Name" required />
                 </div>
 
                 <div class="formGroup">
@@ -89,19 +90,7 @@
 
                 <div class="formGroup">
                     <label for="ticketQuantity">Ticket quantity: </label>
-                    <input type="text" name="ticket_quantity" id="ticketQuantity" pattern="[0-9]{4}" placeholder="1"
-                        required />
-                </div>
-
-                <!-- Submits an id corresponding to the options database table -->
-                <div class="formGroup">
-                    <label for="option_id">Product Options: </label>
-                    <select name="option_id" id="option_id">
-                        <option value="">Please Select</option>
-                        <option value="1" selected="selected">Adult tickets $15</option>
-                        <option value="2">Senior tickets $10</option>
-                        <option value="3">Child tickets $8</option>
-                    </select>
+                    <input type="text" name="tickets_quantity" id="ticketQuantity" pattern="[0-9]{4}" placeholder="1" required />
                 </div>
             </fieldset>
 
@@ -127,13 +116,13 @@
                 </div>
 
                 <div class="formGroup">
-                    <label for="cName">Name on Card </label>
-                    <input type="text" name="cc_name" id="cName" placeholder="Name" />
+                    <label for="ccName">Name on Card </label>
+                    <input type="text" name="cc_name" id="ccName" placeholder="Name" />
                 </div>
 
                 <div class="formGroup">
                     <label for="ccNum">Credit card number</label>
-                    <input type="text" id="cc_num" name="ccNum" placeholder="1111-2222-3333-4444">
+                    <input type="text" name="cc_num" id="ccNum" placeholder="1111-2222-3333-4444">
                 </div>
 
                 <div class="formGroup">

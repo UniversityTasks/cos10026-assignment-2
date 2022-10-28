@@ -48,7 +48,7 @@ session_start()
                                                         
                                                         <tr class="total">
                                                             <td class="alignright" width="80%">Total</td>
-                                                            <td class="alignright"><?= $_SESSION['values']['order_cost']?></td>
+                                                            <td class="alignright"><?= $_SESSION['values']['order_cost']?>.00</td>
                                                         </tr>
                                                     </tbody></table>
                                                 </td>

@@ -23,6 +23,9 @@ session_start()
 </head>
 
 <body>
+    <?php
+    include_once 'includes/menu.php';
+    ?>
     <table class="receipt-wrap">
         <tbody>
             <tr>

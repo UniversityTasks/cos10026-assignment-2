@@ -105,7 +105,7 @@ if (isset($_POST["email"])) {
     $errors["email"] = "Please enter your email";
 }
 
-if (isset($_POST["street"])&& $_POST['street'] != "") {
+if (isset($_POST["street"]) && $_POST['street'] != "") {
     $street = sanitise_input($_POST["street"]);
 
     if (!preg_match("/^[A-Za-z0-9'\.\-\s\,\/]*$/", $street)) {
@@ -190,12 +190,7 @@ if (isset($_POST["tickets_quantity"]) && $_POST['tickets_quantity'] != "") {
 }
 
 // This is passed in via a query parameter from products.php
-// It should always be there but check just incase 
-if (isset($_POST["movie_id"])) {
-    $movie_id = sanitise_input($_POST["movie_id"]);
-} else {
-    $errors["movie_id"] = "Please select a movie";
-}
+$movie_id = sanitise_input($_POST["movie_id"]);
 
 if (isset($_POST["cc_type"])) {
     $cc_type = sanitise_input($_POST["cc_type"]);
@@ -293,13 +288,10 @@ $values = array(
     'state' => $state,
     'post_code' => $post_code,
     'tickets_quantity' => $tickets_quantity,
-    'receipt_desc' => $option_detail['option_name'],
 
     'movie_id' => $movie_id,
     'option_id' => $option_id,
     'contact_method_id' => $contact_method_id,
-
-    'order_cost' => $order_cost
 );
 
 $_SESSION['values'] = $values;
@@ -308,7 +300,6 @@ $_SESSION['values'] = $values;
 if (empty($errors) == false) {
     $_SESSION["errors"] = $errors;
 
-    /*
     foreach ($errors as $key => $value) {
         echo "<p>" . $key . " " . $value . "</p>";
     }
@@ -318,9 +309,8 @@ if (empty($errors) == false) {
     foreach ($_SESSION['errors'] as $key => $value) {
         echo "<p>" . $key . " " . $value . "</p>";
     }
-    */
 
-    header("location: fix_order.php");
+    // header("location: fix_order.php");
 
     // Do we need to return?
     return;
@@ -335,8 +325,17 @@ $price = intval($option_detail['option_price']);
 // Calculate final cost
 $order_cost = $price * intval($tickets_quantity);
 
+$values['receipt_desc'] = $option_detail['option_name'];
+$values['order_cost'] = $order_cost;
+
+$_SESSION['values'] = $values;
+
 //INSERT
-$sql = "INSERT INTO orders (order_cost, first_name, last_name, email, phone, street, state, post_code, tickets_quantity, contact_method_id, movie_id, option_id, cc_type, cc_name, cc_num, exp_date, cvv)
+$sql = "INSERT INTO s103574757_db.orders (order_cost, first_name, last_name, email, phone, street, state, post_code, tickets_quantity, contact_method_id, movie_id, option_id, cc_type, cc_name, cc_num, exp_date, cvv)
         VALUES ('$order_cost', '$first_name', '$last_name', '$email', '$phone', '$street', '$state', '$post_code', '$tickets_quantity', '$contact_method_id', '$movie_id', '$option_id',  '$cc_type', '$cc_name', '$cc_num', '$exp_date', '$cvv')";
+
+$conn->query($sql);
+
+header("location: receipt.php")
 
 ?>

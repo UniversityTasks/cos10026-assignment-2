@@ -25,6 +25,9 @@ session_start();
         <form id="enquiryForm" method='post' action="process_order.php" novalidate>
             <fieldset class="formFieldset">
                 <legend>Your Details</legend>
+                <!-- Forward the movie id through post -->
+                <input type="text" name="movie_id" value="<?= $_SESSION['values']['movie_id'] ?>" hidden>
+
                 <div class="formGroup">
                     <label for="firstName">First Name: </label>
                     <input type="text" name="first_name" id="firstName" pattern="[A-Za-z]{1,25}" placeholder="First Name" value="<?= $_SESSION['values']['first_name'] ?? "" ?>" required />
@@ -72,7 +75,7 @@ session_start();
                         <option value="QLD" <?= $_SESSION['values']['state'] === 'QLD' ? 'selected' : ''; ?>>Queensland</option>
                         <option value="SA" <?= $_SESSION['values']['state'] === 'SA' ? 'selected' : ''; ?>>South Australia</option>
                     </select>
-                    <p class="errMsg"><?= $_SESSION['errors']['state'] ?? ""?></p>
+                    <p class="errMsg"><?= $_SESSION['errors']['state'] ?? "" ?></p>
 
                 </div>
 
@@ -104,7 +107,7 @@ session_start();
 
                 <div class="formGroup">
                     <label for="ticketQuantity">Ticket quantity: </label>
-                    <input type="text" name="tickets_quantity" id="ticketQuantity" pattern="[0-9]{4}" placeholder="1" value="<?= $_SESSION['values']['tickets_quantity'] ?? ""?>" required />
+                    <input type="text" name="tickets_quantity" id="ticketQuantity" pattern="[0-9]{4}" placeholder="1" value="<?= $_SESSION['values']['tickets_quantity'] ?? "" ?>" required />
                     <p class="errMsg"><?= $_SESSION['errors']['tickets_quantity'] ?? "" ?></p>
                 </div>
             </fieldset>
@@ -131,17 +134,16 @@ session_start();
                 </div>
 
                 <div class="formGroup">
-                    <label for="cName">Name on Card </label>
-                    <input type="text" name="cc_name" id="cName" placeholder="Name" />
+                    <label for="ccName">Name on Card </label>
+                    <input type="text" name="cc_name" id="ccName" placeholder="Name" />
                     <p class="errMsg"><?= $_SESSION['errors']['cc_name'] ?? "" ?></p>
 
                 </div>
 
                 <div class="formGroup">
                     <label for="ccNum">Credit card number</label>
-                    <input type="text" id="cc_num" name="ccNum" placeholder="1111-2222-3333-4444">
+                    <input type="text" name="cc_num" id="ccNum" placeholder="1111-2222-3333-4444">
                     <p class="errMsg"><?= $_SESSION['errors']['cc_num'] ?? "" ?></p>
-
                 </div>
 
                 <div class="formGroup">

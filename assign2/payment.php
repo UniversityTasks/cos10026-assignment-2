@@ -26,14 +26,12 @@
 
                 <div class="formGroup">
                     <label for="firstName">First Name: </label>
-                    <input type="text" name="first_name" id="firstName" pattern="[A-Za-z]{1,25}" placeholder="First Name"
-                        required />
+                    <input type="text" name="first_name" id="firstName" pattern="[A-Za-z]{1,25}" placeholder="First Name" required />
                 </div>
 
                 <div class="formGroup">
                     <label for="lastName">Last Name: </label>
-                    <input type="text" name="last_name" id="lastName" pattern="[A-Za-z]{1,25}" placeholder="Last Name"
-                        required />
+                    <input type="text" name="last_name" id="lastName" pattern="[A-Za-z]{1,25}" placeholder="Last Name" required />
                 </div>
 
                 <div class="formGroup">
@@ -92,8 +90,7 @@
 
                 <div class="formGroup">
                     <label for="ticketQuantity">Ticket quantity: </label>
-                    <input type="text" name="tickets_quantity" id="ticketQuantity" pattern="[0-9]{4}" placeholder="1"
-                        required />
+                    <input type="text" name="tickets_quantity" id="ticketQuantity" pattern="[0-9]{4}" placeholder="1" required />
                 </div>
             </fieldset>
 
@@ -119,13 +116,13 @@
                 </div>
 
                 <div class="formGroup">
-                    <label for="cName">Name on Card </label>
-                    <input type="text" name="cc_name" id="cName" placeholder="Name" />
+                    <label for="ccName">Name on Card </label>
+                    <input type="text" name="cc_name" id="ccName" placeholder="Name" />
                 </div>
 
                 <div class="formGroup">
                     <label for="ccNum">Credit card number</label>
-                    <input type="text" id="cc_num" name="ccNum" placeholder="1111-2222-3333-4444">
+                    <input type="text" name="cc_num" id="ccNum" placeholder="1111-2222-3333-4444">
                 </div>
 
                 <div class="formGroup">

@@ -19,7 +19,7 @@ session_start()
         <td></td>
         <td class="receiptcontainer" >
             <div class="receiptcontent">
-                <table class="receiptmain"  >
+                <table class="receiptmain">
                     <tbody><tr>
                         <td class="receipt-wrap">
                             <table  >
@@ -43,12 +43,12 @@ session_start()
                                                     <table class="receipt-items" >
                                                         <tbody><tr>
                                                             <td><?= $_SESSION['values']['receipt_desc'] ?></td>
-                                                            <td class="alignright"><?= $_SESSION['values']['tickets_quantity']?></td>
+                                                            <td><?= $_SESSION['values']['tickets_quantity']?></td>
                                                         </tr>
                                                         
                                                         <tr class="total">
                                                             <td class="alignright" >Total</td>
-                                                            <td class="alignright"><?= $_SESSION['values']['order_cost']?>.00</td>
+                                                            <td><?= $_SESSION['values']['order_cost']?>.00</td>
                                                         </tr>
                                                     </tbody></table>
                                                 </td>

@@ -187,8 +187,8 @@ if (isset($_POST["tickets_quantity"])) {
 
 // This is passed in via a query parameter from products.php
 // It should always be there but check just incase 
-if (isset($_GET["movie_id"])) {
-    $movie_id = sanitise_input($_GET["movie_id"]);
+if (isset($_POST["movie_id"])) {
+    $movie_id = sanitise_input($_POST["movie_id"]);
 } else {
     $errors["movie_id"] = "Please select a movie";
 }

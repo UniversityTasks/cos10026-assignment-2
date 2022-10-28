@@ -21,6 +21,9 @@
         <form id="enquiryForm" method='post' action="process_order.php" novalidate>
             <fieldset class="formFieldset">
                 <legend>Your Details</legend>
+                <!-- Forward the movie id through post -->
+                <input type="text" name="movie_id" value="<?= $_GET['movie_id'] ?>" hidden>
+
                 <div class="formGroup">
                     <label for="firstName">First Name: </label>
                     <input type="text" name="first_name" id="firstName" pattern="[A-Za-z]{1,25}" placeholder="First Name"

@@ -92,7 +92,7 @@
 
                 <div class="formGroup">
                     <label for="ticketQuantity">Ticket quantity: </label>
-                    <input type="text" name="ticket_quantity" id="ticketQuantity" pattern="[0-9]{4}" placeholder="1"
+                    <input type="text" name="tickets_quantity" id="ticketQuantity" pattern="[0-9]{4}" placeholder="1"
                         required />
                 </div>
             </fieldset>

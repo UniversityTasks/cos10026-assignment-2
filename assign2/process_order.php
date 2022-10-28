@@ -67,7 +67,7 @@ $errors = array();
 // since someone can make an API request with a malicious value
 
 //Initialize variables
-if (isset($_POST["first_name"])) {
+if (isset($_POST["first_name"]) && $_POST['first_name'] != "") {
     $first_name = sanitise_input($_POST["first_name"]);
 
     if (!preg_match("/^[a-zA-Z]*$/", $first_name)) {
@@ -79,7 +79,7 @@ if (isset($_POST["first_name"])) {
     $errors["first_name"] = "Please enter your first name";
 }
 
-if (isset($_POST["last_name"])) {
+if (isset($_POST["last_name"]) && $_POST['last_name'] != "") {
     $last_name = sanitise_input($_POST["last_name"]);
 
     // Validate Last name 
@@ -105,7 +105,7 @@ if (isset($_POST["email"])) {
     $errors["email"] = "Please enter your email";
 }
 
-if (isset($_POST["street"])) {
+if (isset($_POST["street"])&& $_POST['street'] != "") {
     $street = sanitise_input($_POST["street"]);
 
     if (!preg_match("/^[A-Za-z0-9'\.\-\s\,\/]*$/", $street)) {
@@ -117,7 +117,7 @@ if (isset($_POST["street"])) {
     $errors["street"] = "Please enter your street";
 }
 
-if (isset($_POST["post_code"])) {
+if (isset($_POST["post_code"]) && $_POST['post_code'] != "") {
     $post_code = sanitise_input($_POST["post_code"]);
 
     if (!preg_match("/^[0-9]*$/", $post_code)) {
@@ -155,7 +155,7 @@ if (isset($_POST["state"])) {
     $errors["state"] = "Please enter your state";
 }
 
-if (isset($_POST["phone"])) {
+if (isset($_POST["phone"]) && $_POST['phone'] != "") {
     $phone = sanitise_input($_POST["phone"]);
 
     if (!preg_match("/^[0-9]*$/", $phone)) {
@@ -179,8 +179,12 @@ if (isset($_POST["contact_method_id"])) {
     $errors["contact_method_id"] = "Please select a contact method";
 }
 
-if (isset($_POST["tickets_quantity"])) {
+if (isset($_POST["tickets_quantity"]) && $_POST['tickets_quantity'] != "") {
     $tickets_quantity = sanitise_input($_POST["tickets_quantity"]);
+
+    if (!preg_match("/^[0-9]*$/", $tickets_quantity)) {
+        $errors['tickets_quantity'] = "Ticket quantity only accepts integers.";
+    }
 } else {
     $errors["tickets_quantity"] = "Please select a ticket quantity";
 }
@@ -199,13 +203,13 @@ if (isset($_POST["cc_type"])) {
     $errors["cc_type"] = "Please enter your credit card type";
 }
 
-if (isset($_POST["cc_name"])) {
+if (isset($_POST["cc_name"]) && $_POST['cc_name'] != "") {
     $cc_name = sanitise_input($_POST["cc_name"]);
 } else {
     $errors["cc_name"] = "Please enter your credit card name";
 }
 
-if (isset($_POST["cc_num"])) {
+if (isset($_POST["cc_num"]) && $_POST['phone'] != "") {
     $cc_num = sanitise_input($_POST["cc_num"]);
 
     $cc_num = preg_replace('/\s+/', '', $cc_num);
@@ -244,13 +248,13 @@ if (isset($_POST["cc_num"])) {
     $errors["cc_num"] = "Please enter your credit card number";
 }
 
-if (isset($_POST["exp_month"])) {
+if (isset($_POST["exp_month"]) && $_POST['exp_month'] != "") {
     $exp_month = sanitise_input($_POST["exp_month"]);
 } else {
     $errors["exp_month"] = "Please enter your credit card expiry month";
 }
 
-if (isset($_POST["exp_year"])) {
+if (isset($_POST["exp_year"]) && $_POST['exp_year'] != "") {
     $exp_year = sanitise_input($_POST["exp_year"]);
 } else {
     $errors["exp_year"] = "Please enter your credit card expiry year";
@@ -267,7 +271,7 @@ if (array_key_exists("exp_month", $errors) == false && array_key_exists("exp_mon
     }
 }
 
-if (isset($_POST["cvv"])) {
+if (isset($_POST["cvv"]) && $_POST['cvv'] != "") {
     $cvv = sanitise_input($_POST["cvv"]);
 
     if (!preg_match("/^[0-9]*$/", $cvv)) {
@@ -278,40 +282,6 @@ if (isset($_POST["cvv"])) {
 } else {
     $errors["cvv"] = "Please enter your credit card CVV";
 }
-
-// If any errors, redirect to fix order
-if (empty($errors) == false) {
-    $_SESSION["errors"] = $errors;
-
-    foreach ($errors as $key => $value) {
-        echo "<p>" . $key . " " . $value . "</p>";
-    }
-
-    echo "<br>";
-
-    foreach ($_SESSION['errors'] as $key => $value) {
-        echo "<p>" . $key . " " . $value . "</p>";
-    }
-
-    //header("location: fix_order.php");
-
-    // Do we need to return?
-    return;
-}
-
-// Get the price of the option from database
-$res = $conn->query('SELECT option_price, option_name FROM s103574757_db.options WHERE option_id = ' . $option_id  . ';');
-
-$option_detail = mysqli_fetch_assoc($res);
-$price = intval($option_detail['option_price']);
-
-// Calculate final cost
-$order_cost = $price * intval($tickets_quantity);
-
-//INSERT
-$sql = "INSERT INTO orders (order_cost, first_name, last_name, email, phone, street, state, post_code, tickets_quantity, contact_method_id, movie_id, option_id, cc_type, cc_name, cc_num, exp_date, cvv)
-        VALUES ('$order_cost', '$first_name', '$last_name', '$email', '$phone', '$street', '$state', '$post_code', '$tickets_quantity', '$contact_method_id', '$movie_id', '$option_id',  '$cc_type', '$cc_name', '$cc_num', '$exp_date', '$cvv')";
-
 
 // Used to populate fix_order.php fields and receipt
 $values = array(
@@ -333,5 +303,40 @@ $values = array(
 );
 
 $_SESSION['values'] = $values;
+
+// If any errors, redirect to fix order
+if (empty($errors) == false) {
+    $_SESSION["errors"] = $errors;
+
+    /*
+    foreach ($errors as $key => $value) {
+        echo "<p>" . $key . " " . $value . "</p>";
+    }
+
+    echo "<br>";
+
+    foreach ($_SESSION['errors'] as $key => $value) {
+        echo "<p>" . $key . " " . $value . "</p>";
+    }
+    */
+
+    header("location: fix_order.php");
+
+    // Do we need to return?
+    return;
+}
+
+// Get the price of the option from database
+$res = $conn->query('SELECT option_price, option_name FROM s103574757_db.options WHERE option_id = ' . $option_id  . ';');
+
+$option_detail = mysqli_fetch_assoc($res);
+$price = intval($option_detail['option_price']);
+
+// Calculate final cost
+$order_cost = $price * intval($tickets_quantity);
+
+//INSERT
+$sql = "INSERT INTO orders (order_cost, first_name, last_name, email, phone, street, state, post_code, tickets_quantity, contact_method_id, movie_id, option_id, cc_type, cc_name, cc_num, exp_date, cvv)
+        VALUES ('$order_cost', '$first_name', '$last_name', '$email', '$phone', '$street', '$state', '$post_code', '$tickets_quantity', '$contact_method_id', '$movie_id', '$option_id',  '$cc_type', '$cc_name', '$cc_num', '$exp_date', '$cvv')";
 
 ?>

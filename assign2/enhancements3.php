@@ -41,10 +41,20 @@
 
         <details>
             <summary>#3 - Linking mutliple tables using foreign keys</summary>
+            This enhancement utilizes our database to collaborate the orders' table with other tables such as 'contact_method', 'movies', and 'options' to remove redundancy when storing data. 
+
+Creating different tables for different category of data helps to create accuracy when inserting data as it eliminates data duplication and helps with flexibility as it ease the increasing incoming of customers' data .
+Relational database also improves readibility and ease of usage which allow managers to easiliy carry our complex queries.
         </details>
 
         <details>
             <summary>#4 - Autopopulating products page from database</summary>
+            For this enhancement we are populating products page from the database. In the database we have records of each product we offer for example, Black Panther. The images for these records are stored online and the reference to that image is saved into the database. Doing it this way means that adding a product does not require us to add another section for a new product in the html instead we can just add the record into the database. This cuts down on extra code.
+            <ol>
+                <li>Query the database and fetch all the movies </li>
+                <li>Using a while loop to loop through all the records</li>
+                <li>Display all data in a table format.</li>
+            </ol>
         </details>
 
         <details>

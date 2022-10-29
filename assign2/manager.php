@@ -92,38 +92,42 @@ $movies = $conn->query("select * from s103574757_db.movies");
         </div>
     </form>
 
-    <table id="managerSearchTable">
-        <tr>
-            <th>ID</th>
-            <th>Total cost</th>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Status</th>
-            <th>Product</th>
-            <th>Action</th>
-        </tr>
 
-        <?php while ($row = mysqli_fetch_assoc($orders)) { ?>
+    <?php if ($orders->num_rows == 0) { ?>
+        <p class="notFoundMsg">No entries were found.</p>
+    <?php } else { ?>
+        <table id="managerSearchTable">
             <tr>
-                <td><?php echo $row['order_id']; ?></td>
-                <td>$<?php echo $row['order_cost']; ?></td>
-                <td><?php echo $row['first_name']; ?></td>
-                <td><?php echo $row['last_name']; ?></td>
-                <td><?php echo $row['order_status']; ?></td>
-                <td><?php echo $row['movie_name']; ?></td>
-                <td>
-                    <!-- Send the user to the edit page (which fetches order data via order_id) -->
-                    <a class="editLink" href="edit_order.php?id=<?php echo $row['order_id'] ?>">Edit</a>
-
-                    <!-- Delete order by posting to delete_order.php. We need to use a form because JS is not allowed :( -->
-                    <form id='deleteForm' action="delete_order.php" method="post">
-                        <input type="hidden" name="id" value="<?php echo $row['order_id'] ?>">
-                        <input class="deleteButton" type="submit" value="Delete">
-                    </form>
-                </td>
+                <th>ID</th>
+                <th>Total cost</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Status</th>
+                <th>Product</th>
+                <th>Action</th>
             </tr>
+            <?php while ($row = mysqli_fetch_assoc($orders)) { ?>
+                <tr>
+                    <td><?php echo $row['order_id']; ?></td>
+                    <td>$<?php echo $row['order_cost']; ?></td>
+                    <td><?php echo $row['first_name']; ?></td>
+                    <td><?php echo $row['last_name']; ?></td>
+                    <td><?php echo $row['order_status']; ?></td>
+                    <td><?php echo $row['movie_name']; ?></td>
+                    <td>
+                        <!-- Send the user to the edit page (which fetches order data via order_id) -->
+                        <a class="editLink" href="edit_order.php?id=<?php echo $row['order_id'] ?>">Edit</a>
+
+                        <!-- Delete order by posting to delete_order.php. We need to use a form because JS is not allowed :( -->
+                        <form id='deleteForm' action="delete_order.php" method="post">
+                            <input type="hidden" name="id" value="<?php echo $row['order_id'] ?>">
+                            <input class="deleteButton" type="submit" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+            <?php } ?>
         <?php } ?>
-    </table>
+        </table>
 
 </body>
 

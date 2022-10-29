@@ -902,7 +902,7 @@ summary {
 /*             MANAGER.HTML             */
 /****************************************/
 
-#managerBG {
+.managerBG {
     background-color: #303030;
     padding-bottom: 50px;
     color: #c4c9c9;
@@ -967,7 +967,7 @@ summary {
     border-radius: 5px;
     display: inline;
     padding: 20px 40px;
-    background-color: #007bff;
+    background-color: #8b0d32;
     color: white;
 }
 
@@ -989,6 +989,24 @@ summary {
     margin: 0px 8px;
 }
 
+.notFoundMsg {
+    text-align: center;
+}
+
+#editForm {
+    margin: 0px 25%;
+}
+
+#editOptions {
+    float: right;
+    margin-top: 15px;
+}
+
+#editOptions a {
+    margin-right: 15px;
+    vertical-align: bottom;
+}
+
 @media screen and (max-width: 992px) {
     #searchOptionsContainer {
         flex-direction: column;
@@ -1004,8 +1022,8 @@ summary {
         width: calc(100% - 16px);
         margin: 0px 8px;
     }
-}
 
-.notFoundMsg {
-    text-align: center;
+    #editForm {
+        margin: 0px 5%;
+    }
 }

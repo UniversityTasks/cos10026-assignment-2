@@ -22,7 +22,7 @@ $query = "
 $add_and = false;
 
 if ($name != "") {
-    $query .= " where o.first_name like '%$name%' or o.last_name like '%$name%'";
+    $query .= " where (o.first_name like '%$name%' or o.last_name like '%$name%')";
     $add_and = true;
 }
 
@@ -55,7 +55,7 @@ $movies = $conn->query("select * from s103574757_db.movies");
     <title>GOI - Manager</title>
 </head>
 
-<body id='managerBG'>
+<body class='managerBG'>
     <?php include_once 'includes/menu.php'; ?>
 
     <h1 class="assignment-related-page-title">Manager</h1>

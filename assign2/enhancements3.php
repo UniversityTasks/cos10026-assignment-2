@@ -41,7 +41,7 @@
 
         <details>
             <summary>#3 - Linking mutliple tables using foreign keys</summary>
-            This enhancement utilizes our database to collaborate the orders' table with other tables such as 'contact_method', 'movies', and 'options' to remove redundancy when storing data. 
+            This enhancement utilizes our database to collaborate the 'orders' table with other tables such as 'contact_method', 'movies', and 'options' to remove redundancy when storing data. 
 
             Creating different tables for different category of data helps to create accuracy when inserting data as it eliminates data duplication and helps with flexibility as it ease the increasing incoming of customers' data .
             Relational database also improves readibility and ease of usage which allow managers to easiliy carry our complex queries.

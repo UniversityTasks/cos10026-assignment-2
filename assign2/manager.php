@@ -47,37 +47,52 @@ $movies = $conn->query("select * from s103574757_db.movies");
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="GOI Cinemas - Enhancements" />
+    <meta name="keywords" content="HTML,CSS,Javascript" />
+    <meta name="author" content="Gang of Islands" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/style.css">
     <title>GOI - Manager</title>
 </head>
 
-<body>
+<body id='managerBG'>
+    <?php include_once 'includes/menu.php'; ?>
+
+    <h1 class="assignment-related-page-title">Manager</h1>
+
     <form action="manager.php" method="get">
-        <label for="name">Customer name: </label>
-        <input type="text" name="name" id="name" value="<?= $name ?>">
+        <div id="searchOptionsContainer">
+            <div class="formGroup">
+                <label for="name">Customer name: </label>
+                <input type="text" name="name" id="name" value="<?= $name ?>">
+            </div>
 
-        <label for="sort">Sort order cost: </label>
-        <select name="sort" id="sort">
-            <option value="desc" <?php echo $sort === "desc" ? 'selected' : '' ?>>Descending</option>
-            <option value="asc" <?php echo $sort === "asc" ? 'selected' : '' ?>>Ascending</option>
-        </select>
+            <div class="formGroup">
+                <label for="sort">Sort order cost: </label>
+                <select name="sort" id="sort">
+                    <option value="desc" <?php echo $sort === "desc" ? 'selected' : '' ?>>Descending</option>
+                    <option value="asc" <?php echo $sort === "asc" ? 'selected' : '' ?>>Ascending</option>
+                </select>
+            </div>
 
-        <label for="prod">Product:</label>
-        <select name="prod" id="prod">
-            <!-- TODO: Can overwrite selected -->
-            <option value="" selected>-- ALL --</option>
-            <?php while ($row = mysqli_fetch_assoc($movies)) { ?>
-                <option value="<?php echo $row['movie_id'] ?>" <?php echo $row['movie_id'] === $prod ? 'selected' : '' ?>>
-                    <?php echo $row['movie_name'] ?>
-                </option>
-            <?php } ?>
-        </select>
+            <div class="formGroup">
+                <label for="prod">Product:</label>
+                <select name="prod" id="prod">
+                    <!-- TODO: Can overwrite selected -->
+                    <option value="" selected>-- ALL --</option>
+                    <?php while ($row = mysqli_fetch_assoc($movies)) { ?>
+                        <option value="<?php echo $row['movie_id'] ?>" <?php echo $row['movie_id'] === $prod ? 'selected' : '' ?>>
+                            <?php echo $row['movie_name'] ?>
+                        </option>
+                    <?php } ?>
+                </select>
+            </div>
 
-        <input type="submit" value="Search">
+            <input class='confirmButton' type="submit" value="Search">
+        </div>
     </form>
 
-    <table>
+    <table id="managerSearchTable">
         <tr>
             <th>ID</th>
             <th>Total cost</th>
@@ -91,19 +106,19 @@ $movies = $conn->query("select * from s103574757_db.movies");
         <?php while ($row = mysqli_fetch_assoc($orders)) { ?>
             <tr>
                 <td><?php echo $row['order_id']; ?></td>
-                <td><?php echo $row['order_cost']; ?></td>
+                <td>$<?php echo $row['order_cost']; ?></td>
                 <td><?php echo $row['first_name']; ?></td>
                 <td><?php echo $row['last_name']; ?></td>
                 <td><?php echo $row['order_status']; ?></td>
                 <td><?php echo $row['movie_name']; ?></td>
                 <td>
                     <!-- Send the user to the edit page (which fetches order data via order_id) -->
-                    <a href="edit_order.php?id=<?php echo $row['order_id'] ?>">Edit</a>
+                    <a class="editLink" href="edit_order.php?id=<?php echo $row['order_id'] ?>">Edit</a>
 
                     <!-- Delete order by posting to delete_order.php. We need to use a form because JS is not allowed :( -->
-                    <form action="delete_order.php" method="post">
+                    <form id='deleteForm' action="delete_order.php" method="post">
                         <input type="hidden" name="id" value="<?php echo $row['order_id'] ?>">
-                        <input type="submit" value="Delete">
+                        <input class="deleteButton" type="submit" value="Delete">
                     </form>
                 </td>
             </tr>

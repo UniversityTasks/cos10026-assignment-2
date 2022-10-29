@@ -16,7 +16,7 @@
 
 
     <section id="enhancementContainer">
-        <h1>Enhancements</h1>
+        <h1 class="assignment-related-page-title">Enhancements</h1>
 
         <details>
             <summary>#1 - Mobile first design</summary>

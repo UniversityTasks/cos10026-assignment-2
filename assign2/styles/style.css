@@ -6,6 +6,13 @@
     font-family: Arial, sans-serif;
 }
 
+.assignment-related-page-title {
+    color: white;
+    font: 3rem Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin-top: 30px;
+}
+
 /****************************************/
 /*              ROOT.HTML               */
 /****************************************/
@@ -209,8 +216,6 @@ footer p {
 /*              Receipt.php              */
 /****************************************/
 
-
-
 body {
     background-color: #f6f6f6;
 }
@@ -218,7 +223,7 @@ body {
 .receipt-wrap {
     background-color: #f6f6f6;
     width: 100%;
-      -webkit-font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
     -webkit-text-size-adjust: none;
     width: 100% !important;
     height: 100%;
@@ -227,7 +232,7 @@ body {
 
 .receiptcontainer {
     display: block !important;
-    width:600;
+    width: 600;
     max-width: 600px !important;
     margin: 0 auto !important;
     clear: both !important;
@@ -240,14 +245,15 @@ body {
     padding: 20px;
 }
 
-.alignright{
-    width:80%;
+.alignright {
+    width: 80%;
 }
+
 .receiptmain {
     background: #fff;
     border: 1px solid #e9e9e9;
     border-radius: 3px;
-    padding:0;
+    padding: 0;
 }
 
 .receipt-wrap {
@@ -258,8 +264,8 @@ body {
     padding: 0 0 20px;
 }
 
-.receiptfooter{
-    width:100%;
+.receiptfooter {
+    width: 100%;
 }
 
 
@@ -275,17 +281,21 @@ a {
     text-align: left;
     width: 80%;
 }
+
 .receipt td {
     padding: 5px 0;
 }
+
 .receipt .receipt-items {
     width: 100%;
-    padding:0; 
-    
+    padding: 0;
+
 }
+
 .receipt .receipt-items td {
     border-top: #eee 1px solid;
 }
+
 .receipt .receipt-items .total td {
     border-top: 2px solid #333;
     border-bottom: 2px solid #333;
@@ -297,8 +307,8 @@ a {
 /****************************************/
 /*              FIX_ORDER.php*/
 /****************************************/
-.errorMsg{
-    color:red;
+.errorMsg {
+    color: red;
 }
 
 /****************************************/
@@ -826,6 +836,7 @@ textarea:focus {
     margin-top: 24px;
     border-radius: 5px;
 }
+
 .loginSubmitBtn input[type=submit] {
     padding: 24px;
     border: none;
@@ -839,6 +850,7 @@ textarea:focus {
     background-size: 300%;
     animation: buttonAnim 10s linear infinite;
 }
+
 #loginError {
     font: 1rem Arial, Helvetica, sans-serif;
     color: red;
@@ -854,13 +866,6 @@ textarea:focus {
 #enhancementsBG {
     background-color: #242424;
     padding-bottom: 50px;
-}
-
-#enhancementsBG h1 {
-    color: white;
-    font: 3rem Arial, Helvetica, sans-serif;
-    text-align: center;
-    margin-top: 30px;
 }
 
 details {
@@ -890,5 +895,113 @@ summary {
     /* Dont squash on smaller screens */
     details {
         width: 90%;
+    }
+}
+
+/****************************************/
+/*             MANAGER.HTML             */
+/****************************************/
+
+#managerBG {
+    background-color: #303030;
+    padding-bottom: 50px;
+    color: #c4c9c9;
+}
+
+#managerSearchTable {
+    margin-top: 25px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#managerSearchTable td,
+#managerSearchTable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+#managerSearchTable tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#managerSearchTable tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+#managerSearchTable tr {
+    color: #000000;
+}
+
+#managerSearchTable tr:hover {
+    background-color: #dddddd;
+}
+
+#managerSearchTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: #3b3b3b;
+    color: #ffffff;
+}
+
+#deleteForm {
+    display: inline;
+}
+
+.deleteButton {
+    border: none;
+    border-radius: 5px;
+    display: inline;
+    padding: 15px;
+    background-color: #dc3545;
+    margin-left: 15px;
+    color: white;
+}
+
+.deleteButton:hover {
+    cursor: pointer;
+}
+
+.confirmButton {
+    border: none;
+    border-radius: 5px;
+    display: inline;
+    padding: 20px 40px;
+    background-color: #007bff;
+    color: white;
+}
+
+.confirmButton:hover {
+    cursor: pointer;
+}
+
+#searchOptionsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#searchOptionsContainer .formGroup {
+    padding: 0px 8px;
+}
+
+#searchOptionsContainer input[type=submit] {
+    margin: 0px 8px;
+}
+
+@media screen and (max-width: 992px) {
+    #searchOptionsContainer {
+        flex-direction: column;
+    }
+    
+    #searchOptionsContainer .formGroup {
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    #searchOptionsContainer input[type=submit] {
+        box-sizing: border-box;
+        width: calc(100% - 16px);
+        margin: 0px 8px;
     }
 }

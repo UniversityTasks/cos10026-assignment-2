@@ -962,6 +962,14 @@ summary {
     cursor: pointer;
 }
 
+.deleteButton:disabled {
+    background-color: #db7781;
+}
+
+.deleteButton:hover:disabled {
+    cursor: not-allowed;
+}
+
 .confirmButton {
     border: none;
     border-radius: 5px;

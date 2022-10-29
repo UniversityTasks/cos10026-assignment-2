@@ -36,10 +36,10 @@ $order = mysqli_fetch_assoc($conn->query("select * from s103574757_db.orders whe
 <body class='managerBG'>
     <?php include_once 'includes/menu.php'; ?>
 
-    <h1 class="assignment-related-page-title">Updating order #<?php echo $order['order_id'] ?></h1>
+    <h1 class="assignment-related-page-title">Updating order #<?= $order['order_id'] ?></h1>
 
     <form id="editForm" action="edit_order.php" method="post">
-        <input type="hidden" name="id" value="<?php echo $order['order_id'] ?>">
+        <input type="hidden" name="id" value="<?= $order['order_id'] ?>">
         <label for="status">Status</label>
         <select name="status" id="status">
             <option value="PENDING" <?= $order['order_status'] == 'PENDING' ? 'selected' : '' ?>>PENDING</option>

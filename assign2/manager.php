@@ -108,20 +108,20 @@ $movies = $conn->query("select * from s103574757_db.movies");
             </tr>
             <?php while ($row = mysqli_fetch_assoc($orders)) { ?>
                 <tr>
-                    <td><?php echo $row['order_id']; ?></td>
-                    <td>$<?php echo $row['order_cost']; ?></td>
-                    <td><?php echo $row['first_name']; ?></td>
-                    <td><?php echo $row['last_name']; ?></td>
-                    <td><?php echo $row['order_status']; ?></td>
-                    <td><?php echo $row['movie_name']; ?></td>
+                    <td><?= $row['order_id']; ?></td>
+                    <td><?= $row['order_cost']; ?></td>
+                    <td><?= $row['first_name']; ?></td>
+                    <td><?= $row['last_name']; ?></td>
+                    <td><?= $row['order_status']; ?></td>
+                    <td><?= $row['movie_name']; ?></td>
                     <td>
                         <!-- Send the user to the edit page (which fetches order data via order_id) -->
-                        <a class="editLink" href="edit_order.php?id=<?php echo $row['order_id'] ?>">Edit</a>
+                        <a class="editLink" href="edit_order.php?id=<?= $row['order_id'] ?>">Edit</a>
 
                         <!-- Delete order by posting to delete_order.php. We need to use a form because JS is not allowed :( -->
                         <form id='deleteForm' action="delete_order.php" method="post">
-                            <input type="hidden" name="id" value="<?php echo $row['order_id'] ?>">
-                            <input class="deleteButton" type="submit" value="Delete">
+                            <input type="hidden" name="id" value="<?= $row['order_id'] ?>">
+                            <input <?= $row['order_status'] !== 'PENDING' ? "disabled" : "" ?> class="deleteButton" type="submit" value="Delete">
                         </form>
                     </td>
                 </tr>

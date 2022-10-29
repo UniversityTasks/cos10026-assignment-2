@@ -1031,4 +1031,13 @@ summary {
     #editForm {
         margin: 0px 5%;
     }
+
+    #reportOptionsContainer {
+        width: calc(100% - 16px);
+        margin: 0px 8px;
+    }
+    
+    .multiLineForm {
+        flex-direction: column;
+    }
 }

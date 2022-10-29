@@ -1,9 +1,9 @@
 <?php
 //Deny direct access
 //Reference: https://fedingo.com/how-to-prevent-direct-access-to-php-file/
-if ($_SERVER['REQUEST_METHOD'] == 'GET' && realpath(__FILE__) == realpath($_SERVER['SCRIPT_FILENAME'])) {
-    header('HTTP/1.0 404 Not Found', TRUE, 404);
-    die(header("location: index.php"));
+if (!isset($_SERVER['HTTP_REFERER'])) {
+    header("location: index.php");
+    exit;
 }
 
 // Used to pass data between PHP pages

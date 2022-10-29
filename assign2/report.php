@@ -9,13 +9,13 @@ if (!isset($_SESSION['authenticated']) || !$_SESSION['authenticated']) {
 require_once("./db.php");
 require_once("./functions/functions.php");
 
-// Defaults to last week time frame
-$from = get_query_param("from", date('d-M-Y', strtotime('-7 days')));
-$to = get_query_param("to", date('d-M-Y'));
+// Defaults to last week time frame and conver to MySQL format
+$from = date("Y-m-d H:i:s", strtotime(get_query_param("from", date('d-M-Y', strtotime('-7 days')))));
+$to = date("Y-m-d H:i:s", strtotime(get_query_param("to", date('d-M-Y'))));
 
-$finance = mysqli_fetch_assoc($conn->query("SELECT count(order_id), avg(order_cost), max(order_cost) FROM s103574757_db.orders WHERE order_status='FULFILLED' and order_time between $from and $to"));
-$popularity = mysqli_fetch_assoc($conn->query("SELECT max(o.state), max(m.movie_name) FROM s103574757_db.orders o inner join s103574757_db.movies m on m.movie_id = o.movie_id where order_time between $from and $to"));
-$orders = mysqli_fetch_assoc($conn->query("SELECT count(order_id) FROM s103574757_db.orders where order_time between $from and $to"));
+$finance = mysqli_fetch_assoc($conn->query("SELECT count(order_id), avg(order_cost), max(order_cost) FROM s103574757_db.orders WHERE order_status='FULFILLED' and order_time between '$from' and '$to'"));
+$popularity = mysqli_fetch_assoc($conn->query("SELECT max(o.state), max(m.movie_name) FROM s103574757_db.orders o inner join s103574757_db.movies m on m.movie_id = o.movie_id where order_time between '$from' and '$to'"));
+$orders = mysqli_fetch_assoc($conn->query("SELECT count(order_id) FROM s103574757_db.orders where order_time between '$from' and '$to'"));
 
 
 ?>

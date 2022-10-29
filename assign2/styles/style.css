@@ -232,6 +232,12 @@ footer p {
     border-radius: 3px;
 }
 
+@media (max-width: 992px) {
+    #receiptContainer {
+        width: 75%;
+    }
+}
+
 #receiptContainer h2 {
     text-align: center;
 }

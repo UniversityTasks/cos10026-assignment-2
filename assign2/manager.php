@@ -70,19 +70,18 @@ $movies = $conn->query("select * from s103574757_db.movies");
             <div class="formGroup">
                 <label for="sort">Sort order cost: </label>
                 <select name="sort" id="sort">
-                    <option value="desc" <?php echo $sort === "desc" ? 'selected' : '' ?>>Descending</option>
-                    <option value="asc" <?php echo $sort === "asc" ? 'selected' : '' ?>>Ascending</option>
+                    <option value="desc" <?= $sort === "desc" ? 'selected' : '' ?>>Descending</option>
+                    <option value="asc" <?= $sort === "asc" ? 'selected' : '' ?>>Ascending</option>
                 </select>
             </div>
 
             <div class="formGroup">
                 <label for="prod">Product:</label>
                 <select name="prod" id="prod">
-                    <!-- TODO: Can overwrite selected -->
                     <option value="" selected>-- ALL --</option>
                     <?php while ($row = mysqli_fetch_assoc($movies)) { ?>
-                        <option value="<?php echo $row['movie_id'] ?>" <?php echo $row['movie_id'] === $prod ? 'selected' : '' ?>>
-                            <?php echo $row['movie_name'] ?>
+                        <option value="<?= $row['movie_id'] ?>" <?= $row['movie_id'] === $prod ? 'selected' : '' ?>>
+                            <?= $row['movie_name'] ?>
                         </option>
                     <?php } ?>
                 </select>
@@ -126,8 +125,61 @@ $movies = $conn->query("select * from s103574757_db.movies");
                     </td>
                 </tr>
             <?php } ?>
-        <?php } ?>
         </table>
+    <?php } ?>
+
+    
+    <div id="reportOptionsContainer">
+        <h2>Generate report</h2>
+
+        <form action="report.php" method="get">
+            <div class="multiLineForm">
+                <div class="formGroup">
+                    <label for="from">From: </label>
+                    <input type="date" name="from" id="from">
+                </div>
+
+                <div class="formGroup">
+                    <label for="to">To: </label>
+                    <input type="date" name="to" id="to">
+                </div>
+            </div>
+
+            <div class="multiLineForm">
+                <div class="formGroup">
+                    <label for="state">State: </label>
+                    <select name="state" id="state">
+                        <option value="" selected>-- ALL --</option>
+                        <option value="NSW">New South Wales</option>
+                        <option value="VIC">Victoria</option>
+                        <option value="WA">Western Australia</option>
+                        <option value="TAS">Tasmania</option>
+                        <option value="NT">Northern Territory</option>
+                        <option value="ACT">Australian Capital Territory</option>
+                        <option value="QLD">Queensland</option>
+                        <option value="SA">South Australia</option>
+                    </select>
+                </div>
+
+                <div class="formGroup">
+                    <label for="movie">Movie:</label>
+                    <select name="movie" id="movie">
+                        <option value="" selected>-- ALL --</option>
+                        <!-- Set the pointer to the first element -->
+                        <?php mysqli_data_seek($movies, 0); ?>
+
+                        <?php while ($row = mysqli_fetch_assoc($movies)) { ?>
+                            <option value="<?= $row['movie_id'] ?>">
+                                <?= $row['movie_name'] ?>
+                            </option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
+
+            <input class='confirmButton' type="submit" value="Generate report">
+        </form>
+    </div>
 
 </body>
 

@@ -676,7 +676,7 @@ aside {
 input[type=text],
 input[type=email],
 input[type=password],
-
+input[type=date],
 select,
 textarea {
     /*To prevent padding from increasing width*/
@@ -691,6 +691,8 @@ textarea {
 
 input[type=text]:focus,
 input[type=email]:focus,
+input[type=password]:focus,
+input[type=date]:focus,
 select:focus,
 textarea:focus {
     outline: none;
@@ -888,11 +890,11 @@ summary {
 }
 
 #managerSearchTable tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #afafaf;
 }
 
 #managerSearchTable tr:nth-child(odd) {
-    background-color: #ffffff;
+    background-color: #dadada;
 }
 
 #managerSearchTable tr {
@@ -900,7 +902,7 @@ summary {
 }
 
 #managerSearchTable tr:hover {
-    background-color: #dddddd;
+    background-color: #919191;
 }
 
 #managerSearchTable th {
@@ -961,6 +963,35 @@ summary {
 
 #searchOptionsContainer input[type=submit] {
     margin: 0px 8px;
+}
+
+#reportOptionsContainer {
+    flex-direction: column;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+}
+
+#reportOptionsContainer h2 {
+    text-align: center;
+}
+
+#reportOptionsContainer .formGroup {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 5px;
+}
+
+#reportOptionsContainer input[type=submit] {
+    box-sizing: border-box;
+    width: calc(100% - 16px);
+    margin: 0px 8px;
+}
+
+.multiLineForm {
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .notFoundMsg {

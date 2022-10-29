@@ -159,44 +159,12 @@ $movies = $conn->query("select * from s103574757_db.movies");
             <div class="multiLineForm">
                 <div class="formGroup">
                     <label for="from">From: </label>
-                    <input type="date" name="from" id="from">
+                    <input type="date" name="from" id="from" required>
                 </div>
 
                 <div class="formGroup">
                     <label for="to">To: </label>
-                    <input type="date" name="to" id="to">
-                </div>
-            </div>
-
-            <div class="multiLineForm">
-                <div class="formGroup">
-                    <label for="state">State: </label>
-                    <select name="state" id="state">
-                        <option value="" selected>-- ALL --</option>
-                        <option value="NSW">New South Wales</option>
-                        <option value="VIC">Victoria</option>
-                        <option value="WA">Western Australia</option>
-                        <option value="TAS">Tasmania</option>
-                        <option value="NT">Northern Territory</option>
-                        <option value="ACT">Australian Capital Territory</option>
-                        <option value="QLD">Queensland</option>
-                        <option value="SA">South Australia</option>
-                    </select>
-                </div>
-
-                <div class="formGroup">
-                    <label for="movie">Movie:</label>
-                    <select name="movie" id="movie">
-                        <option value="" selected>-- ALL --</option>
-                        <!-- Set the pointer to the first element -->
-                        <?php mysqli_data_seek($movies, 0); ?>
-
-                        <?php while ($row = mysqli_fetch_assoc($movies)) { ?>
-                            <option value="<?= $row['movie_id'] ?>">
-                                <?= $row['movie_name'] ?>
-                            </option>
-                        <?php } ?>
-                    </select>
+                    <input type="date" name="to" id="to" required>
                 </div>
             </div>
 

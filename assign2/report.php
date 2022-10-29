@@ -70,6 +70,8 @@ $orders = mysqli_fetch_assoc($conn->query("SELECT count(order_id) FROM s10357475
             <p>Fulfilled orders in time period: <?= $finance['count(order_id)'] ?> </p>
             <p>Average orders per day: <?= $orders['count(order_id)'] / round((strtotime($to) - strtotime($from)) / (60 * 60 * 24)) ?> </p>
         </section>
+
+        <a href="manager.php">Back to dashboard</a>
 </body>
 
 </html>

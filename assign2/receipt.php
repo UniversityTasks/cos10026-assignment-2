@@ -1,6 +1,6 @@
 <?php
 //Deny direct access
-//Reference: https://fedingo.com/how-to-prevent-direct-access-to-php-file/
+Reference: https://fedingo.com/how-to-prevent-direct-access-to-php-file/
 if (!isset($_SERVER['HTTP_REFERER'])) {
     header("location: index.php");
     exit;
@@ -22,95 +22,43 @@ session_start()
 
 </head>
 
-<body>
-    <?php
-    include_once 'includes/menu.php';
-    ?>
-    <table class="receipt-wrap">
-        <tbody>
-            <tr>
-                <td></td>
-                <td class="receiptcontainer">
-                    <div class="receiptcontent">
-                        <table class="receiptmain">
-                            <tbody>
-                                <tr>
-                                    <td class="receipt-wrap">
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="receipt-block">
-                                                        <h2>Thanks you! Have a good day!</h2>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="receipt-block">
-                                                        <table class="receipt">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td><?php echo $_SESSION['values']['first_name'], " ", $_SESSION['values']['last_name']; ?><br>
-                                                                        Address:<?php echo $_SESSION['values']['street'], " ", $_SESSION['values']['state'], " ", $_SESSION['values']['post_code'] ?>
-                                                                        <br>Phone:<?php echo $_SESSION['values']['phone'] ?><br>Email:<?= $_SESSION['values']['email'] ?>
-                                                                        <br>CCNum:***************<br> CCExp: **/** <br>
-                                                                        CVV:***<br>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <table class="receipt-items">
-                                                                            <tbody>
-                                                                                <tr>
-                                                                                    <td><?= $_SESSION['values']['receipt_desc'] ?>
-                                                                                    </td>
-                                                                                    <td><?= $_SESSION['values']['tickets_quantity'] ?>
-                                                                                    </td>
-                                                                                </tr>
+<body id="receiptBG">
+    <?php include_once 'includes/menu.php'; ?>
 
-                                                                                <tr class="total">
-                                                                                    <td class="alignright">Total</td>
-                                                                                    <td><?= $_SESSION['values']['order_cost'] ?>.00
-                                                                                    </td>
-                                                                                </tr>
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="receipt-block">
-                                                        <a href="index.php">Back to Homepage</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="receipt-block">
-                                                        GOI Inc. Hawthorn, 3122 VICTORIA
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="receiptfooter">
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td class=" receipt-block">Questions? Email <a
-                                                href="mailto:">GOISupport@hotmail.com</a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </td>
-                <td></td>
-            </tr>
-        </tbody>
-    </table>
+    <section id="receiptContainer">
+        <h2>Thanks for your order! Have a good day!</h2>
+
+        <section id="receiptContent">
+            <p><?= $_SESSION['values']['first_name'], " ", $_SESSION['values']['last_name']; ?></p>
+            <p>Address:<?= $_SESSION['values']['street'], " ", $_SESSION['values']['state'], " ", $_SESSION['values']['post_code'] ?></p>
+            <p>Phone:<?= $_SESSION['values']['phone'] ?></p>
+            <p>Email:<?= $_SESSION['values']['email'] ?></p>
+            <p>CCNum:***************</p>
+            <p>CCExp: **/**</p>
+            <p>CVV:***</p>
+
+            <table id="receiptItems">
+                <tbody>
+                    <tr>
+                        <td><?= $_SESSION['values']['receipt_desc'] ?>
+                        </td>
+                        <td class="alignRight"><?= $_SESSION['values']['tickets_quantity'] ?>
+                        </td>
+                    </tr>
+
+                    <tr id="total">
+                        <td>Total</td>
+                        <td class="alignRight">$<?= $_SESSION['values']['order_cost'] ?>.00
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <a href="index.php">Back to Homepage</a>
+        <p> GOI Inc. Hawthorn, 3122 VICTORIA</p>
+        <p>Questions? Email <a href="mailto:">GOISupport@hotmail.com</a></p>
+    </section>
 </body>
 
 </html>

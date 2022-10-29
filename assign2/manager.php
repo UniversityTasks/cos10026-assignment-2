@@ -12,6 +12,7 @@ require_once("./functions/functions.php");
 $sort = get_query_param("sort", "desc");
 $name = get_query_param("name", ""); // empty means get all
 $prod = get_query_param("prod", ""); // empty means get all
+$status = get_query_param("status", ""); // empty means get all
 
 $query = "
     select * from s103574757_db.orders o 
@@ -23,6 +24,17 @@ $add_and = false;
 
 if ($name != "") {
     $query .= " where (o.first_name like '%$name%' or o.last_name like '%$name%')";
+    $add_and = true;
+}
+
+if ($status != "") {
+    if ($add_and)
+        $query .= " and";
+    else
+        $query .= " where";
+
+    $query .= " o.order_status = '$status'";
+
     $add_and = true;
 }
 
@@ -87,6 +99,17 @@ $movies = $conn->query("select * from s103574757_db.movies");
                 </select>
             </div>
 
+            <div class="formGroup">
+                <label for="status">Status:</label>
+                <select name="status" id="status">
+                    <option value="" selected>-- ALL --</option>
+                    <option value="PENDING" <?= $status == 'PENDING' ? 'selected' : '' ?>>PENDING</option>
+                    <option value="FULFILLED" <?= $status == 'FULFILLED' ? 'selected' : '' ?>>FULFILLED</option>
+                    <option value="PAID" <?= $status == 'PAID' ? 'selected' : '' ?>>PAID</option>
+                    <option value="ARCHIVED" <?= $status == 'ARCHIVED' ? 'selected' : '' ?>>ARCHIVED</option>
+                </select>
+            </div>
+
             <input class='confirmButton' type="submit" value="Search">
         </div>
     </form>
@@ -98,21 +121,21 @@ $movies = $conn->query("select * from s103574757_db.movies");
         <table id="managerSearchTable">
             <tr>
                 <th>ID</th>
-                <th>Total cost</th>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Status</th>
+                <th>Date of order</th>
                 <th>Product</th>
+                <th>Total cost</th>
+                <th>Customer name</th>
+                <th>Status</th>
                 <th>Action</th>
             </tr>
             <?php while ($row = mysqli_fetch_assoc($orders)) { ?>
                 <tr>
                     <td><?= $row['order_id']; ?></td>
-                    <td><?= $row['order_cost']; ?></td>
-                    <td><?= $row['first_name']; ?></td>
-                    <td><?= $row['last_name']; ?></td>
-                    <td><?= $row['order_status']; ?></td>
+                    <td><?= $row['order_time']; ?></td>
                     <td><?= $row['movie_name']; ?></td>
+                    <td><?= $row['order_cost']; ?></td>
+                    <td><?= $row['first_name'] . " " . $row['last_name']; ?></td>
+                    <td><?= $row['order_status']; ?></td>
                     <td>
                         <!-- Send the user to the edit page (which fetches order data via order_id) -->
                         <a class="editLink" href="edit_order.php?id=<?= $row['order_id'] ?>">Edit</a>
@@ -128,7 +151,7 @@ $movies = $conn->query("select * from s103574757_db.movies");
         </table>
     <?php } ?>
 
-    
+
     <div id="reportOptionsContainer">
         <h2>Generate report</h2>
 

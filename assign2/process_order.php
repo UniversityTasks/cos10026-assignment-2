@@ -315,14 +315,16 @@ if (empty($errors) == false) {
 
 // Get the price of the option from database
 $res = $conn->query('SELECT option_price, option_name FROM s103574757_db.options WHERE option_id = ' . $option_id  . ';');
-
 $option_detail = mysqli_fetch_assoc($res);
 $price = intval($option_detail['option_price']);
 
 // Calculate final cost
 $order_cost = $price * intval($tickets_quantity);
 
-$values['receipt_desc'] = $option_detail['option_name'];
+$res =  $conn->query('SELECT movie_name FROM s103574757_db.movies WHERE movie_id = ' . $movie_id . ';');
+$movie_detail = mysqli_fetch_assoc($res);
+
+$values['receipt_desc'] =  $movie_detail['movie_name'] . " (" . $option_detail['option_name'] . ")";
 $values['order_cost'] = $order_cost;
 
 $_SESSION['values'] = $values;

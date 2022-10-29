@@ -83,28 +83,9 @@ $movies = $conn->query("select * from s103574757_db.movies");
                     <li>Chinese</li>
                 </ul>
 
-                <!-- TODO: Should we remove this section? -->
-                <section class="featuresSection">
-                    <h4>Select Features</h4>
-                    <form>
-                        <input type="checkbox" id="movie1Feature1" name="feature1" value="adultsTickets" checked="checked" />
-                        <label for="movie1Feature1">Adults Tickets</label>
-                        <br>
-                        <input type="checkbox" id="movie1Feature2" name="feature2" value="childrenTickets" />
-                        <label for="movie1Feature2">Children Tickets</label>
-                        <br>
-                        <input type="checkbox" id="movie1Feature3" name="feature3" value="seniorsTickets" />
-                        <label for="movie1Feature3">Seniors Tickets</label>
-                        <br>
-                        <input type="checkbox" id="movie1Feature4" name="feature4" value="studentsTickets" />
-                        <label for="movie1Feature4">Students Tickets</label>
-                        <br>
-                        <input type="checkbox" id="movie1Feature5" name="feature5" value="onlineBooking" />
-                        <label for="movie1Feature5">Online Booking</label>
-                    </form>
-                </section>
+                <!-- NOTE: Feature selection has been moved to the payments page -->
                 <div class="movieBookTicket">
-                    <a href='payment.php?movie_id=1'>Book a ticket!</a>
+                    <a href='payment.php?movie_id=<?= $row['movie_id'] ?>'>Book a ticket!</a>
                 </div>
             </section>
         <?php } ?>

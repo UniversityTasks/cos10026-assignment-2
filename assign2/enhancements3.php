@@ -37,10 +37,15 @@
 
         <details>
             <summary>#2 - Extra manager reporting functionality </summary>
+            
+            This enhancement allows the manager to generate a report based on complex queries in a certain time range(EX: July 2022 - Oct 2022). Managers will be able to see reports such as, the most famous movies based on state, most loyal customer, etc.
+
+            When manager request the report from the manager page, it will carry out the specific query from the database and display the results in a table, this simplifies the data and allow managers to only view the data that they want to see.
         </details>
 
         <details>
             <summary>#3 - Linking mutliple tables using foreign keys</summary>
+            
             This enhancement utilizes our database to collaborate the 'orders' table with other tables such as 'contact_method', 'movies', and 'options' to remove redundancy when storing data. 
 
             Creating different tables for different category of data helps to create accuracy when inserting data as it eliminates data duplication and helps with flexibility as it ease the increasing incoming of customers' data .
@@ -49,6 +54,7 @@
 
         <details>
             <summary>#4 - Autopopulating products page from database</summary>
+            
             For this enhancement we are populating products page from the database. In the database we have records of each product we offer for example, Black Panther. The images for these records are stored online and the reference to that image is saved into the database. Doing it this way means that adding a product does not require us to add another section for a new product in the html instead we can just add the record into the database. This cuts down on extra code.
             <ol>
                 <li>Query the database and fetch all the movies </li>

@@ -53,7 +53,7 @@ try {
         -- Card details
         cc_type varchar(50) NOT NULL,
         cc_name varchar(50) NOT NULL,
-        cc_num int NOT NULL,
+        cc_num varchar(16) NOT NULL,
         exp_date char(5) NOT NULL,
         cvv int(3) NOT NULL,
 

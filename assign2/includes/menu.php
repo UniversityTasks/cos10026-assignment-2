@@ -1,6 +1,9 @@
 <?php
 
-echo 
+// Only put logout when in manager pages
+$logout = in_array(basename($_SERVER['PHP_SELF']), array("manager.php", "report.php", "edit_order.php")) ? "<a href='logout.php'>Logout</a>" : "";
+
+echo
 "
 <nav>
     <a href='index.php'>Home</a>
@@ -9,7 +12,11 @@ echo
     <a href='about.php'>About</a>
     <a href='enhancements3.php'>Enhancements</a>
     <a target='_blank' href='https://youtu.be/-CM2xLmyVlo'>Video</a>
-
+    "
+    .
+    $logout
+    .
+    "
     <div class='logoContainer'>
         <a href='index.php'>
                 <img src='./images/preview/Logo.png' alt='Logo'>
@@ -17,5 +24,3 @@ echo
     </div>
 </nav>
 ";
-
-?>

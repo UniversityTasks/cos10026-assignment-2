@@ -10,12 +10,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Abort if id not set
-$id = $_GET['id'] ?? null;
-if (!$id) {
+if (!isset($_GET['id'])) {
     header('Location: manager.php');
     exit;
 }
 
+$id = $_GET['id'];
 $order = mysqli_fetch_assoc($conn->query("select * from s103574757_db.orders where order_id = " . $id));
 
 ?>

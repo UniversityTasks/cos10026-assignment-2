@@ -94,7 +94,7 @@ require_once("./functions/functions.php");
                         <option value="SA" <?= $_SESSION['values']['state'] === 'SA' ? 'selected' : ''; ?>>South
                             Australia</option>
                     </select>
-                    <p class="errMsg"><?= $_SESSION['errors']['state'] ?? "" ?></p>
+                    <p class="errMsg"><?= array_key_coalesce($_SESSION['errors'], 'state', "") ?></p>
 
                 </div>
 

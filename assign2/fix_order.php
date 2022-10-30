@@ -5,7 +5,10 @@ if (!isset($_SERVER['HTTP_REFERER'])) {
     header("location: index.php");
     exit;
 }
-session_start()
+session_start();
+
+require_once("./functions/functions.php");
+
 ?>
 
 <!DOCTYPE html>
@@ -37,40 +40,35 @@ session_start()
 
                 <div class="formGroup">
                     <label for="firstName">First Name: </label>
-                    <input type="text" name="first_name" id="firstName" pattern="[A-Za-z]{1,25}"
-                        placeholder="First Name" value="<?= $_SESSION['values']['first_name'] ?? "" ?>" required />
-                    <p class="errMsg"><?= $_SESSION['errors']['first_name'] ?? "" ?></p>
+                    <input type="text" name="first_name" id="firstName" pattern="[A-Za-z]{1,25}" placeholder="First Name" value="<?= array_key_coalesce($_SESSION['values'], 'first_name', "") ?>" required />
+                    <p class="errMsg"><?= array_key_coalesce($_SESSION['errors'], 'first_name', "") ?></p>
                 </div>
 
                 <div class="formGroup">
                     <label for="lastName">Last Name: </label>
-                    <input type="text" name="last_name" id="lastName" pattern="[A-Za-z]{1,25}" placeholder="Last Name"
-                        value="<?= $_SESSION['values']['last_name'] ?? "" ?>" required />
-                    <p class="errMsg"><?= $_SESSION['errors']['last_name'] ?? "" ?></p>
+                    <input type="text" name="last_name" id="lastName" pattern="[A-Za-z]{1,25}" placeholder="Last Name" value="<?= array_key_coalesce($_SESSION['values'], 'last_name', "") ?>" required />
+                    <p class="errMsg"><?= array_key_coalesce($_SESSION['errors'], 'last_name', "") ?></p>
 
                 </div>
 
                 <div class="formGroup">
                     <label for="email">Email: </label>
-                    <input type="email" name="email" id="email" placeholder="name@email.com "
-                        value="<?= $_SESSION['values']['email'] ?? "" ?>" required />
-                    <p class="errMsg"><?= $_SESSION['errors']['email'] ?? "" ?></p>
+                    <input type="email" name="email" id="email" placeholder="name@email.com " value="<?= array_key_coalesce($_SESSION['values'], 'email', "") ?>" required />
+                    <p class="errMsg"><?= array_key_coalesce($_SESSION['errors'], 'email', "") ?></p>
 
                 </div>
 
                 <div class="formGroup">
                     <label for="phone">Phone: </label>
-                    <input type="text" name="phone" id="phone" pattern="[0-9]{10}" placeholder="0123456789"
-                        value="<?= $_SESSION['values']['phone'] ?? "" ?>" required />
-                    <p class="errMsg"><?= $_SESSION['errors']['phone'] ?? "" ?></p>
+                    <input type="text" name="phone" id="phone" pattern="[0-9]{10}" placeholder="0123456789" value="<?= array_key_coalesce($_SESSION['values'], 'phone', "") ?>" required />
+                    <p class="errMsg"><?= array_key_coalesce($_SESSION['errors'], 'phone', "") ?></p>
 
                 </div>
 
                 <div class="formGroup">
                     <label for="street">Street: </label>
-                    <input type="text" name="street" id="street" maxlength="40" placeholder="Street Name"
-                        value="<?= $_SESSION['values']['street'] ?>" required />
-                    <p class="errMsg"><?= $_SESSION['errors']['street'] ?? "" ?></p>
+                    <input type="text" name="street" id="street" maxlength="40" placeholder="Street Name" value="<?= array_key_coalesce($_SESSION['values'], 'street', "") ?>" required />
+                    <p class="errMsg"><?= array_key_coalesce($_SESSION['errors'], 'street', "") ?></p>
 
                 </div>
 
@@ -102,9 +100,8 @@ session_start()
 
                 <div class="formGroup">
                     <label for="postCode">Post code: </label>
-                    <input type="text" name="post_code" id="postCode" pattern="[0-9]{4}" placeholder="0123"
-                        value="<?= $_SESSION['values']['post_code'] ?? "" ?>" required />
-                    <p class="errMsg"><?= $_SESSION['errors']['post_code'] ?? "" ?></p>
+                    <input type="text" name="post_code" id="postCode" pattern="[0-9]{4}" placeholder="0123" value="<?= array_key_coalesce($_SESSION['values'], 'post_code', "") ?>" required />
+                    <p class="errMsg"><?= array_key_coalesce($_SESSION['errors'], 'post_code', "") ?></p>
 
                 </div>
 
@@ -135,9 +132,8 @@ session_start()
 
                 <div class="formGroup">
                     <label for="ticketQuantity">Ticket quantity: </label>
-                    <input type="text" name="tickets_quantity" id="ticketQuantity" pattern="[0-9]{4}" placeholder="1"
-                        value="<?= $_SESSION['values']['tickets_quantity'] ?? "" ?>" required />
-                    <p class="errMsg"><?= $_SESSION['errors']['tickets_quantity'] ?? "" ?></p>
+                    <input type="text" name="tickets_quantity" id="ticketQuantity" pattern="[0-9]{4}" placeholder="1" value="<?= array_key_coalesce($_SESSION['values'], 'tickets_quantity', "") ?>" required />
+                    <p class="errMsg"><?= array_key_coalesce($_SESSION['errors'], 'tickets_quantity', "") ?></p>
                 </div>
             </fieldset>
 
@@ -165,14 +161,14 @@ session_start()
                 <div class="formGroup">
                     <label for="ccName">Name on Card </label>
                     <input type="text" name="cc_name" id="ccName" placeholder="Name" />
-                    <p class="errMsg"><?= $_SESSION['errors']['cc_name'] ?? "" ?></p>
+                    <p class="errMsg"><?= array_key_coalesce($_SESSION['errors'], 'cc_name', "") ?></p>
 
                 </div>
 
                 <div class="formGroup">
                     <label for="ccNum">Credit card number</label>
                     <input type="text" name="cc_num" id="ccNum" placeholder="1111-2222-3333-4444">
-                    <p class="errMsg"><?= $_SESSION['errors']['cc_num'] ?? "" ?></p>
+                    <p class="errMsg"><?= array_key_coalesce($_SESSION['errors'], 'cc_num', "") ?></p>
                 </div>
 
                 <div class="formGroup">
@@ -191,7 +187,7 @@ session_start()
                         <option value="11">11</option>
                         <option value="12">12</option>
                     </select>
-                    <p class="errMsg"><?= $_SESSION['errors']['exp_month'] ?? "" ?></p>
+                    <p class="errMsg"><?= array_key_coalesce($_SESSION['errors'], 'exp_month', "") ?></p>
                 </div>
 
                 <div class="formGroup">
@@ -207,13 +203,13 @@ session_start()
                         <option value="29">29</option>
                         <option value="30">30</option>
                     </select>
-                    <p class="errMsg"><?= $_SESSION['errors']['exp_year'] ?? "" ?></p>
+                    <p class="errMsg"><?= array_key_coalesce($_SESSION['errors'], 'exp_year', "") ?></p>
                 </div>
 
                 <div class="formGroup">
                     <label for="cvv">CVV</label>
                     <input type="text" id="cvv" name="cvv" placeholder="123">
-                    <p class="errMsg"><?= $_SESSION['errors']['cvv'] ?? "" ?></p>
+                    <p class="errMsg"><?= array_key_coalesce($_SESSION['errors'], 'cvv', "") ?></p>
                 </div>
 
                 <div class="enquirySubmitBtn">

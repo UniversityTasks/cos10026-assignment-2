@@ -803,11 +803,18 @@ textarea:focus {
 }
 
 #loginForm {
-    width: 70%;
+    width: 40%;
     box-shadow: #000000 1px 1px 10px;
     padding: 50px 32px;
     margin-top: 24px;
     border-radius: 5px;
+}
+
+
+@media (max-width: 992px) {
+    #loginForm {
+        width: 80%;
+    }
 }
 
 .loginSubmitBtn input[type=submit] {
@@ -1041,7 +1048,7 @@ summary {
         width: calc(100% - 16px);
         margin: 0px 8px;
     }
-    
+
     .multiLineForm {
         flex-direction: column;
     }

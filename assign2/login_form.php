@@ -9,22 +9,12 @@
     <link rel="stylesheet" href="./styles/style.css">
 </head>
 
-<body>
+<body class='managerBG'>
     <?php include_once 'includes/menu.php'; ?>
-
 
     <div id="loginContainer">
         <form id="loginForm" method='post' action="authentication.php">
-            <?php
-            if (isset($_GET["error_msg"])) {
-                if ($_GET["error_msg"] == "AccessDenied") {
-                    echo "<h3 id=loginError>Invalid username or password. Please try again</h3>";
-                } else if ($_GET["error_msg"] == "Unauthenticated") {
-                    echo "<h3 id=loginError>Please login to access the manager page</h3>";
-                }
-            }
-            ?>
-            <fieldset class="formFieldset">
+            <fieldset>
                 <legend> Manager Login </legend>
 
                 <div class="formGroup">
@@ -40,6 +30,16 @@
                 <div class="loginSubmitBtn">
                     <input type="submit" value="Login">
                 </div>
+
+                <?php
+                if (isset($_GET["error_msg"])) {
+                    if ($_GET["error_msg"] == "AccessDenied") {
+                        echo "<h3 id=loginError>Invalid username or password. Please try again</h3>";
+                    } else if ($_GET["error_msg"] == "Unauthenticated") {
+                        echo "<h3 id=loginError>Please login to access the manager page</h3>";
+                    }
+                }
+                ?>
             </fieldset>
 
         </form>

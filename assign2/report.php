@@ -55,7 +55,7 @@ $orders = mysqli_fetch_assoc($conn->query("SELECT count(order_id) FROM s10357475
             <p>Tickets sold: <?= $finance['count(order_id)'] ?></p>
             <p>Average order cost: <?= $finance['avg(order_cost)'] ?></p>
             <p>Most expensive order: <?= $finance['max(order_cost)'] ?></p>
-            <p><small>Only fulfilled orders are counted</small></p>
+            <p><small>*Only fulfilled orders are counted</small></p>
 
             <br>
 

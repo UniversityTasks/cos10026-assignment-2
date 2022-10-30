@@ -10,7 +10,7 @@ echo
     <a href='product.php'>Products</a>
     <a href='login_form.php'>Manager</a>
     <a href='about.php'>About</a>
-    <a href='enhancements3.php'>Enhancements</a>
+    <a href='enhancements2.php'>Enhancements</a>
     <a target='_blank' href='https://youtu.be/-CM2xLmyVlo'>Video</a>
     "
     .

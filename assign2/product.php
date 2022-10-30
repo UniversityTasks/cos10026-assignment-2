@@ -84,9 +84,12 @@ $movies = $conn->query("select * from s103574757_db.movies");
                 </ul>
 
                 <!-- NOTE: Feature selection has been moved to the payments page -->
-                <div class="movieBookTicket">
-                    <a href='payment.php?movie_id=<?= $row['movie_id'] ?>'>Book a ticket!</a>
-                </div>
+
+                <a href='payment.php?movie_id=<?= $row['movie_id'] ?>'>
+                    <div class="movieBookTicket">
+                        Book a ticket!
+                    </div>
+                </a>
             </section>
         <?php } ?>
     </div>

@@ -164,7 +164,7 @@
                 </div>
 
                 <div class="enquirySubmitBtn">
-                    <input type="submit" value="Make Payment">
+                    <input type="submit" value="Check out">
                 </div>
             </fieldset>
 

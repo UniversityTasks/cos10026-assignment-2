@@ -213,7 +213,7 @@ require_once("./functions/functions.php");
                 </div>
 
                 <div class="enquirySubmitBtn">
-                    <input type="submit" value="Resubmit Booking">
+                    <input type="submit" value="Check out">
                 </div>
             </fieldset>
 
